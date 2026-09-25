@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../lib/fuentes.css">
+<style>
+/* Captura de una red social en Android (vista de una publicación con comentarios). Sin logotipos. */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:412px;height:914px;overflow:hidden;font-family:'roboto',sans-serif;background:#fff;color:#050505;-webkit-font-smoothing:antialiased}
+#sb{position:absolute;left:0;right:0;top:0;height:28px;background:#fff;display:flex;align-items:center;padding:0 16px 0 20px;font-size:13.5px;font-weight:500;z-index:5}
+#sb .r{margin-left:auto;display:flex;gap:6px;align-items:center;font-size:12.5px}
+#ab{position:absolute;left:0;right:0;top:28px;height:52px;background:#fff;display:flex;align-items:center;padding:0 12px;gap:14px;z-index:5;border-bottom:1px solid #e4e6eb}
+#ab .t{font-size:17px;font-weight:500;flex:1}
+#scroller{position:absolute;left:0;right:0;top:80px;bottom:0;overflow:hidden;background:#fff}
+.post{padding:12px 12px 0}
+.ph{display:flex;gap:9px;align-items:center}
+.av{width:40px;height:40px;border-radius:50%;flex:none;background-size:cover;background-position:center}
+.nm{font-weight:600;font-size:15px}
+.meta{font-size:12.8px;color:#65676b;display:flex;gap:4px;align-items:center}
+.tx{font-size:15.4px;line-height:21px;margin:10px 0 8px;white-space:pre-wrap}
+.tx a{color:#1a53d8;text-decoration:none}
+.rx{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;color:#65676b;padding:8px 0;border-bottom:1px solid #e4e6eb}
+.rx .e{display:flex;align-items:center;gap:4px}
+.emo{font-family:'Noto Color Emoji'}
+.bub{display:inline-flex;width:18px;height:18px;border-radius:50%;align-items:center;justify-content:center;font-size:11px;border:1.5px solid #fff;margin-right:-5px}
+.acts{display:flex;justify-content:space-around;padding:6px 0;border-bottom:1px solid #e4e6eb;color:#65676b;font-size:14px;font-weight:500}
+.acts span{display:flex;gap:6px;align-items:center}
+.ord{padding:10px 12px 4px;font-size:14.5px;font-weight:600;color:#050505}
+.c{display:flex;gap:8px;padding:5px 12px}
+.c.rep{padding-left:58px}
+.c .av{width:34px;height:34px}
+.c.rep .av{width:26px;height:26px}
+.cb{background:#f0f2f5;border-radius:18px;padding:8px 12px;max-width:310px;position:relative}
+.cb .n{font-weight:600;font-size:13.5px}
+.cb .n i{font-style:normal;color:#65676b;font-weight:400;font-size:12px;margin-left:4px}
+.cb .x{font-size:14.8px;line-height:19.5px;white-space:pre-wrap}
+.cm{font-size:12.3px;color:#65676b;padding:4px 12px 2px;display:flex;gap:14px;font-weight:600}
+.cm span:first-child{font-weight:400}
+.cr{position:absolute;right:-8px;bottom:-11px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.2);font-size:11.5px;padding:1px 5px 1px 3px;color:#65676b;display:flex;gap:2px;align-items:center}
+.more{padding:8px 12px 16px 54px;font-size:14px;font-weight:600;color:#65676b}
+</style></head>
+<body>
+<div id="sb"><span id="hora">8:41</span><span class="r">
+ <svg width="15" height="12" viewBox="0 0 15 12"><path d="M1 11h2V8H1zM5 11h2V6H5zM9 11h2V3H9zM13 11h2V0h-2z" fill="#1b1b1b"/></svg>
+ <svg width="15" height="12" viewBox="0 0 16 12"><path d="M8 11.5 0 3.2A11.6 11.6 0 0 1 8 0a11.6 11.6 0 0 1 8 3.2z" fill="#1b1b1b"/></svg>
+ <span>47%</span></span></div>
+<div id="ab"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20z" fill="#050505"/></svg><span class="t">Publicación de Mariana</span>
+ <svg width="22" height="22" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="#050505" stroke-width="2"/><path d="M15.5 15.5 21 21" stroke="#050505" stroke-width="2"/></svg></div>
+<div id="scroller"><div id="cont"></div></div>
+<script>
+const AV = {
+  'Mariana Esparza': 'radial-gradient(circle at 35% 35%,#f6c7a0,#c2785a 55%,#6b3b2f)',
+  'Itzayana Ibarra': 'radial-gradient(circle at 60% 30%,#ffd1e8,#d86aa0 50%,#7a2d57)',
+  'Salvador Olvera Lozano': 'linear-gradient(160deg,#88a9c9,#3e5f7e 60%,#1d2f40)',
+  'Chuy Romo': 'radial-gradient(circle at 40% 40%,#b7d77a,#5a8c2e 60%,#2d4a16)',
+  'Rocío Luévano': 'radial-gradient(circle at 50% 30%,#fbe3a0,#e0a14a 55%,#8a5a1d)',
+  'Mary Tiscareño': 'radial-gradient(circle at 30% 30%,#f5f0ff,#b69ae0 55%,#5b3f8f)',
+  'Lupita Rangel': 'radial-gradient(circle at 45% 40%,#fff6c2,#f1c232 45%,#7f9f3a 75%,#35531b)',
+  'Kevin Ruvalcaba': 'linear-gradient(200deg,#d0d0d0,#6d6d6d 60%,#2b2b2b)',
+  'Rosy Medina': 'radial-gradient(circle at 50% 40%,#ffd9c7,#f07b5b 55%,#8f2f1f)',
+  'Yesenia Macías': 'radial-gradient(circle at 30% 60%,#c9f1ff,#4fb3d9 55%,#1c5a73)',
+};
+const E = (t) => t.replace(/(\p{Extended_Pictographic}(️|‍\p{Extended_Pictographic})*)/gu, '<span class="emo">$1</span>');
+const C = [
+  ['Itzayana Ibarra', '6 d', 'YA NO ME ETIQUETEN, NO SOY YO 😂🙄', '😆', 45],
+  ['Salvador Olvera Lozano', '3 h', 'Mi papá fue maestro de la tarde en esa escuela muchos años (el profe Salvador Olvera, q.e.p.d.). Siempre contaba de una niña que se metía a su salón sin estar inscrita y que era la más aplicada de todos. Te mando mensaje.', '👍', 38,
+    [['Mariana Esparza', '2 h', 'Muchas gracias!! Ya le contesté 🙏']]],
+  ['Chuy Romo', '6 d', 'Yo iba en la tarde en esa escuela (Rafael Ramírez) y decían que en la noche se veía una niña en la ventana del edificio B 😱😱 a lo mejor era ella', '😆', 21,
+    [['Rocío Luévano', '6 d', 'No inventes Chuy 😂']]],
+  ['Mary Tiscareño', '6 d', 'Mi mamá fue la maestra de ese grupo 🥰 le dio mucho gusto que se acordaran de ella', '❤️', 17],
+  ['Lupita Rangel', '6 d', 'Con todo respeto, Mariana: si esa niña no se ha presentado, a lo mejor tiene sus razones. Esa carta tiene destinatario, y no es Facebook.', '👍', 12,
+    [['Mariana Esparza', '6 d', 'Tiene razón, maestra 🙏 ya quité la foto.']]],
+  ['Kevin Ruvalcaba', '5 d', 'Yo me acuerdo de unos recaditos que encontramos en un mesabanco… éramos bien pesados de chiquitos 😔', '👍', 9],
+  ['Rosy Medina', '6 d', 'Seguro era hija de algún maestro de la tarde, esos se quedaban hasta noche', '👍', 3],
+  ['Yesenia Macías', '7 d', 'Qué bonito 😢 ojalá la encuentren', '❤️', 4],
+];
+let h = `<div class="post"><div class="ph"><div class="av" style="background:${AV['Mariana Esparza']}"></div><div><div class="nm">Mariana Esparza</div>
+<div class="meta">28 de junio a las 10:14 · <svg width="12" height="12" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#65676b" stroke-width="2"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" fill="none" stroke="#65676b" stroke-width="1.6"/></svg></div></div>
+<svg style="margin-left:auto" width="20" height="20" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="#65676b"/><circle cx="12" cy="12" r="2" fill="#65676b"/><circle cx="19" cy="12" r="2" fill="#65676b"/></svg></div>
+<div class="tx">${E(`¿Alguien conoce a ITZEL? 💌
+Ayer abrimos la cápsula del tiempo que enterramos en junio del 2000 en la Primaria Margarita Maza de Juárez (6° B, generación 94-2000) y salió una carta de una niña que firma Itzel. NADIE del grupo la conoce 😮
+Si sabes quién es o estudiaste en esa escuela, compártelo 🙏
+<a>#CápsulaDelTiempo</a> <a>#Aguascalientes</a>
+
+EDIT: quité la foto de la carta por respeto 🙏 Gracias a todos`)}</div>
+<div class="rx"><span class="e"><span class="bub" style="background:#1877f2"><span class="emo" style="font-size:10px">👍</span></span><span class="bub" style="background:#f33e58"><span class="emo" style="font-size:10px">❤️</span></span><span class="bub" style="background:#f7b125"><span class="emo" style="font-size:10px">😢</span></span><span style="margin-left:9px">212</span></span><span>64 comentarios · 41 veces compartido</span></div>
+<div class="acts"><span>👍︎ Me gusta</span><span>💬︎ Comentar</span><span>↗ Compartir</span></div></div>
+<div class="ord">Más relevantes ▾</div>`;
+C.forEach(([n, t, x, r, k, reps], i) => {
+  h += `<div class="c" id="c${i}"><div class="av" style="background:${AV[n]}"></div><div><div class="cb"><div class="n">${n}</div><div class="x">${E(x)}</div>${k ? `<span class="cr"><span class="emo">${r}</span>${k}</span>` : ''}</div><div class="cm"><span>${t}</span><span>Me gusta</span><span>Responder</span></div></div></div>`;
+  (reps || []).forEach(([rn, rt, rx]) => {
+    h += `<div class="c rep"><div class="av" style="background:${AV[rn]}"></div><div><div class="cb"><div class="n">${rn}${rn === 'Mariana Esparza' ? '<i>Autor</i>' : ''}</div><div class="x">${E(rx)}</div></div><div class="cm"><span>${rt}</span><span>Me gusta</span><span>Responder</span></div></div></div>`;
+  });
+});
+h += '<div class="more">Ver 51 comentarios más</div>';
+document.getElementById('cont').innerHTML = h;
+const Q = new URLSearchParams(location.search);
+if (Q.get('hora')) document.getElementById('hora').textContent = Q.get('hora');
+document.body.dataset.ready = '1';
+</script>
+</body></html>

@@ -211,7 +211,7 @@
   if (piezas.length > 1) doc.body.appendChild(tabs);
   piezas.forEach((p, i) => {
     const t = el('button', { class: 'ev-tab', role: 'tab', 'aria-selected': i === 0 ? 'true' : 'false', title: p.etiqueta },
-      p.tipo === 'audio' ? el('span', { class: 'aud', html: ICON.play }) : el('img', { src: p.mini || p.src, alt: '', loading: 'lazy' }),
+      p.tipo === 'audio' ? el('span', { class: 'aud', html: ICON.play }) : p.tipo === 'ordenar' ? el('span', { class: 'aud', html: '<svg viewBox="0 0 24 24" width="30" height="30"><path d="M4 6h16M4 12h16M4 18h16" stroke="#e3b04b" stroke-width="2"/></svg>' }) : el('img', { src: p.mini || p.src, alt: '', loading: 'lazy' }),
       el('span', null, p.etiqueta));
     t.addEventListener('click', () => mostrar(i));
     tabs.appendChild(t);

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>La carta 35 — vista local de prueba</title>
+<link rel="stylesheet" href="../COMUN/visor.css">
+<link rel="stylesheet" href="vista.css">
+</head><body>
+<header class="vl-top">
+ <div class="vl-marca">La carta 35</div>
+ <div class="vl-nota">Vista local de prueba · no es la tienda ni la plataforma</div>
+</header>
+<main class="vl">
+ <section class="vl-portada">
+  <p class="vl-kick">Caso de investigación · 60–75 min · México</p>
+  <h1>La carta 35</h1>
+  <p class="vl-sinopsis">Junio de 2025, Aguascalientes. Los exalumnos del 6° B de una primaria pública abren la cápsula del tiempo que enterraron en el año 2000. Eran 34 alumnos y hay 34 sobres. Pero al fondo de la caja aparece una hoja más, sin sobre, firmada por «Itzel». Nadie se llama así. Nadie la recuerda.</p>
+  <p class="vl-sinopsis">Mariana, la organizadora, te va pasando todo lo que junta. Solo quiere saber una cosa:</p>
+  <p class="vl-pregunta">¿Quién es Itzel?</p>
+  <details class="vl-como"><summary>Cómo se juega</summary>
+   <p>Abre las evidencias en orden. En cada una puedes acercar, mover, girar, ver en espejo, realzar y comparar con otras. Hay transcripción de cada pieza y ayuda opcional por niveles. Al final de cada etapa responde una deducción para seguir.</p>
+   <p>Sin conocimientos especiales ni búsquedas en internet: todo lo que necesitas está en el expediente.</p>
+  </details>
+  <div class="vl-ctrl">
+   <label class="vl-sw"><input type="checkbox" id="compra"> Simular compra del caso completo</label>
+   <button class="tb" id="reiniciar" type="button">Reiniciar progreso</button>
+  </div>
+ </section>
+ <div id="etapas"></div>
+ <p class="vl-pie">Ficción. Personas, escuelas, colonia y documentos son inventados; Aguascalientes es real. <a href="pruebas.html">Modo privado de pruebas</a> (solo para el equipo: muestra respuestas).</p>
+</main>
+<div id="marco" class="vl-marco" hidden>
+ <div class="vl-bar"><button class="tb" id="cerrar" type="button">← Expediente</button><span id="mtit"></span><span class="vl-sp"></span><button class="tb" id="ant" type="button">‹</button><button class="tb" id="sig" type="button">›</button></div>
+ <iframe id="ifr" title="Evidencia"></iframe>
+</div>
+<script src="manifest_local.js"></script>
+<script src="vista.js"></script>
+</body></html>

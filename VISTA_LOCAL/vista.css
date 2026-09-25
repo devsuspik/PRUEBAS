@@ -1,0 +1,41 @@
+/* Vista local de prueba: expediente y marco. Solo para probar el caso sin la plataforma comercial. */
+.vl-top{display:flex;align-items:baseline;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--panel);flex-wrap:wrap}
+.vl-marca{font-weight:700;letter-spacing:.02em}
+.vl-nota{font-size:12.5px;color:var(--tx2)}
+.vl{max-width:980px;margin:0 auto;padding:18px 16px 60px;width:100%}
+.vl-portada{padding:10px 0 20px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.vl-kick{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--tx2);margin:0}
+.vl-portada h1{font-size:34px;margin:6px 0 10px;letter-spacing:-.01em}
+.vl-sinopsis{font-size:16.5px;line-height:1.6;max-width:680px;margin:0 0 10px;color:#dedbd4}
+.vl-pregunta{font-size:22px;font-weight:650;color:var(--acc);margin:6px 0 14px}
+.vl-como{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;max-width:680px}
+.vl-como summary{cursor:pointer;font-weight:600}
+.vl-como p{font-size:14.5px;line-height:1.5;color:#d4d1ca}
+.vl-ctrl{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.vl-sw{display:flex;gap:8px;align-items:center;font-size:14.5px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.vl-sw input{width:18px;height:18px;accent-color:var(--acc)}
+.et{margin:0 0 26px}
+.et h2{font-size:18px;margin:0 0 4px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.et h2 small{font-size:13px;color:var(--tx2);font-weight:400}
+.et .req{font-size:13.5px;color:var(--tx2);margin:0 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.card{display:flex;flex-direction:column;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;padding:0;color:var(--tx);min-height:100%}
+.card .th{height:120px;background:#0b0b0c center/cover no-repeat;position:relative}
+.card .th .aud{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--acc);font-size:34px}
+.card .bd{padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px}
+.card .id{font-size:12px;color:var(--tx2);letter-spacing:.06em}
+.card .ti{font-size:15.5px;font-weight:600;line-height:1.3}
+.card .du{font-size:12.5px;color:var(--tx2)}
+.card.ded{border-color:#6b5a2c}
+.card.ded .th{background:linear-gradient(135deg,#2c2718,#1b1a16);display:flex;align-items:center;justify-content:center;font-size:30px;color:var(--acc)}
+.card.ok .id::after{content:'  ✓ resuelta';color:var(--ok);font-weight:700}
+.card.visto .id::after{content:'  · vista';color:var(--tx2)}
+.card[disabled]{opacity:.45;cursor:not-allowed}
+.card[disabled] .th{filter:grayscale(1) blur(6px)}
+.vl-pie{font-size:13px;color:var(--tx2);border-top:1px solid var(--line);padding-top:14px}
+.vl-marco{position:fixed;inset:0;z-index:40;background:var(--bg);display:flex;flex-direction:column}
+.vl-marco[hidden]{display:none}
+.vl-bar{display:flex;gap:8px;align-items:center;padding:6px 10px;border-bottom:1px solid var(--line);background:var(--panel)}
+.vl-bar #mtit{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vl-sp{flex:1}
+.vl-marco iframe{flex:1;border:0;width:100%;background:var(--bg)}

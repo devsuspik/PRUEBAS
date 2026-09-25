@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../lib/fuentes.css">
+<style>
+/* Captura de una app de mensajería de la red social en Android (tema claro). Sin logotipos. */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:412px;height:914px;overflow:hidden;font-family:'roboto',sans-serif;background:#fff;-webkit-font-smoothing:antialiased}
+#sb{position:absolute;left:0;right:0;top:0;height:28px;background:#fff;display:flex;align-items:center;padding:0 16px 0 20px;font-size:13.5px;font-weight:500;z-index:5}
+#sb .r{margin-left:auto;font-size:12.5px}
+#ab{position:absolute;left:0;right:0;top:28px;height:58px;background:#fff;display:flex;align-items:center;padding:0 10px;gap:10px;z-index:5;box-shadow:0 1px 0 #eee}
+#ab .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(160deg,#88a9c9,#3e5f7e 60%,#1d2f40);position:relative}
+#ab .av::after{content:'';position:absolute;right:-1px;bottom:-1px;width:11px;height:11px;border-radius:50%;background:#31a24c;border:2px solid #fff}
+#ab .n{font-weight:600;font-size:16px}
+#ab .s{font-size:12.5px;color:#65676b}
+#scroller{position:absolute;left:0;right:0;top:86px;bottom:62px;overflow:hidden}
+#chat{padding:8px 10px 12px}
+.ts{text-align:center;font-size:12px;color:#65676b;margin:14px 0 8px;font-weight:500}
+.m{display:flex;margin:2px 0;align-items:flex-end;gap:6px}
+.m.out{justify-content:flex-end}
+.m .av{width:28px;height:28px;border-radius:50%;background:linear-gradient(160deg,#88a9c9,#3e5f7e 60%,#1d2f40);flex:none;visibility:hidden}
+.m.last .av{visibility:visible}
+.b{max-width:74%;background:#f0f0f0;color:#050505;border-radius:18px;padding:8px 12px;font-size:15.3px;line-height:20px;white-space:pre-wrap}
+.out .b{background:#0a7cff;color:#fff}
+.m.in:not(.first) .b{border-top-left-radius:5px}
+.m.in:not(.last) .b{border-bottom-left-radius:5px}
+.m.out:not(.first) .b{border-top-right-radius:5px}
+.m.out:not(.last) .b{border-bottom-right-radius:5px}
+.img{max-width:62%;border-radius:18px;overflow:hidden}
+.img img{display:block;width:100%}
+.emo{font-family:'Noto Color Emoji'}
+#in{position:absolute;left:0;right:0;bottom:0;height:62px;display:flex;align-items:center;gap:12px;padding:0 12px;background:#fff}
+#in .f{flex:1;height:38px;border-radius:20px;background:#f0f2f5;display:flex;align-items:center;padding:0 14px;color:#65676b;font-size:15px}
+.visto{text-align:right;font-size:11.5px;color:#65676b;margin:2px 4px 0}
+</style></head>
+<body>
+<div id="sb"><span id="hora">10:02</span><span class="r" style="display:flex;gap:6px;align-items:center"><svg width="15" height="12" viewBox="0 0 15 12"><path d="M1 11h2V8H1zM5 11h2V6H5zM9 11h2V3H9zM13 11h2V0h-2z" fill="#1b1b1b"/></svg><svg width="15" height="12" viewBox="0 0 16 12"><path d="M8 11.5 0 3.2A11.6 11.6 0 0 1 8 0a11.6 11.6 0 0 1 8 3.2z" fill="#1b1b1b"/></svg>58%</span></div>
+<div id="ab"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20z" fill="#0a7cff"/></svg>
+ <div class="av"></div><div><div class="n">Salvador Olvera Lozano</div><div class="s">Activo hace 12 min</div></div>
+ <svg style="margin-left:auto" width="22" height="22" viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="#0a7cff"/></svg>
+ <svg width="24" height="24" viewBox="0 0 24 24"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11z" fill="#0a7cff"/></svg></div>
+<div id="scroller"><div id="chat"></div></div>
+<div id="in"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#0a7cff"/><path d="M12 7v10M7 12h10" stroke="#fff" stroke-width="2"/></svg><div class="f">Aa</div><svg width="24" height="24" viewBox="0 0 24 24"><path d="M2 21 23 12 2 3v7l15 2-15 2z" fill="#0a7cff"/></svg></div>
+<script>
+const I = '../../../JUGADOR_COMPLETO/E12/img/';
+const M = [
+  { ts: 'SÁB 19:48' },
+  { out: 1, t: '¡Hola! Muchas gracias por escribir. Todo lo que se acuerde nos ayuda muchísimo 🙏' },
+  { ts: 'DOM 21:05' },
+  { t: 'Buenas noches Mariana, soy Salvador Olvera, el hijo del profe Salvador (el de la tarde). Vi tu publicación.' },
+  { t: 'Mi papá murió en 2019. Guardaba muchas cosas de sus grupos, estuve buscando en sus cajas.' },
+  { t: 'Siempre contaba de una niña que "se le metía al salón". Decía que aprendió a leer casi sola con lo que dejaban escrito en el pizarrón los de la mañana y que era la más aplicada. Que no tenía papeles y que él la llevó al Registro Civil para que le hicieran su acta.' },
+  { t: 'Nunca nos dijo cómo se llamaba, o yo no me acuerdo. Encontré esto en su libreta de ese año y una invitación que tenía guardada en la misma caja. Te mando fotos.' },
+  { img: I + 'mini_IMG_20250706_210212.jpg' },
+  { img: I + 'mini_IMG_20250706_210331.jpg' },
+  { img: I + 'mini_IMG_20250706_210340.jpg' },
+  { t: 'Por cierto, vi que alguien comentó que a lo mejor era hija de un maestro de la tarde. Mi papá tuvo puros hombres, somos tres 😅' },
+  { t: 'Ojalá la encuentres. A mi papá le hubiera dado mucho gusto.' },
+  { ts: 'LUN 9:58' },
+  { out: 1, t: 'Muchísimas gracias, Salvador. No sabe cuánto nos ayuda 🙏' },
+];
+const E = (t) => t.replace(/(\p{Extended_Pictographic}(️|‍\p{Extended_Pictographic})*)/gu, '<span class="emo">$1</span>');
+let h = '';
+M.forEach((m, i) => {
+  if (m.ts) { h += `<div class="ts">${m.ts}</div>`; return; }
+  const prev = M[i - 1], next = M[i + 1];
+  const same = (a) => a && !a.ts && !!a.out === !!m.out;
+  const cls = `${m.out ? 'out' : 'in'} ${same(prev) ? '' : 'first'} ${same(next) ? '' : 'last'}`;
+  const body = m.img ? `<div class="img"><img src="${m.img}"></div>` : `<div class="b">${E(m.t)}</div>`;
+  h += `<div class="m ${cls}" id="m${i}">${m.out ? '' : '<div class="av"></div>'}${body}</div>`;
+});
+h += '<div class="visto">Visto</div>';
+document.getElementById('chat').innerHTML = h;
+const Q = new URLSearchParams(location.search);
+if (Q.get('hora')) document.getElementById('hora').textContent = Q.get('hora');
+Promise.all([...document.images].map(im => im.complete ? 1 : new Promise(r => { im.onload = r; im.onerror = r; }))).then(() => { document.body.dataset.ready = '1'; });
+</script>
+</body></html>

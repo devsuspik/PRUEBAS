@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../lib/base.css">
+<script src="../lib/filters.js"></script>
+<script src="../lib/hand.js"></script>
+<style>
+/* Invitación de graduación de imprenta (2012): cartulina perlada crema, 14 x 20 cm a 48 px/cm, oro. */
+#hoja{position:relative;width:672px;height:960px;overflow:hidden;background:radial-gradient(ellipse at 40% 30%,#fbf6ea,#f1e7d2 70%,#eadfc6)}
+.oro{color:#a8843c}
+.marco{position:absolute;inset:26px;border:2px solid #b89648;outline:1px solid #b89648;outline-offset:-8px}
+.c{position:absolute;left:40px;right:40px;text-align:center}
+.cin{font-family:'cinzel';letter-spacing:1.5px;color:#6d5524}
+.pin{font-family:'pinyon-script';color:#7a5d24}
+.cor{font-family:'cormorant-garamond';color:#4d3d1f}
+.w{position:absolute;white-space:nowrap}
+.dedic{font-family:'shadows-into-light-two';font-size:34px}
+</style></head>
+<body>
+<div id="hoja"></div>
+<script>
+const Q = new URLSearchParams(location.search);
+const H = document.getElementById('hoja');
+let h = '';
+if ((Q.get('cara') || 'frente') === 'frente') {
+  h += '<div class="marco"></div>';
+  h += `<svg style="position:absolute;left:291px;top:60px" width="90" height="60" viewBox="0 0 90 60"><path d="M45 6 L86 22 L45 38 L4 22 Z" fill="#b89648"/><path d="M22 30 V46 C 30 54, 60 54, 68 46 V30" fill="none" stroke="#b89648" stroke-width="4"/><path d="M80 24 V44" stroke="#b89648" stroke-width="2"/><circle cx="80" cy="46" r="3" fill="#b89648"/></svg>`;
+  h += `<div class="c cin" style="top:130px;font-size:19px">Escuela Normal «Profra. Eduviges Parga»</div>`;
+  h += `<div class="c cor" style="top:160px;font-size:20px;font-style:italic">Licenciatura en Educación Primaria</div>`;
+  h += `<div class="c cin" style="top:192px;font-size:17px">Generación 2008 · 2012</div>`;
+  h += `<div class="c pin" style="top:246px;font-size:30px;line-height:1.25">Con la bendición de Dios y el apoyo<br>de quienes creyeron en mí,<br>tengo el honor de invitarle a mi</div>`;
+  h += `<div class="c cin" style="top:378px;font-size:27px;font-weight:700">Ceremonia de Graduación</div>`;
+  h += `<div class="c pin" style="top:424px;font-size:47px;line-height:1.1">María Guadalupe<br>Ytzel Rangel Soto</div>`;
+  h += `<div class="c cin" style="top:560px;font-size:16px;font-weight:700">Misa de Acción de Gracias</div>`;
+  h += `<div class="c cor" style="top:582px;font-size:19px">Viernes 13 de julio de 2012 · 12:00 hrs.<br>Templo de San José</div>`;
+  h += `<div class="c cin" style="top:650px;font-size:16px;font-weight:700">Ceremonia</div>`;
+  h += `<div class="c cor" style="top:672px;font-size:19px">Viernes 13 de julio de 2012 · 18:00 hrs.<br>Auditorio de la Escuela Normal</div>`;
+  h += `<div class="c cin" style="top:746px;font-size:14px">Mis padres</div>`;
+  h += `<div class="c cor" style="top:766px;font-size:18px">J. Refugio Rangel Muñoz<br>Ma. Guadalupe Soto Ibarra (†)</div>`;
+  h += `<div class="c cor" style="top:846px;font-size:16px;font-style:italic">Aguascalientes, Ags.</div>`;
+} else {
+  h += `<div class="w hw dedic bic-blue" data-seed="2100" data-jit="0.9" data-cross7="1" style="left:70px;top:250px"><span class="ln">Profe Chava:</span></div>`;
+  h += `<div class="w hw dedic bic-blue" data-seed="2101" data-jit="0.9" style="left:90px;top:320px"><span class="ln">su oyente ya es maestra.</span></div>`;
+  h += `<div class="w hw dedic bic-blue" data-seed="2102" data-jit="0.9" style="left:90px;top:376px"><span class="ln">Gracias por dejarme estar.</span></div>`;
+  h += `<div class="w hw dedic bic-blue" data-seed="2103" data-jit="0.9" style="left:250px;top:470px"><span class="ln">Lupita</span></div>`;
+  h += `<div class="w hw dedic bic-blue" data-seed="2104" data-jit="0.9" style="left:210px;top:520px;font-size:27px"><span class="ln">(la de Don Cuco)</span></div>`;
+  h += `<div class="w hw dedic bic-blue" data-seed="2105" data-jit="0.9" style="left:380px;top:600px;font-size:27px"><span class="ln">6-VII-2012</span></div>`;
+}
+H.innerHTML = h;
+</script>
+</body></html>

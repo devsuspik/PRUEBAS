@@ -55,6 +55,86 @@ if (PAG === 'lista') {
   p += W(640, 1256, 'Total 34 cartas', { s: 21, cls: 'ink-red', seed: 22 });
   p += tick(818, 1234, 99);
 }
+
+if (PAG === 'croquis') {
+  p += W(90, 64, 'Acomodo del grupo  6° "B"', { s: 32, seed: 31 });
+  p += W(640, 62, 'sept. 1999', { s: 25, seed: 32 });
+  // pizarrón y escritorio
+  p += `<div class="cell" style="left:230px;top:96px;width:520px;height:34px"></div>`;
+  p += W(410, 124, 'Pizarrón', { s: 24, seed: 33 });
+  p += `<div class="cell" style="left:560px;top:150px;width:150px;height:44px"></div>`;
+  p += W(572, 180, 'escritorio', { s: 20, seed: 34 });
+  p += W(800, 124, 'Puerta', { s: 22, seed: 35 });
+  p += `<svg style="position:absolute;left:880px;top:92px" width="40" height="80"><path d="M6 4 L6 74 M6 4 C 34 12, 34 60, 6 74" fill="none" stroke="#213d8f" stroke-width="2" style="filter:url(#ink)"/></svg>`;
+  // ventanas a la izquierda (4)
+  p += W(16, 214, 'Ventanas', { s: 21, seed: 36, css: 'transform:rotate(-90deg);transform-origin:0 0;top:820px' });
+  [[104, 226], [326, 462], [552, 686], [848, 982]].forEach(([a, b]) => {
+    p += `<svg style="position:absolute;left:52px;top:${a}px" width="22" height="${b - a + 4}"><path d="M4 2 L4 ${b - a} M14 2 L14 ${b - a} M4 2 L14 2 M4 ${b - a} L14 ${b - a}" fill="none" stroke="#213d8f" stroke-width="1.8" style="filter:url(#ink)"/></svg>`;
+  });
+  const F = [
+    ['Adriana', 'Miguel Á.', 'Óscar M.', 'Lizbeth', 'Arturo V.', 'Érick'],
+    ['Diana', 'José Luis', 'Nancy', 'Ricardo', 'Sandra', 'Daniel'],
+    ['Mariana', 'Juan Carlos', 'Fabiola', 'Christian', 'Mónica', 'Fco. Javier'],
+    ['Karla', 'Luis Fdo.', 'Itzayana', 'Jorge A.', 'Kevin R.', 'Alejandro'],
+    ['Brenda', 'Eduardo', 'Ana Karen', 'Roberto', 'Verónica', 'Paola'],
+    ['Claudia', 'Gabriela', 'Jessica', 'Nayeli', '', ''],
+  ];
+  F.forEach((col, c) => col.forEach((n, r) => {
+    const x = 96 + c * 146, y = 240 + r * 170;
+    p += `<div class="cell" style="left:${x}px;top:${y}px;width:124px;height:70px"></div>`;
+    if (!n) return;
+    const tach = (c === 0 && r === 2) || (c === 3 && r === 4);
+    p += W(x + 8, y + 42, n, { s: 22, seed: 400 + c * 10 + r, css: tach ? 'opacity:.9' : '' });
+    if (tach) {
+      p += `<svg style="position:absolute;left:${x + 4}px;top:${y + 20}px" width="118" height="30"><path d="M2 20 C 30 14, 70 22, 114 10 M4 12 C 40 20, 80 8, 112 18" fill="none" stroke="#141418" stroke-width="2" style="filter:url(#ink)"/></svg>`;
+      p += W(x + 10, y + 66, c === 0 ? 'Kevin R.' : 'Óscar M.', { s: 21, cls: 'bic-black', f: 'cedarville-cursive', seed: 470 + c });
+    }
+  }));
+  p += W(180, 1250, 'cambio 9/mar', { s: 21, cls: 'bic-black', seed: 480 });
+  p += `<svg style="position:absolute;left:230px;top:990px;overflow:visible" width="10" height="10"></svg>`;
+  // anotación roja del vidrio junto a la 3a ventana
+  p += W(104, 536, 'vidrio estrellado 13/oct', { s: 20, cls: 'ink-red', seed: 490 });
+  p += `<svg style="position:absolute;left:70px;top:528px;overflow:visible" width="40" height="70"><path d="M34 6 C 22 12, 14 28, 6 56 M6 56 l-2 -10 M6 56 l8 -6" fill="none" stroke="#c0262d" stroke-width="2.2" stroke-linecap="round" style="filter:url(#ink)"/></svg>`;
+}
+if (PAG.startsWith('diario')) {
+  const PAGS = {
+    diario_oct: [
+      ['Lun. 11/oct/99', ['Honores (le tocó al 5° A). Esp.: el cuento, elementos.', 'Mat.: fracciones equivalentes, ejercicios págs. 30-31.']],
+      ['Mar. 12/oct/99', ['Día de la Raza. Periódico mural a cargo de la fila 3.']],
+      ['Mié. 13/oct/99', ['Amaneció estrellado el vidrio de la 3a. ventana', '(fila de las ventanas). Ya estaba así al llegar:', 'fue en la tarde (T.V.). Se reportó a Dirección.', 'El conserje lo tapó con cinta. Cuidar esa fila.', 'Esp.: lectura en voz alta págs. 42-45.']],
+      ['Jue. 14/oct/99', ['Examen de Historia (Independencia). Faltaron 2.']],
+      ['Vie. 15/oct/99', ['Junta con padres de familia. Asistieron 29.', 'Cooperación para el festival de invierno.']],
+    ],
+    diario_feb: [
+      ['Jue. 3/feb/2000', ['Mat.: perímetro y área. Tarea: problemas pág. 88.']],
+      ['Lun. 7/feb/2000', ['Se presentó al grupo el proyecto "Carta al 2025"', '(cápsula del tiempo, por el cambio de milenio).', 'Muy entusiasmados. Se enterrará a fin de ciclo', 'junto al pirul. Pedir permiso a Dirección', 'y conseguir caja de plástico con tapa.']],
+      ['Mar. 8/feb/2000', ['Ciencias: el aparato respiratorio. Maqueta en equipos.']],
+      ['Jue. 10/feb/2000', ['La Directora autorizó la cápsula. Los papás de', 'Eduardo M. donan la caja.']],
+    ],
+    diario_mar: [
+      ['Mié. 8/mar/2000', ['Repaso para el bimestral. Geografía: continentes.']],
+      ['Jue. 9/mar/2000', ['Kevin R. y Roberto M. sacaron de la canastilla de un', 'mesabanco de la fila de las ventanas unos recaditos', 'de una niña del turno de la tarde y los leyeron en', 'voz alta. Burlas y alboroto. Les pedí devolverlos a', 'su dueño. Se habló con el grupo sobre el respeto a lo', 'ajeno. Informé a la Directora (Profra. Villalobos)', 'para que lo vea con la Dirección del T.V.', 'Cambio de lugares (ver croquis).']],
+      ['Vie. 10/mar/2000', ['La Directora habló con el conserje y con la', 'Dirección de la tarde. Asunto arreglado.']],
+      ['Lun. 13/mar/2000', ['Examen bimestral (Esp. y Mat.).']],
+    ],
+    diario_jun: [
+      ['Mié. 14/jun/2000', ['Ensayo de la ceremonia de fin de cursos.', 'Esp.: la carta formal (repaso).']],
+      ['Vie. 16/jun/2000', ['Cartas al 2025: se escribieron en clase en la hoja', 'fotocopiada. Cada alumno cerró su sobre.', '34 alumnos, 34 sobres. Al archivero con llave.']],
+      ['Lun. 19/jun/2000', ['Entrega de calificaciones del 5o. bimestre.']],
+      ['Vie. 23/jun/2000', ['Ceremonia de la cápsula del tiempo, 11:00. Asistieron', 'padres y la Directora. Se enterró la caja junto', 'al pirul del patio de atrás; el conserje nuevo', 'hizo el hoyo. Salió muy bonito.']],
+    ],
+  };
+  const E = PAGS[PAG];
+  let y = 70;
+  E.forEach(([f, ls], i) => {
+    p += W(88, y, f, { s: 25, seed: 600 + i * 17 });
+    p += `<svg style="position:absolute;left:84px;top:${y + 4}px" width="200" height="8"><path d="M2 4 C 60 2, 120 6, 190 3" fill="none" stroke="#213d8f" stroke-width="1.6" style="filter:url(#ink)"/></svg>`;
+    y += 42;
+    ls.forEach((l, k) => { p += W(100, y, l, { s: 23, seed: 700 + i * 31 + k }); y += 36; });
+    y += 26;
+  });
+}
+
 document.getElementById('pap').innerHTML = p;
 hoja.insertAdjacentHTML('beforeend', h);
 </script>

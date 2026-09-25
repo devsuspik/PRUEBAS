@@ -1,0 +1,2 @@
+[{"html":"fuentes_html/mariana_libreta.html","out":"_render/mariana_libreta.png","width":984,"height":1296,"dpr":2,"selector":"#hoja"},
+ {"html":"fuentes_html/carta6b.html","query":"?kid=oscar&modo=plantilla","out":"_render/c_oscar_plantilla.png","width":1037,"height":1339,"dpr":2,"selector":"#hoja"}]

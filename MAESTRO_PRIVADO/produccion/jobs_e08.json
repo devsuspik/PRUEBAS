@@ -1,0 +1,82 @@
+[
+ {
+  "html": "fuentes_html/hule.html",
+  "out": "_render/hule.png",
+  "width": 2600,
+  "height": 2000,
+  "dpr": 1,
+  "selector": "#t"
+ },
+ {
+  "html": "fuentes_html/recados.html",
+  "query": "?r=A",
+  "out": "_render/recado_A.png",
+  "width": 800,
+  "height": 700,
+  "dpr": 2,
+  "selector": "#hoja"
+ },
+ {
+  "html": "fuentes_html/recados.html",
+  "query": "?r=B",
+  "out": "_render/recado_B.png",
+  "width": 800,
+  "height": 700,
+  "dpr": 2,
+  "selector": "#hoja"
+ },
+ {
+  "html": "fuentes_html/recados.html",
+  "query": "?r=C",
+  "out": "_render/recado_C.png",
+  "width": 800,
+  "height": 700,
+  "dpr": 2,
+  "selector": "#hoja"
+ },
+ {
+  "html": "fuentes_html/recados.html",
+  "query": "?r=D",
+  "out": "_render/recado_D.png",
+  "width": 800,
+  "height": 700,
+  "dpr": 2,
+  "selector": "#hoja"
+ },
+ {
+  "html": "fuentes_html/recados.html",
+  "query": "?r=E",
+  "out": "_render/recado_E.png",
+  "width": 800,
+  "height": 700,
+  "dpr": 2,
+  "selector": "#hoja"
+ },
+ {
+  "html": "fuentes_html/recados.html",
+  "query": "?r=F",
+  "out": "_render/recado_F.png",
+  "width": 800,
+  "height": 700,
+  "dpr": 2,
+  "selector": "#hoja"
+ },
+ {
+  "html": "fuentes_html/recados.html",
+  "query": "?r=G",
+  "out": "_render/recado_G.png",
+  "width": 800,
+  "height": 700,
+  "dpr": 2,
+  "selector": "#hoja"
+ },
+ {
+  "html": "fuentes_html/recados.html",
+  "query": "?r=H",
+  "out": "_render/recado_H.png",
+  "width": 800,
+  "height": 700,
+  "dpr": 2,
+  "selector": "#hoja"
+ }
+]

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../lib/base.css">
+<script src="../lib/filters.js"></script>
+<script src="../lib/hand.js"></script>
+<style>
+/* Lista de asistencia impresa (Word, Arial) y llenada a mano. Carta vertical a 48 px/cm. */
+#hoja{position:relative;width:1037px;height:1339px;background:#fbfbf8;overflow:hidden}
+.enc{position:absolute;left:70px;right:70px;top:56px;text-align:center;font-family:'arimo';color:#111}
+.enc .a{font-size:17px;font-weight:700}
+.enc .b{font-size:22px;font-weight:700;margin-top:6px}
+.enc .c{font-size:16px;margin-top:4px}
+table{position:absolute;left:62px;top:196px;width:913px;border-collapse:collapse;font-family:'arimo';font-size:14px;color:#111}
+th{border:1.4px solid #222;background:#d9d9d9;padding:5px 4px;font-weight:700;text-align:center}
+td{border:1.2px solid #333;height:36.5px;padding:0 4px;vertical-align:middle}
+td.n{text-align:center;width:40px}
+.w{position:absolute;white-space:nowrap}
+.tapa{position:absolute;background:#0d0d0d;display:none}
+body.mascara #hoja{background:#fff}
+body.mascara #hoja > *:not(#esc){visibility:hidden}
+body.mascara #esc > *{visibility:hidden}
+body.mascara .tapa{display:block;visibility:visible!important}
+</style></head>
+<body>
+<div id="hoja">
+ <div class="enc"><div class="a">ESC. PRIM. "MARGARITA MAZA DE JUÁREZ" T.M.</div>
+  <div class="b">REGISTRO DE ASISTENCIA</div>
+  <div class="c">Apertura de la Cápsula del Tiempo · Generación 1994-2000 · Viernes 27 de junio de 2025</div></div>
+ <table><thead><tr><th>No.</th><th style="width:330px">Nombre completo</th><th style="width:200px">Generación / Cargo</th><th style="width:130px">Teléfono</th><th>Firma</th></tr></thead>
+ <tbody id="tb"></tbody></table>
+ <div id="esc"></div>
+</div>
+<script>
+const R = [
+  ['Silvia Reyes Castañeda', 'Directora T.M.', 'homemade-apple', 'bic-blue', 'SReyes', 'mrs-saint-delafield'],
+  ['Mariana Esparza Reyes', 'Gen. 94-2000 (organizadora)', 'kalam', 'gel-black', 'Mariana E.', 'kalam'],
+  ['Karla Díaz de León P.', 'Gen 94-2000', 'bad-script', 'gel-purple', 'KDíazdeL', 'bad-script'],
+  ['Nayeli Zamarripa D.', '6°B 2000', 'patrick-hand', 'bic-blue', 'Nayeli', 'marck-script'],
+  ['Roberto Macías Ávila (Beto)', '6° B', 'covered-by-your-grace', 'bic-blue', 'Beto M', 'rock-salt'],
+  ['Itzayana Ibarra Delgado', 'Gen 2000', 'indie-flower', 'gel-green', 'Itza', 'indie-flower'],
+  ['Kevin Ruvalcaba Ortiz', '6° B', 'short-stack', 'bic-black', 'KRuvalcaba', 'zeyada'],
+  ['Luis Fernando Durón S.', '6° B 94-2000', 'coming-soon', 'bic-blue', 'LFDurón', 'kristi'],
+  ['José Luis Ávila Romo', '94-2000', 'neucha', 'bic-black', 'JL Ávila', 'dawning-of-a-new-day'],
+  ['Adriana De Luna E.', '6°B', 'handlee', 'gel-purple', 'Adri', 'la-belle-aurore'],
+  ['Brenda Delgado Ruiz', '6°B', 'caveat', 'bic-blue', 'Brenda D', 'mrs-saint-delafield'],
+  ['Ana Karen García V.', '6°B', 'annie-use-your-telescope', 'bic-blue', 'AnaKaren', 'over-the-rainbow'],
+  ['Miguel Á. Hernández M.', '6°B', 'sue-ellen-francisco', 'bic-black', 'MAHdez', 'zeyada'],
+  ['Fabiola López Romo', '6°B 94-2000', 'delius', 'bic-blue', 'Fabiola L.', 'kristi'],
+  ['Claudia Martínez Durón', '6° B', 'gochi-hand', 'bic-black', 'CMartínez', 'marck-script'],
+  ['Ricardo Muñoz Chávez', '6°B', 'neucha', 'bic-blue', 'RMuñoz', 'rock-salt'],
+  ['Francisco J. Ramírez T.', '6°B', 'reenie-beanie', 'bic-black', 'FcoJ', 'dawning-of-a-new-day'],
+  ['Lizbeth Reyes Macías', '6°B', 'itim', 'gel-purple', 'Lizbeth R.', 'la-belle-aurore'],
+  ['Alejandro Romo Salas', '6°B', 'waiting-for-the-sunrise', 'bic-blue', 'ARomo', 'kristi'],
+  ['Paola Serna G.', '6°B', 'schoolbell', 'bic-blue', 'Pao', 'over-the-rainbow'],
+  ['Jessica Tiscareño F.', '6°B', 'handlee', 'bic-black', 'JessT', 'mrs-saint-delafield'],
+  ['Sandra Luz Torres M.', '6°B', 'caveat', 'gel-purple', 'SandraL', 'marck-script'],
+  ['Arturo Velasco Jiménez', '6° B', 'architects-daughter', 'bic-blue', 'AVelasco', 'zeyada'],
+  ['Nora Delgado Ávila', 'Docente 6° B T.M.', 'la-belle-aurore', 'bic-blue', 'NDelgado', 'homemade-apple'],
+  ['Ma. Guadalupe Y. Rangel S.', 'Docente 6° A T.V.', 'shadows-into-light-two', 'bic-blue', 'YRangel', 'shadows-into-light-two'],
+  ['Julián Ortega', 'Intendente', 'over-the-rainbow', 'bic-black', 'J. Ortega', 'over-the-rainbow'],
+];
+const N = 30;
+let tb = '';
+for (let i = 0; i < N; i++) tb += `<tr><td class="n">${i + 1}</td><td></td><td></td><td></td><td></td></tr>`;
+document.getElementById('tb').innerHTML = tb;
+let e = '';
+const y0 = 196 + 33 + 36.5 / 2;
+R.forEach((r, i) => {
+  const y = y0 + i * 36.5;
+  const [nom, gen, f, cls, fir, ff] = r;
+  const sz = f === 'la-belle-aurore' ? 17 : f === 'homemade-apple' ? 16 : 19;
+  e += `<div class="w hw ${cls}" data-seed="${3000 + i * 13}" data-jit="1" data-cross7="${f === 'shadows-into-light-two' ? 1 : 0}" style="left:112px;top:${y - sz * 0.72}px;font-family:'${f}';font-size:${sz}px"><span class="ln">${nom}</span></div>`;
+  e += `<div class="w hw ${cls}" data-seed="${3001 + i * 13}" data-jit="1" style="left:446px;top:${y - sz * 0.7}px;font-family:'${f}';font-size:${sz * 0.9}px"><span class="ln">${gen}</span></div>`;
+  e += `<div class="tapa" style="left:652px;top:${y - 11}px;width:${100 + (i * 17) % 22}px;height:${22 + (i % 3)}px"></div>`;
+  const fsz = ff === 'shadows-into-light-two' ? 26 : 22;
+  e += `<div class="w hw ${cls}" data-seed="${3002 + i * 13}" data-jit="1.4" data-slope="3" style="left:${800 + (i * 23) % 40}px;top:${y - fsz * 0.8}px;font-family:'${ff}';font-size:${fsz}px"><span class="ln">${fir}</span></div>`;
+  if (ff === 'shadows-into-light-two') e += `<svg style="position:absolute;left:800px;top:${y + 2}px" width="130" height="18"><path d="M4 6 C 40 16, 90 12, 126 2" fill="none" stroke="#1d3f9c" stroke-width="2" style="filter:url(#ink)"/></svg>`;
+});
+document.getElementById('esc').innerHTML = e;
+if (new URLSearchParams(location.search).get('mascara')) document.body.classList.add('mascara');
+</script>
+</body></html>

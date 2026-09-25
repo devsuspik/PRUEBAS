@@ -1,0 +1,20 @@
+[
+ {
+  "html": "fuentes_html/facebook.html",
+  "query": "?hora=8:41",
+  "out": "_render/fb_1.png",
+  "width": 412,
+  "height": 914,
+  "dpr": 2.625,
+  "scroll": 0
+ },
+ {
+  "html": "fuentes_html/facebook.html",
+  "query": "?hora=8:41",
+  "out": "_render/fb_2.png",
+  "width": 412,
+  "height": 914,
+  "dpr": 2.625,
+  "scroll": 760
+ }
+]

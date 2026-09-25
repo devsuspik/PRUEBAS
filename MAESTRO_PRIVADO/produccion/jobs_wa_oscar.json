@@ -1,0 +1,38 @@
+[
+ {
+  "html": "fuentes_html/whatsapp.html",
+  "query": "?chat=oscar&hora=9:24",
+  "out": "_render/wa_oscar_1.png",
+  "width": 412,
+  "height": 914,
+  "dpr": 2.625,
+  "scroll": 0
+ },
+ {
+  "html": "fuentes_html/whatsapp.html",
+  "query": "?chat=oscar&hora=9:24",
+  "out": "_render/wa_oscar_2.png",
+  "width": 412,
+  "height": 914,
+  "dpr": 2.625,
+  "scroll": 690
+ },
+ {
+  "html": "fuentes_html/whatsapp.html",
+  "query": "?chat=oscar&hora=9:25",
+  "out": "_render/wa_oscar_3.png",
+  "width": 412,
+  "height": 914,
+  "dpr": 2.625,
+  "scroll": 1300
+ },
+ {
+  "html": "fuentes_html/whatsapp.html",
+  "query": "?chat=oscar&hora=9:25",
+  "out": "_render/wa_oscar_4.png",
+  "width": 412,
+  "height": 914,
+  "dpr": 2.625,
+  "scroll": 1547
+ }
+]

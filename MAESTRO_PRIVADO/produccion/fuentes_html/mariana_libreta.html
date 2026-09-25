@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../lib/base.css">
+<script src="../lib/filters.js"></script>
+<script src="../lib/hand.js"></script>
+<style>
+/* Libreta de raya gris de Mariana (2025), 20.5 x 27 cm a 48 px/cm, con recuadro impreso de fecha. */
+#hoja{position:relative;width:984px;height:1296px;background:#fbfaf6;overflow:hidden}
+.reng{position:absolute;left:0;right:0;height:1.2px;background:#b7bcc4}
+.fecha{position:absolute;right:40px;top:40px;font:400 15px 'arimo';color:#9aa0a8}
+.fecha i{display:inline-block;width:150px;border-bottom:1.2px solid #b7bcc4;margin-left:6px}
+.w{position:absolute;white-space:nowrap;font-family:'kalam';font-weight:300}
+</style></head>
+<body>
+<div id="hoja"></div>
+<script>
+const H = document.getElementById('hoja');
+let h = '<div class="fecha">Fecha<i></i></div>';
+const R0 = 150, SP = 34;
+for (let i = 0; i < 34; i++) h += `<div class="reng" style="top:${R0 + i * SP}px"></div>`;
+function L(r, x, t, o = {}) {
+  const s = o.s || 26;
+  return `<div class="w hw gel-black" data-seed="${1200 + r * 13}" data-jit="0.9" data-slope="0.6" style="left:${x}px;top:${R0 + r * SP - s * 1.05}px;font-size:${s}px;${o.css || ''}"><span class="ln">${t}</span></div>`;
+}
+h += `<div class="w hw gel-black" data-seed="1190" style="left:812px;top:20px;font-size:24px">27/jun/25</div>`;
+h += L(0, 60, 'APERTURA CÁPSULA 6°B', { s: 32, css: 'font-weight:700' });
+h += L(1, 60, '12:50  Julián (intendente) sacó la caja.');
+h += L(2, 60, 'Tapa estrellada en una esquina (la del lado del pirul).');
+h += L(3, 60, 'Agua en el fondo, como 3 dedos :(');
+h += L(5, 60, 'Sobres: 34 (según la lista de la maestra)');
+h += L(6, 60, 'Enteros: 30 → ok (algunos húmedos)');
+h += L(7, 60, '#18 Claudia · sobre roto, carta bien');
+h += L(8, 60, '#19 Eduardo · sobre deshecho, carta mojada (sí se lee)');
+h += L(9, 60, '#20 Óscar · sobre deshecho, carta muy mojada, tinta corrida');
+h += L(10, 60, '#21 Gaby · sobre despegado, carta mojada');
+h += L(12, 60, 'HOJA SIN SOBRE, hasta el fondo, entre los');
+h += L(13, 60, 'pedazos de los sobres 19-20-21 → firma "Itzel" ??', { css: 'font-weight:400' });
+h += `<svg style="position:absolute;left:40px;top:${R0 + 11 * SP + 6}px" width="900" height="90"><path d="M10 10 C 300 2, 620 8, 880 12 C 890 40, 884 70, 876 84 C 600 90, 300 86, 16 80 C 8 56, 6 30, 10 10" fill="none" stroke="#141418" stroke-width="2" style="filter:url(#ink)"/></svg>`;
+h += L(15, 60, 'Entregadas hoy: 22');
+h += L(16, 60, 'Me llevo 12 (¡secarlas!):');
+h += L(17, 90, 'Diana, Juan Carlos, Érick, Christian, Nancy,');
+h += L(18, 90, 'Eduardo, Óscar (Mty), Gaby, Jorge A., Daniel,');
+h += L(19, 90, 'Verónica, Mónica');
+h += L(21, 60, 'La maestra del vespertino nos prestó el salón → darle las gracias', { s: 23 });
+h += L(22, 60, 'Mandar fotos al grupo · preguntar a la maestra Chayo', { s: 23 });
+H.innerHTML = h;
+</script>
+</body></html>

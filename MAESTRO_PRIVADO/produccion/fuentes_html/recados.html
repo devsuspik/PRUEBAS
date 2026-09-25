@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../lib/base.css">
+<script src="../lib/filters.js"></script>
+<script src="../lib/hand.js"></script>
+<style>
+/* Recaditos entre la canastilla del mesabanco (XI-1999 a III-2000). 48 px/cm. */
+#hoja{position:relative;overflow:hidden}
+.raya{background-color:#f4f2e9;background-image:linear-gradient(#a3b7d6 1.2px,transparent 1.2px);background-size:100% 33.6px}
+.cuadro{background-color:#f5f4ee;background-image:linear-gradient(#bac6d2 1px,transparent 1px),linear-gradient(90deg,#bac6d2 1px,transparent 1px);background-size:24px 24px}
+.blanca{background-color:#f7f6f1}
+.w{position:absolute;white-space:nowrap}
+.i{font-family:'the-girl-next-door';font-size:25px}
+.o{font-family:'swanky-and-moo-moo';font-size:22px}
+.choco{position:absolute;border-radius:48% 52% 45% 55%;background:radial-gradient(closest-side,rgba(88,52,30,.55),rgba(98,60,34,.35) 60%,rgba(110,70,40,.08) 85%,transparent);filter:blur(1.4px)}
+</style></head>
+<body>
+<div id="hoja"></div>
+<script>
+const Q = new URLSearchParams(location.search);
+const R = Q.get('r') || 'A';
+const H = document.getElementById('hoja');
+function T(who, x, y, t, o = {}) {
+  const cls = who === 'i' ? 'i pencil' : (o.pencil ? 'o pencil' : 'o bic-blue');
+  const s = o.s ? o.s * 0.86 : (who === 'i' ? 25 : 22);
+  return `<div class="w hw ${cls}" data-seed="${(o.seed || 0) + Math.round(x * 3 + y * 5)}" data-jit="1.15" data-cross7="${who === 'i' ? 1 : 0}" data-slope="1" data-press="0.24" style="left:${x}px;top:${y - s}px;font-size:${s}px"><span class="ln">${t}</span></div>`;
+}
+function G(x, y, sz, moves, who0 = 'i', win) {
+  // cuadrícula de gato dibujada a mano; moves: [fila, col, 'O'|'X', 'i'|'o']
+  const c = sz / 3, st = '#4a4a4f';
+  let s = `<svg style="position:absolute;left:${x}px;top:${y}px;overflow:visible;filter:url(#pencil)" width="${sz}" height="${sz}">`;
+  s += `<path d="M${c + 2} 2 C ${c} ${sz / 2}, ${c + 3} ${sz * .8}, ${c - 1} ${sz - 2} M${2 * c - 2} 3 C ${2 * c + 2} ${sz / 2}, ${2 * c} ${sz * .7}, ${2 * c + 2} ${sz - 1} M2 ${c + 1} C ${sz / 2} ${c - 2}, ${sz * .8} ${c + 3}, ${sz - 2} ${c} M3 ${2 * c} C ${sz / 2} ${2 * c + 3}, ${sz * .7} ${2 * c - 2}, ${sz - 1} ${2 * c + 1}" fill="none" stroke="${st}" stroke-width="2.2" stroke-linecap="round"/>`;
+  moves.forEach(([r, k, m, w], i) => {
+    const cx = k * c + c / 2 + ((i * 7) % 5 - 2), cy = r * c + c / 2 + ((i * 11) % 5 - 2), q = c * 0.3;
+    const col = w === 'o' ? '#23409a' : '#4a4a4f';
+    if (m === 'O') s += `<path d="M${cx + q * .2} ${cy - q} C ${cx - q * 1.3} ${cy - q}, ${cx - q * 1.2} ${cy + q * 1.1}, ${cx + q * .1} ${cy + q} C ${cx + q * 1.3} ${cy + q * .9}, ${cx + q * 1.1} ${cy - q * 1.1}, ${cx - q * .2} ${cy - q * .8}" fill="none" stroke="${col}" stroke-width="2.4" stroke-linecap="round"/>`;
+    else s += `<path d="M${cx - q} ${cy - q} L${cx + q} ${cy + q * .9} M${cx + q * .9} ${cy - q} L${cx - q} ${cy + q}" fill="none" stroke="${col}" stroke-width="2.4" stroke-linecap="round"/>`;
+  });
+  if (win) {
+    const [a, b] = win; // [[r,c],[r,c]] extremos
+    s += `<path d="M${a[1] * c + c / 2 - 6} ${a[0] * c + c / 2 - 4} L${b[1] * c + c / 2 + 6} ${b[0] * c + c / 2 + 4}" stroke="#4a4a4f" stroke-width="2.6" stroke-linecap="round" fill="none"/>`;
+  }
+  return s + '</svg>';
+}
+const SL = {
+  A: { w: 560, h: 520, p: 'cuadro', e: () =>
+      T('i', 34, 60, '¿De quién es esta banca en la mañana?') + T('i', 34, 100, 'Se te olvidó tu sacapuntas de las Chivas.') + T('i', 34, 140, 'Te lo guardé en la canastilla. —I.') + T('i', 350, 180, '22-XI-99', { s: 27 }) +
+      T('o', 34, 234, 'Es mío!! gracias. Soy Óscar de 6°B.') + T('o', 34, 270, '¿Tú quién eres?') +
+      T('i', 34, 330, 'Itzel. Voy en la tarde con el profe Chava.') + T('i', 34, 370, '¿Juegas gato? Empiezo yo.') + T('i', 390, 410, '24-XI-99', { s: 27 }) +
+      G(80, 400, 110, [[1, 1, 'O', 'i'], [0, 0, 'X', 'o'], [0, 2, 'O', 'i'], [2, 0, 'X', 'o'], [1, 0, 'O', 'i'], [1, 2, 'X', 'o'], [2, 1, 'O', 'i'], [0, 1, 'X', 'o'], [2, 2, 'O', 'i']]) + T('i', 220, 480, 'empate', { s: 22 }) },
+  B: { w: 620, h: 470, p: 'blanca', e: () =>
+      G(30, 30, 120, [[1, 1, 'O', 'i'], [0, 0, 'X', 'o'], [0, 2, 'O', 'i'], [2, 0, 'X', 'o'], [1, 0, 'X', 'o'], [2, 2, 'O', 'i'], [1, 2, 'O', 'i']], 'i', [[0, 2], [2, 2]]) +
+      G(180, 40, 120, [[1, 1, 'O', 'i'], [2, 2, 'X', 'o'], [0, 0, 'O', 'i'], [0, 2, 'X', 'o'], [1, 2, 'X', 'o'], [0, 1, 'O', 'i'], [2, 1, 'O', 'i']], 'i', [[0, 1], [2, 1]]) +
+      G(330, 30, 120, [[1, 1, 'O', 'i'], [0, 1, 'X', 'o'], [2, 2, 'O', 'i'], [0, 0, 'X', 'o'], [0, 2, 'X', 'o']], 'o', [[0, 0], [0, 2]]) +
+      G(480, 45, 110, [[1, 1, 'O', 'i'], [2, 0, 'X', 'o'], [0, 2, 'O', 'i'], [1, 0, 'X', 'o'], [0, 0, 'O', 'i'], [0, 1, 'X', 'o'], [2, 2, 'O', 'i']], 'i', [[0, 0], [2, 2]]) +
+      T('o', 40, 230, 'revancha!!') + T('o', 360, 250, 'esa no se vale', { s: 22 }) +
+      T('i', 40, 330, 'Van: Itzel 3, Óscar 1 jaja') + T('i', 60, 400, 'Mañana otra. 30-XI-99', { s: 26 }) },
+  C: { w: 640, h: 360, p: 'raya', e: () =>
+      T('o', 30, 70, '¿Es cierto que en la noche espantan en este') + T('o', 30, 104, 'salón? El Beto dice que se ve una niña en la') + T('o', 30, 138, 'ventana.') +
+      T('i', 30, 205, 'Jajaja no espantan. Soy yo. Hago la tarea aquí') + T('i', 30, 239, 'en la noche porque en el cuarto no hay luz buena.') + T('i', 30, 272, 'Mi papá tiene las llaves. No le digas a nadie.') + T('i', 420, 339, '7-XII-99', { s: 27 }) },
+  D: { w: 600, h: 420, p: 'cuadro', e: () =>
+      T('o', 30, 56, 'Te dejé un chocolate por lo de navidad.') + T('o', 30, 90, '¿Cuándo es tu cumpleaños? El mío es el') + T('o', 30, 124, '14 de febrero jaja') +
+      T('i', 30, 190, 'Gracias!! Te dejé colación de la posada de aquí.') + T('i', 30, 226, 'Mi papá dice que nací en mayo pero no sé bien') + T('i', 30, 262, 'porque no tengo acta. Por eso no salgo en') + T('i', 30, 298, 'la lista del profe. Soy oyente.') + T('i', 390, 350, '11-I-2000', { s: 27 }) +
+      '<div class="choco" style="left:430px;top:40px;width:120px;height:90px"></div><div class="choco" style="left:505px;top:110px;width:40px;height:30px;opacity:.7"></div>' },
+  E: { w: 620, h: 340, p: 'raya', e: () =>
+      T('o', 30, 70, '¿Qué es oyente? Mi mamá dice que si no tienes') + T('o', 30, 104, 'acta no existes jaja') +
+      T('i', 30, 171, 'Oyente es que vengo pero no cuento. Pero sí') + T('i', 30, 205, 'existo, te gano en gato. En mi casa me dicen Lupe') + T('i', 30, 239, 'pero tú dime Itzel.') + T('i', 410, 306, '18-I-2000', { s: 27 }) },
+  F: { w: 600, h: 500, p: 'cuadro', e: () =>
+      G(30, 30, 120, [[1, 1, 'O', 'i'], [0, 0, 'X', 'o'], [2, 2, 'O', 'i'], [0, 2, 'X', 'o'], [0, 1, 'X', 'o']], 'o', [[0, 0], [0, 2]]) +
+      G(190, 30, 120, [[1, 1, 'O', 'i'], [2, 1, 'X', 'o'], [0, 0, 'O', 'i'], [2, 2, 'X', 'o'], [2, 0, 'X', 'o']], 'o', [[2, 0], [2, 2]]) +
+      G(350, 30, 120, [[1, 1, 'O', 'i'], [0, 1, 'X', 'o'], [0, 0, 'O', 'i'], [2, 2, 'X', 'o'], [1, 0, 'O', 'i'], [1, 2, 'X', 'o'], [2, 0, 'O', 'i']], 'i', [[0, 0], [2, 0]]) +
+      T('o', 40, 230, 'ya te voy alcanzando!!') +
+      T('i', 40, 310, 'Nomás porque te dejé. Van: Itzel 11,') + T('i', 40, 346, 'Óscar 9.') + T('i', 340, 420, '15-II-2000', { s: 27 }) },
+  G: { w: 680, h: 440, p: 'raya', e: () =>
+      T('o', 30, 70, 'Vamos a hacer una cápsula del tiempo, cada quien') + T('o', 30, 104, 'mete una carta para abrirla en el 2025.') + T('o', 30, 138, 'Qué flojera escribir jaja') +
+      T('i', 30, 205, '¿Puedo meter una carta en tu cápsula? Yo no soy de') + T('i', 30, 239, 'tu salón pero el salón también es mío tantito.') + T('i', 470, 272, '28-II-2000', { s: 27 }) +
+      T('o', 30, 339, 'Sí. Me la das y la meto con la mía.') + T('o', 30, 373, 'Pero no le digas a nadie.') +
+      T('i', 470, 407, 'Trato. 2-III-2000', { s: 26 }) },
+  H: { w: 640, h: 560, p: 'raya', e: () =>
+      T('i', 30, 70, '¿Ya no me vas a contestar? Si es por lo que') + T('i', 30, 104, 'dijeron los de tu salón no importa.') + T('i', 30, 138, 'Me dijeron que ya no puedo venir con el profe.') + T('i', 30, 171, 'Sigo aquí atrás.') +
+      T('i', 30, 239, 'Te dejé tu tiro. Si no contestas gano yo.') + T('i', 30, 272, 'Vamos 13 a 11.') +
+      G(330, 290, 150, [[1, 1, 'O', 'i'], [0, 0, 'X', 'o'], [0, 2, 'O', 'i']]) + T('i', 60, 440, '13-III-2000', { s: 27 }) },
+};
+const s = SL[R];
+H.style.width = s.w + 'px'; H.style.height = s.h + 'px';
+H.className = s.p;
+H.innerHTML = s.e();
+</script>
+</body></html>

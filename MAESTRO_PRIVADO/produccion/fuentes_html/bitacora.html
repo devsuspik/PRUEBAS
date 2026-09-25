@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../lib/base.css">
+<script src="../lib/filters.js"></script>
+<script src="../lib/hand.js"></script>
+<style>
+/* Libreta florete forma francesa (16.5 x 21 cm a 48 px/cm) usada como bitácora de la conserjería. */
+#hoja{position:relative;width:792px;height:1008px;overflow:hidden;background:#f3efe2}
+#hoja.pag{background-image:linear-gradient(#a9bcd6 1.2px,transparent 1.2px);background-size:100% 30px;background-position:0 96px}
+.mar{position:absolute;top:0;bottom:0;left:84px;width:1.5px;background:#d99aa0}
+.sup{position:absolute;left:0;right:0;top:70px;height:1.5px;background:#d99aa0}
+.w{position:absolute;white-space:nowrap}
+.nina{font-family:'the-girl-next-door';font-size:22px}
+.papa{font-family:'loved-by-the-king';font-size:30px;letter-spacing:1.5px}
+.pedro{font-family:'just-another-hand';font-size:27px}
+.firma{font-family:'give-you-glory';font-size:26px}
+#hoja.portada{background:#1d1d1f}
+.lomo{position:absolute;left:0;top:0;bottom:0;width:70px;background:#7b1d1f;box-shadow:inset -6px 0 10px rgba(0,0,0,.35)}
+.etq{position:absolute;left:210px;top:250px;width:420px;height:230px;background:#f2efe6;transform:rotate(-2deg);border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.5)}
+.etq .w{font-family:'permanent-marker';color:#1a1a1e}
+.raspa{position:absolute;border-radius:40%;background:rgba(255,255,255,.07);filter:blur(3px)}
+</style></head>
+<body>
+<div id="hoja"></div>
+<script>
+const Q = new URLSearchParams(location.search);
+const P = Q.get('p') || 'p1';
+const H = document.getElementById('hoja');
+function N(r, t, o = {}) { // renglón r, letra de la niña en pluma azul
+  const s = o.s || 22, y = 96 + r * 30 - 2;
+  return `<div class="w hw nina bic-blue" data-seed="${1500 + r * 11 + (o.k || 0)}" data-jit="1.1" data-cross7="1" data-slope="0.8" data-press="0.2" style="left:${o.x || 96}px;top:${y - s}px;font-size:${s}px"><span class="ln">${t}</span></div>`;
+}
+function D(r, t) { return N(r, t, { x: 10, s: 20, k: 3 }); } // fecha en el margen
+function Papa(r, t, x = 96) {
+  const y = 96 + r * 30 - 3;
+  return `<div class="w hw papa pencil" data-seed="${1700 + Math.round(r * 7)}" data-jit="1.5" data-slope="0.9" data-press="0.35" style="left:${x}px;top:${y - 30}px"><span class="ln">${t}</span></div>`;
+}
+function Firma(r, x = 470) {
+  const y = 96 + r * 30;
+  return `<div class="w hw firma bic-black" data-seed="${1800 + r}" data-jit="1.8" data-slope="3" style="left:${x}px;top:${y - 28}px"><span class="ln">J. Refugio Rangel M.</span></div>`;
+}
+function Pe(r, t, x = 96) {
+  const y = 96 + r * 30 - 2;
+  return `<div class="w hw pedro bic-black" data-seed="${1900 + r * 5}" data-jit="1" data-slope="0.6" style="left:${x}px;top:${y - 27}px"><span class="ln">${t}</span></div>`;
+}
+let h = '';
+if (P === 'portada') {
+  H.className = 'portada';
+  h += '<div class="lomo"></div>';
+  for (let i = 0; i < 14; i++) h += `<div class="raspa" style="left:${90 + (i * 137) % 640}px;top:${40 + (i * 251) % 900}px;width:${40 + (i * 37) % 120}px;height:${8 + (i * 13) % 20}px"></div>`;
+  h += '<div class="etq">';
+  h += `<div class="w hw" data-seed="1400" data-jit="0.8" style="left:34px;top:30px;font-size:44px"><span class="ln">BITÁCORA</span></div>`;
+  h += `<div class="w hw" data-seed="1401" data-jit="0.8" style="left:34px;top:94px;font-size:38px"><span class="ln">CONSERJERÍA</span></div>`;
+  h += `<div class="w hw" data-seed="1402" data-jit="0.8" style="left:60px;top:156px;font-size:34px"><span class="ln">1998 - 2001</span></div>`;
+  h += '</div>';
+} else {
+  H.className = 'pag';
+  h += '<div class="sup"></div><div class="mar"></div>';
+  if (P === 'p1') {
+    h += D(0, '11-X-99') + N(0, 'Se destapó el baño de los niños. Se barrió el patio') + N(1, 'de atrás.');
+    h += D(2, '13-X-99') + N(2, 'Amaneció estrellado el vidrio de la 3a ventana del') + N(3, 'aula 6. Fue un balonazo del 6° A de la tarde. Se le') + N(4, 'puso cinta. Se le avisó a la directora de la mañana.');
+    h += D(5, '14-X-99') + N(5, 'Se lavaron los tinacos.');
+    h += D(7, '17-XI-99') + N(7, 'Se arregló la llave del bebedero.');
+    h += D(8, '22-XI-99') + N(8, 'Se cambió el foco de en medio del aula 6 (se fundió).') + N(9, 'Se recogieron 2 chamarras olvidadas y se dejaron en') + N(10, 'la dirección.');
+    h += D(11, '26-XI-99') + N(11, 'Vinieron a fumigar. Se abrieron todas las aulas.');
+    h += D(12, '29-XI-99') + N(12, 'Se cambió el vidrio del baño de niñas.');
+    h += D(13, '3-XII-99') + N(13, 'Se pusieron los adornos de navidad en la dirección.');
+    h += Firma(15);
+  } else if (P === 'p2') {
+    h += D(0, '6-III-2000') + N(0, 'Se pintó la guarnición del patio cívico.');
+    h += D(1, '10-III-2000') + N(1, 'Vino la directora de la mañana a revisar las llaves') + N(2, 'de las aulas. Se le dio copia de la del aula 6.');
+    h += Papa(4, '15 MARZO 2000', 12) + Papa(5.5, 'ME DIJO LA DIRECTORA DE LA MAÑANA') + Papa(7, 'QUE MI HIJA NO ENTRE A LOS SALONES') + Papa(8.5, 'NI A LA CLASE DEL PROFE. ESTA BIEN.') + Papa(10, 'R. RANGEL', 470);
+    h += D(12, '21-III-2000') + N(12, 'Día festivo, no hubo clases. Se regaron las plantas.');
+    h += D(13, '24-III-2000') + N(13, 'Se cambió la chapa del baño de maestras.');
+    h += D(14, '28-III-2000') + N(14, 'Se arregló la reja del portón de servicio.');
+    h += D(15, '31-III-2000') + N(15, 'Se barrió la azotea del edificio B. Había 3 balones.');
+    h += Firma(17);
+  } else if (P === 'p3') {
+    h += D(0, '9-VI-2000') + N(0, 'Se cortó el pasto del patio de atrás. Se podó el') + N(1, 'pirul (menos la rama de la mano).');
+    h += D(2, '14-VI-2000') + N(2, 'Se entregaron las llaves de la bodega a la dirección') + N(3, 'para el inventario.');
+    h += D(4, '16-VI-2000') + N(4, 'Entrego la casa y 27 llaves por mi cambio a la') + N(5, 'secundaria técnica del oriente. La casa queda limpia.') + N(6, 'Gracias.');
+    h += Firma(7);
+    h += Pe(9, '19/06/2000  Recibí la casa y las llaves (25, faltan 2', 10) + Pe(10, 'de la bodega).   Pedro Luévano G.');
+    h += Pe(11, '20/06/2000  Se revisó la instalación de luz del edificio B.', 10);
+    h += Pe(12, '23/06/2000  Hoyo para la cápsula del 6° B junto al pirul', 10) + Pe(13, '(60 cm). Se tapó después de la ceremonia.  P.L.');
+    h += Pe(14, '26/06/2000  Se sacó basura de la casa de conserje (cajas).', 10);
+    h += Pe(15, '28/06/2000  Fumigación. Todo en orden.  P.L.', 10);
+  }
+}
+H.innerHTML = h;
+</script>
+</body></html>

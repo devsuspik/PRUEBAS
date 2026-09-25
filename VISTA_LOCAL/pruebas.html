@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modo privado de pruebas — La carta 35</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../COMUN/visor.css">
+<style>main{max-width:860px;margin:0 auto;padding:18px 16px 60px}h1{font-size:24px}.av{background:#3a1f1f;border:1px solid #7a3b3b;border-radius:10px;padding:12px 14px;margin:10px 0 18px}table{width:100%;border-collapse:collapse;font-size:14px}td,th{border:1px solid var(--line);padding:6px 8px;vertical-align:top;text-align:left}th{background:var(--panel2)}</style>
+</head><body><main>
+<h1>Modo privado de pruebas</h1>
+<div class="av"><b>Contiene la solución.</b> Esta página carga <code>SOLUCION_PRIVADA/respuestas.js</code>. Es solo para el equipo; no se entrega a jugadores. No es una protección de contenido.</div>
+<p><button class="btn" id="todo" type="button">Desbloquear todo en la vista local</button> <button class="btn sec" id="nada" type="button">Reiniciar progreso</button> <a href="index.html">Volver a la vista local</a></p>
+<p id="st" class="trans-note"></p>
+<h2>Respuestas</h2>
+<table id="tab"><tr><th>Control</th><th>Respuesta</th></tr></table>
+</main>
+<script src="../SOLUCION_PRIVADA/respuestas.js"></script>
+<script>
+const K = 'lc35:vl:';
+function set(k, v) { try { localStorage.setItem(K + k, v); } catch (e) {} }
+function del(k) { try { localStorage.removeItem(K + k); } catch (e) {} }
+document.getElementById('todo').onclick = () => { set('compra', '1'); ['D1', 'D2', 'D3'].forEach((d) => set(d, 'ok')); document.getElementById('st').textContent = 'Listo: compra simulada y D1-D3 marcadas como resueltas.'; };
+document.getElementById('nada').onclick = () => { ['compra', 'D1', 'D2', 'D3'].forEach(del); document.getElementById('st').textContent = 'Progreso reiniciado.'; };
+const t = document.getElementById('tab');
+for (const [k, v] of Object.entries(window.RESPUESTAS || {})) {
+  const txt = typeof v === 'string' ? v : Object.entries(v).map(([q, r]) => `${q}: ${r}`).join('\n');
+  const tr = document.createElement('tr'); tr.innerHTML = `<td>${k}</td><td style="white-space:pre-wrap"></td>`; tr.lastChild.textContent = txt; t.appendChild(tr);
+}
+</script>
+</body></html>

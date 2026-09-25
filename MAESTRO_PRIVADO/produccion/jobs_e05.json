@@ -1,0 +1,5 @@
+[{"html":"fuentes_html/chayo_cuaderno.html","query":"?pag=croquis","out":"_render/chayo_croquis.png","width":1044,"height":1296,"dpr":2,"selector":"#hoja","transparent":true},
+ {"html":"fuentes_html/chayo_cuaderno.html","query":"?pag=diario_oct","out":"_render/chayo_diario_oct.png","width":1044,"height":1296,"dpr":2,"selector":"#hoja","transparent":true},
+ {"html":"fuentes_html/chayo_cuaderno.html","query":"?pag=diario_feb","out":"_render/chayo_diario_feb.png","width":1044,"height":1296,"dpr":2,"selector":"#hoja","transparent":true},
+ {"html":"fuentes_html/chayo_cuaderno.html","query":"?pag=diario_mar","out":"_render/chayo_diario_mar.png","width":1044,"height":1296,"dpr":2,"selector":"#hoja","transparent":true},
+ {"html":"fuentes_html/chayo_cuaderno.html","query":"?pag=diario_jun","out":"_render/chayo_diario_jun.png","width":1044,"height":1296,"dpr":2,"selector":"#hoja","transparent":true}]

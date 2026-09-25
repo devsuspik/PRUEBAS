@@ -59,7 +59,7 @@
           const sc = 1 + g() * 0.045 * J;
           const sk = g() * 2 * J;
           s.style.transform = inv
-            ? `translateY(calc(${by}px + .2em)) rotate(${r + 180}deg) scale(${sc})`
+            ? `translateY(${by}px) rotate(${r + 180}deg) scale(${sc})`
             : `translateY(${by}px) rotate(${r}deg) skewX(${sk}deg) scale(${sc})`;
           s.style.opacity = (1 - press / 2 + g() * press / 2).toFixed(3);
           s.style.marginRight = (g() * 0.6 * J) + 'px';

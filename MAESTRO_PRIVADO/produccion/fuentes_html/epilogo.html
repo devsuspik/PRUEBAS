@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../lib/base.css">
+<script src="../lib/filters.js"></script>
+<script src="../lib/hand.js"></script>
+<style>
+/* Epílogo: hoja de libreta de Óscar (2025) que va y viene por la canastilla. 48 px/cm. */
+#hoja{position:relative;width:620px;height:760px;overflow:hidden;background-color:#f7f6f0;background-image:linear-gradient(#b3c0d0 1.1px,transparent 1.1px);background-size:100% 32px;background-position:0 20px}
+.w{position:absolute;white-space:nowrap}
+.os{font-family:'just-me-again-down-here';font-size:30px}
+.lu{font-family:'shadows-into-light-two';font-size:29px}
+</style></head>
+<body>
+<div id="hoja"></div>
+<script>
+const H = document.getElementById('hoja');
+function O(y, t, x = 34) { return `<div class="w hw os bic-black" data-seed="${4000 + y}" data-jit="1" data-slope="0.8" style="left:${x}px;top:${y - 30}px"><span class="ln">${t}</span></div>`; }
+function L(y, t, x = 40) { return `<div class="w hw lu bic-blue" data-seed="${4500 + y}" data-jit="1" data-cross7="1" data-slope="0.8" style="left:${x}px;top:${y - 29}px"><span class="ln">${t}</span></div>`; }
+function G(x, y, sz, moves) {
+  const c = sz / 3;
+  let s = `<svg style="position:absolute;left:${x}px;top:${y}px;overflow:visible" width="${sz}" height="${sz}">`;
+  s += `<path d="M${c} 2 C ${c + 2} ${sz / 2}, ${c - 2} ${sz * .8}, ${c + 1} ${sz - 2} M${2 * c} 3 C ${2 * c - 2} ${sz / 2}, ${2 * c + 2} ${sz * .7}, ${2 * c} ${sz - 1} M2 ${c} C ${sz / 2} ${c + 2}, ${sz * .8} ${c - 2}, ${sz - 2} ${c + 1} M3 ${2 * c} C ${sz / 2} ${2 * c - 2}, ${sz * .7} ${2 * c + 2}, ${sz - 1} ${2 * c}" fill="none" stroke="#222" stroke-width="2.2" stroke-linecap="round"/>`;
+  moves.forEach(([r, k, m, col]) => {
+    const cx = k * c + c / 2, cy = r * c + c / 2, q = c * 0.28;
+    if (m === 'O') s += `<path d="M${cx + 2} ${cy - q} C ${cx - q * 1.3} ${cy - q}, ${cx - q * 1.2} ${cy + q * 1.1}, ${cx} ${cy + q} C ${cx + q * 1.3} ${cy + q}, ${cx + q * 1.1} ${cy - q * 1.1}, ${cx - 2} ${cy - q * .8}" fill="none" stroke="${col}" stroke-width="2.4"/>`;
+    else s += `<path d="M${cx - q} ${cy - q} L${cx + q} ${cy + q} M${cx + q} ${cy - q} L${cx - q} ${cy + q}" fill="none" stroke="${col}" stroke-width="2.4"/>`;
+  });
+  return s + '</svg>';
+}
+let h = '';
+h += O(52, '10/jul/2025', 400);
+h += O(116, 'Itzel:');
+h += O(148, 'Perdón por no contestarte en marzo.');
+h += O(180, 'Ya me contaron todo.');
+h += O(212, '¿Me dejas seguir?  Te toca.');
+h += O(276, '— Óscar (el de la mañana)', 150);
+h += G(210, 300, 150, [[1, 1, 'O', '#222'], [0, 0, 'X', '#222'], [0, 2, 'O', '#222'], [2, 0, 'X', '#222'], [1, 0, 'O', '#1d3f9c']]);
+h += L(532, '11-VII-2025', 380);
+h += L(596, 'Te dejo seguir. Pero vamos');
+h += L(628, '14 a 11. Mañana te toca.');
+h += L(700, '— I.', 420);
+H.innerHTML = h;
+</script>
+</body></html>

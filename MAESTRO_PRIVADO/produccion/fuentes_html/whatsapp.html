@@ -33,6 +33,10 @@ html,body{width:412px;height:914px;overflow:hidden;font-family:'roboto',sans-ser
 .img{margin:-3px -5px 3px -6px;border-radius:6px;overflow:hidden;position:relative;width:258px}
 .img img{display:block;width:100%;height:auto}
 .img .ov{position:absolute;right:6px;bottom:4px;font-size:11px;color:#fff;text-shadow:0 0 3px rgba(0,0,0,.6);display:flex;gap:3px;align-items:center}
+.alb{display:grid;grid-template-columns:1fr 1fr;gap:3px;width:258px;margin:-3px -5px 3px -6px}
+.alb div{position:relative;aspect-ratio:1/1;overflow:hidden;border-radius:5px}
+.alb img{width:100%;height:100%;object-fit:cover;display:block}
+.alb .mas{position:absolute;inset:0;background:rgba(0,0,0,.45);color:#fff;font-size:30px;display:flex;align-items:center;justify-content:center}
 .fw{font-size:12.2px;color:#8696a0;font-style:italic;display:flex;gap:4px;align-items:center;margin-bottom:2px}
 .del{color:#8696a0;font-style:italic;display:flex;gap:5px;align-items:center}
 .aud{display:flex;align-items:center;gap:8px;width:250px;padding:4px 0 2px}
@@ -101,6 +105,7 @@ function pintar() {
     let inner = '';
     if (!out && first && D.grupo) inner += `<div class="who" style="color:${D.colores[m.from] || '#1fa855'}">${esc(m.from)}${m.tel ? `<i>${m.tel}</i>` : ''}</div>`;
     if (m.fw) inner += `<div class="fw">${FW} Reenviado</div>`;
+    if (m.album) inner += `<div class="alb">${m.album.slice(0, 4).map((a, k) => `<div><img src="${a}">${k === 3 && m.album.length > 4 ? `<span class="mas">+${m.album.length - 4}</span>` : ''}</div>`).join('')}</div>`;
     if (m.img) inner += `<div class="img"><img src="${m.img}">${m.cap ? '' : `<span class="ov">${m.time}${out ? TICKS : ''}</span>`}</div>`;
     if (m.audio) {
       let bars = ''; let r = 7;
@@ -109,9 +114,10 @@ function pintar() {
     }
     if (m.del) inner += `<span class="del">${BAN} ${m.del}</span>`;
     if (m.text) inner += `<span class="tx">${emo(esc(m.text))}</span>`;
-    if (!m.img || m.cap || m.text) inner += t;
+    if ((!m.img && !m.album) || m.cap || m.text) inner += t;
+    else if (m.album) inner += t;
     else inner += '';
-    h += `<div class="m ${out ? 'out' : 'in'} ${first ? 'first' : ''}" id="${id}"><div class="b" style="${m.img ? 'padding:3px 3px 5px 4px' : ''}">${inner}</div></div>`;
+    h += `<div class="m ${out ? 'out' : 'in'} ${first ? 'first' : ''}" id="${id}"><div class="b" style="${m.img || m.album ? 'padding:3px 3px 5px 4px' : ''}">${inner}</div></div>`;
   });
   document.getElementById('chat').innerHTML = h;
   const imgs = [...document.images];

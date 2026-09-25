@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../lib/base.css">
+<script src="../lib/filters.js"></script>
+<script src="../lib/hand.js"></script>
+<style>
+/* Libreta personal de listas del profe Salvador (forma italiana, 21 x 16 cm, cuadro chico), a 48 px/cm. */
+#hoja{position:relative;width:1008px;height:768px;overflow:hidden;background-color:#f1eee2;
+ background-image:linear-gradient(#c2c9d1 1px,transparent 1px),linear-gradient(90deg,#c2c9d1 1px,transparent 1px);background-size:24px 24px;background-position:0 6px}
+.w{position:absolute;white-space:nowrap}
+.pr{font-family:'nothing-you-could-do'}
+.v{position:absolute;top:84px;bottom:12px;width:1.3px;background:#5a5a60;opacity:.55}
+.hz{position:absolute;left:8px;right:8px;height:1.3px;background:#5a5a60;opacity:.45}
+.dot{position:absolute;width:5px;height:5px;border-radius:50%;background:#2c2c32}
+.f{position:absolute;width:9px;height:1.6px;background:#b52a2a;transform:rotate(-20deg)}
+.cafe{position:absolute;right:-30px;top:560px;width:120px;height:120px;border-radius:50%;border:5px solid rgba(120,80,40,.22);filter:blur(1px)}
+</style></head>
+<body>
+<div id="hoja"></div>
+<script>
+const H = document.getElementById('hoja');
+const AL = ['Alvarado Díaz Juan M.', 'Barrón López Cristina', 'Calvillo Ruiz Ernesto', 'Campos Medina Leticia', 'Cruz Ramírez José A.', 'Delgado Sandoval Mayra', 'Espinoza Luna Héctor', 'Galván Torres Rosa Ma.', 'Gómez Reyes Luis A.', 'Hernández Vela Brenda', 'Jaramillo Cruz Marco A.', 'Lara Martínez Yadira', 'Macías Durón Erika', 'Martínez Salas Armando', 'Muñoz Ortega Claudia', 'Nava Serrano Rigoberto', 'Ortiz Pedroza Nancy', 'Pérez Aguilar Sergio', 'Quezada Rincón Lorena', 'Ramos Luévano Víctor', 'Reyes Castillo Jazmín', 'Romo Díaz Jesús', 'Ruiz Esquivel Omar', 'Sánchez Vargas Liliana', 'Tapia Macías Iván', 'Torres Anaya Rocío', 'Valdivia Luna Eduardo', 'Zúñiga Ríos Karina'];
+const DIAS = [1, 2, 3, 6, 7, 8, 9, 10, 13, 14, 15, 16, 17];
+const X0 = 330, DX = 50, Y0 = 108, DY = 20.5;
+let h = '';
+function W(x, y, t, s, cls = 'bic-black', o = {}) {
+  return `<div class="w hw pr ${cls}" data-seed="${Math.round(x * 3 + y * 7)}" data-jit="${o.j || 0.8}" data-slope="0.4" style="left:${x}px;top:${y - s}px;font-size:${s}px"><span class="ln">${t}</span></div>`;
+}
+h += W(14, 40, '6° A  T.V.   1999-2000', 26);
+h += W(560, 40, 'Marzo', 28);
+h += W(760, 36, 'Salvador Olvera D.', 20);
+h += `<div class="hz" style="top:${Y0 - 16}px"></div>`;
+DIAS.forEach((d, k) => {
+  h += `<div class="v" style="left:${X0 + k * DX - 8}px"></div>`;
+  h += W(X0 + k * DX, 74, String(d), 17);
+});
+h += `<div class="v" style="left:${X0 - 8 + DIAS.length * DX}px"></div>`;
+AL.forEach((n, i) => {
+  const y = Y0 + i * DY + 14;
+  h += W(12, y, `${i + 1}. ${n}`, 15, 'bic-black', { j: 0.6 });
+  DIAS.forEach((d, k) => {
+    const falta = (i * 7 + k * 3) % 23 === 0;
+    if (falta) h += `<div class="f" style="left:${X0 + k * DX + 6}px;top:${y - 7}px"></div>`;
+    else h += `<div class="dot" style="left:${X0 + k * DX + 8 + ((i + k) % 3)}px;top:${y - 8 + ((i * k) % 2)}px"></div>`;
+  });
+});
+// renglón a lápiz, sin número: la oyente
+const yL = Y0 + AL.length * DY + 20;
+h += W(26, yL, 'Lupita (oyente) — hija de D. Refugio', 16, 'pencil', { j: 1 });
+DIAS.forEach((d, k) => {
+  if (d <= 14) h += `<div class="dot" style="left:${X0 + k * DX + 8}px;top:${yL - 8}px;background:#6b6b70"></div>`;
+});
+h += W(X0 + 10 * DX - 6, yL + 2, '—', 18, 'pencil');
+h += W(560, yL + 28, '15-III ya no puede entrar (orden Dir. T.M.)', 16, 'pencil', { j: 1 });
+h += W(26, yL + 28, 'acta: Reg. Civ. 5-V-2000', 16, 'bic-blue', { j: 1 });
+h += `<svg style="position:absolute;left:236px;top:${yL + 8}px" width="26" height="22"><path d="M2 12 C 5 15, 7 18, 9 20 C 13 12, 17 6, 24 1" fill="none" stroke="#1d3f9c" stroke-width="2" stroke-linecap="round" style="filter:url(#ink)"/></svg>`;
+h += '<div class="cafe"></div>';
+H.innerHTML = h;
+</script>
+</body></html>
