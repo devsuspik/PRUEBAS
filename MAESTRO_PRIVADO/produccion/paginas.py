@@ -588,7 +588,7 @@ Yesenia Macías (7 d): Qué bonito 😢 ojalá la encuentren  [4]
 [Ver 51 comentarios más]"""
 
 T_MSG = """[Chat de Messenger con Salvador Olvera Lozano]
-— SÁB 19:48 —
+— SÁB 18:36 —
 Mariana: ¡Hola! Muchas gracias por escribir. Todo lo que se acuerde nos ayuda muchísimo 🙏
 — DOM 21:05 —
 Salvador: Buenas noches Mariana, soy Salvador Olvera, el hijo del profe Salvador (el de la tarde). Vi tu publicación.
@@ -792,7 +792,7 @@ if __name__ == '__main__':
     print('Páginas:', [x['id'] for x in todo])
 
 # ======================================================================= MANIFEST
-DUR = {'E01': [2, 3], 'E02': [3, 4], 'E03': [2, 3], 'E04': [2, 3], 'D1': [1, 2], 'E05': [5, 6], 'E06': [5, 6], 'E07': [3, 4], 'E08': [6, 8], 'D2': [2, 2],
+DUR = {'E01': [2, 3], 'E02': [3, 4], 'E03': [2, 2], 'E04': [1, 2], 'D1': [1, 1], 'E05': [5, 6], 'E06': [5, 6], 'E07': [3, 4], 'E08': [6, 8], 'D2': [2, 2],
        'E09': [5, 6], 'E10': [3, 4], 'E11': [2, 3], 'E12': [4, 5], 'E13': [2, 3], 'D3': [5, 8], 'E14': [1, 2]}
 INTER = {'E01': ['zoom', 'anverso-reverso', 'espejo', 'realce', 'comparar'], 'E02': ['capturas', 'zoom', 'comparar', 'realce'], 'E03': ['audio', 'velocidad', 'transcripcion'],
          'E04': ['zoom', 'comparar'], 'D1': ['deduccion'], 'E05': ['zoom', 'comparar', 'realce'], 'E06': ['superponer-calca', 'espejo', 'zoom', 'comparar'],
@@ -818,9 +818,11 @@ def manifest(todo):
             path = os.path.normpath(os.path.join(base, cfg['id'], c_['src'])).replace(os.sep, '/')
             ext.append(path)
         deps = sorted({x.split('/')[1] for x in ext})
+        prim = next((p for p in cfg.get('piezas', []) if p.get('tipo') == 'imagen'), None)
+        mini_ = f"{base}/{cfg['id']}/{prim['src']}" if prim else None
         piezas.append(dict(id=cfg['id'], tipo='deduccion' if cfg['id'].startswith('D') else 'evidencia', titulo=cfg['titulo'],
                            etapa=ETAPA[cfg['etapa']], orden=cfg['orden'], paquete=paquete, ruta=f"{base}/{cfg['id']}/index.html",
-                           recursos=sorted(set(rec)), recursos_de_otras_piezas=sorted(set(ext)), dependencias=deps,
+                           miniatura=mini_, recursos=sorted(set(rec)), recursos_de_otras_piezas=sorted(set(ext)), dependencias=deps,
                            interaccion=INTER[cfg['id']], duracion_estimada_min=DUR[cfg['id']]))
     m = dict(caso=dict(id='la-carta-35', titulo='La carta 35', idioma='es-MX', version='1.0.0',
                        pregunta='¿Quién es Itzel?', duracion_estimada_min=[60, 75], muestra_estimada_min=[9, 12],

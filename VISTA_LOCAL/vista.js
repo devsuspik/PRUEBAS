@@ -18,7 +18,7 @@
     return et.requiere.filter((r) => r !== 'compra').every(resuelta);
   }
   function mini(p) {
-    const r = p.recursos.find((x) => /\.(jpg|png)$/i.test(x) && !/mini_|capa_/.test(x));
+    const r = p.miniatura || p.recursos.find((x) => /\.(jpg|png)$/i.test(x) && !/mini_|capa_/.test(x));
     return r ? '../' + r : '';
   }
   function pintar() {
@@ -31,7 +31,8 @@
       sec.className = 'et';
       const min = et.piezas.reduce((s, id) => s + piezas.find((p) => p.id === id).duracion_estimada_min[0], 0);
       const max = et.piezas.reduce((s, id) => s + piezas.find((p) => p.id === id).duracion_estimada_min[1], 0);
-      sec.innerHTML = `<h2>${et.titulo} <small>${et.acceso === 'gratis' ? 'gratis' : 'caso completo'} · ${min}–${max} min estimados</small></h2>`;
+      const nombre = abierta ? et.titulo : ({ etapa1: 'Etapa 1', etapa2: 'Etapa 2', epilogo: 'Epílogo' }[et.id] || et.titulo);
+      sec.innerHTML = `<h2>${nombre} <small>${et.acceso === 'gratis' ? 'gratis' : 'caso completo'} · ${min}–${max} min estimados</small></h2>`;
       const req = document.createElement('p');
       req.className = 'req';
       if (!abierta) {

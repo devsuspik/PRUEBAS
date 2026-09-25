@@ -13,7 +13,7 @@ window.DATA = {
     { from: 'Karla DdL', text: 'Gracias por organizar Mariana!! estuvo padrísimo', time: '3:01 p. m.' },
     { from: 'Luisfer Durón', text: 'Gracias Mari 👏👏 a ver cuándo la carnita asada', time: '3:02 p. m.' },
     { out: true, text: 'Ya llegué a mi casa. Las que se mojaron las estoy secando con la secadora 😂 les voy a ir mandando foto de su carta a los que me den permiso', time: '3:10 p. m.' },
-    { out: true, img: I + 'IMG-20250627-WA0014.jpg', cap: true, text: 'Y esta es la que les dije. Salió hasta el fondo de la caja, sin sobre, junto a los sobres que se deshicieron', time: '3:12 p. m.' },
+    { out: true, img: '../_render/IMG-20250627-WA0014.jpg', cap: true, text: 'Y esta es la que les dije. Salió hasta el fondo de la caja, sin sobre, junto a los sobres que se deshicieron', time: '3:12 p. m.' },
     { out: true, text: '¿ALGUIEN SABE QUIÉN ES ITZEL? 🙏', time: '3:12 p. m.' },
     { from: 'Beto Macías', text: 'Itzayana confiesa 😂😂', time: '3:14 p. m.' },
     { from: 'Itza', text: 'Ay ya 🙄 la mía es la verde y la firmé Itza como siempre', time: '3:16 p. m.' },

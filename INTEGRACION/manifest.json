@@ -105,6 +105,7 @@
    "orden": 1,
    "paquete": "gratis",
    "ruta": "JUGADOR_GRATIS/E01/index.html",
+   "miniatura": "JUGADOR_GRATIS/E01/img/IMG_20250627_134112.jpg",
    "recursos": [
     "JUGADOR_GRATIS/E01/img/IMG_20250627_134112.jpg",
     "JUGADOR_GRATIS/E01/img/IMG_20250627_134127.jpg"
@@ -131,6 +132,7 @@
    "orden": 2,
    "paquete": "gratis",
    "ruta": "JUGADOR_GRATIS/E02/index.html",
+   "miniatura": "JUGADOR_GRATIS/E02/img/Screenshot_20250628-171204.jpg",
    "recursos": [
     "JUGADOR_GRATIS/E02/img/IMG-20250627-WA0012.jpg",
     "JUGADOR_GRATIS/E02/img/IMG-20250627-WA0016.jpg",
@@ -170,6 +172,7 @@
    "orden": 3,
    "paquete": "gratis",
    "ruta": "JUGADOR_GRATIS/E03/index.html",
+   "miniatura": null,
    "recursos": [
     "JUGADOR_GRATIS/E03/audio/PTT-20250628-WA0007.mp3"
    ],
@@ -182,7 +185,7 @@
    ],
    "duracion_estimada_min": [
     2,
-    3
+    2
    ]
   },
   {
@@ -193,6 +196,7 @@
    "orden": 4,
    "paquete": "gratis",
    "ruta": "JUGADOR_GRATIS/E04/index.html",
+   "miniatura": "JUGADOR_GRATIS/E04/img/correo_direccion_30-06-2025.png",
    "recursos": [
     "JUGADOR_GRATIS/E04/img/Croquis_PC_2024-2025.png",
     "JUGADOR_GRATIS/E04/img/correo_direccion_30-06-2025.png"
@@ -210,8 +214,8 @@
     "comparar"
    ],
    "duracion_estimada_min": [
-    2,
-    3
+    1,
+    2
    ]
   },
   {
@@ -222,6 +226,7 @@
    "orden": 5,
    "paquete": "gratis",
    "ruta": "JUGADOR_GRATIS/D1/index.html",
+   "miniatura": null,
    "recursos": [],
    "recursos_de_otras_piezas": [],
    "dependencias": [],
@@ -230,7 +235,7 @@
    ],
    "duracion_estimada_min": [
     1,
-    2
+    1
    ]
   },
   {
@@ -241,6 +246,7 @@
    "orden": 6,
    "paquete": "completo",
    "ruta": "JUGADOR_COMPLETO/E05/index.html",
+   "miniatura": "JUGADOR_COMPLETO/E05/img/IMG-20250701-WA0004.jpg",
    "recursos": [
     "JUGADOR_COMPLETO/E05/img/IMG-20250701-WA0004.jpg",
     "JUGADOR_COMPLETO/E05/img/IMG-20250701-WA0005.jpg",
@@ -274,6 +280,7 @@
    "orden": 7,
    "paquete": "completo",
    "ruta": "JUGADOR_COMPLETO/E06/index.html",
+   "miniatura": "JUGADOR_COMPLETO/E06/img/IMG_20250702_203015.jpg",
    "recursos": [
     "JUGADOR_COMPLETO/E06/img/Escaneo_0031.jpg",
     "JUGADOR_COMPLETO/E06/img/Escaneo_0032.jpg",
@@ -308,6 +315,7 @@
    "orden": 8,
    "paquete": "completo",
    "ruta": "JUGADOR_COMPLETO/E07/index.html",
+   "miniatura": "JUGADOR_COMPLETO/E07/img/Screenshot_20250703-092412.jpg",
    "recursos": [
     "JUGADOR_COMPLETO/E07/img/Screenshot_20250703-092412.jpg",
     "JUGADOR_COMPLETO/E07/img/Screenshot_20250703-092419.jpg",
@@ -333,6 +341,7 @@
    "orden": 9,
    "paquete": "completo",
    "ruta": "JUGADOR_COMPLETO/E08/index.html",
+   "miniatura": "JUGADOR_COMPLETO/E08/img/IMG-20250703-WA0021.jpg",
    "recursos": [
     "JUGADOR_COMPLETO/E08/img/IMG-20250703-WA0021.jpg",
     "JUGADOR_COMPLETO/E08/img/IMG-20250703-WA0022.jpg",
@@ -371,6 +380,7 @@
    "orden": 10,
    "paquete": "completo",
    "ruta": "JUGADOR_COMPLETO/D2/index.html",
+   "miniatura": null,
    "recursos": [],
    "recursos_de_otras_piezas": [],
    "dependencias": [],
@@ -391,6 +401,7 @@
    "orden": 11,
    "paquete": "completo",
    "ruta": "JUGADOR_COMPLETO/E09/index.html",
+   "miniatura": "JUGADOR_COMPLETO/E09/img/IMG_20250704_120418.jpg",
    "recursos": [
     "JUGADOR_COMPLETO/E09/img/IMG_20250704_120418.jpg",
     "JUGADOR_COMPLETO/E09/img/IMG_20250704_120502.jpg",
@@ -426,6 +437,7 @@
    "orden": 12,
    "paquete": "completo",
    "ruta": "JUGADOR_COMPLETO/E10/index.html",
+   "miniatura": "JUGADOR_COMPLETO/E10/img/Screenshot_20250705-204112.jpg",
    "recursos": [
     "JUGADOR_COMPLETO/E10/img/Screenshot_20250705-204112.jpg",
     "JUGADOR_COMPLETO/E10/img/Screenshot_20250705-204120.jpg"
@@ -449,6 +461,7 @@
    "orden": 13,
    "paquete": "completo",
    "ruta": "JUGADOR_COMPLETO/E11/index.html",
+   "miniatura": null,
    "recursos": [
     "JUGADOR_COMPLETO/E11/audio/PTT-20250705-WA0019.mp3"
    ],
@@ -472,6 +485,7 @@
    "orden": 14,
    "paquete": "completo",
    "ruta": "JUGADOR_COMPLETO/E12/index.html",
+   "miniatura": "JUGADOR_COMPLETO/E12/img/Screenshot_20250707-100211.jpg",
    "recursos": [
     "JUGADOR_COMPLETO/E12/img/IMG_20250706_210212.jpg",
     "JUGADOR_COMPLETO/E12/img/IMG_20250706_210331.jpg",
@@ -510,6 +524,7 @@
    "orden": 15,
    "paquete": "completo",
    "ruta": "JUGADOR_COMPLETO/E13/index.html",
+   "miniatura": "JUGADOR_COMPLETO/E13/img/IMG_20250627_140512.jpg",
    "recursos": [
     "JUGADOR_COMPLETO/E13/img/IMG_20250627_140512.jpg"
    ],
@@ -541,6 +556,7 @@
    "orden": 16,
    "paquete": "completo",
    "ruta": "JUGADOR_COMPLETO/D3/index.html",
+   "miniatura": null,
    "recursos": [],
    "recursos_de_otras_piezas": [],
    "dependencias": [],
@@ -561,6 +577,7 @@
    "orden": 17,
    "paquete": "completo",
    "ruta": "JUGADOR_COMPLETO/E14/index.html",
+   "miniatura": "JUGADOR_COMPLETO/E14/img/IMG_20250711_123844.jpg",
    "recursos": [
     "JUGADOR_COMPLETO/E14/img/IMG_20250711_123844.jpg"
    ],

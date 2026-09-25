@@ -122,3 +122,17 @@ Si una evidencia contradice este archivo, se corrige la evidencia. Si hay que ca
 
 ## Nombres de archivo que ve el jugador (sin spoilers)
 Nombres neutros de cámara o de WhatsApp (`IMG_20250627_131544.jpg`, `IMG-20250703-WA0014.jpg`). Nunca «pista», «itzel_es_...» ni nombres propios reveladores.
+
+## Añadidos durante la producción (ya reflejados en las evidencias)
+- **10-II-2000:** la Directora autoriza la cápsula; los papás de Eduardo Medina donan la caja de plástico (diario de Chayo, E05).
+- **Diario de Chayo (E05):** páginas de oct. 1999, feb., mar. y jun. de 2000, con entradas rutinarias entre las relevantes. En el croquis de lugares, la 1.ª ventana queda junto al pizarrón y la 3.ª junto al puesto 3 de la fila 1.
+- **Apertura (E06, libreta de Mariana):** Julián sacó la caja a las 12:50. 30 sobres enteros; #18 roto; #19 y #20 deshechos; #21 despegado. Se entregaron 22 cartas. Mariana se llevó 12: Diana, Juan Carlos, Érick, Christian, Nancy, Eduardo, Óscar, Gaby, Jorge A., Daniel, Verónica y Mónica.
+- **Asistentes que firmaron (E13):** directora Silvia Reyes, los 22 exalumnos que recogieron su carta, la Profra. Nora Delgado (6° B T.M. 2025), la Mtra. Ma. Guadalupe Y. Rangel S. y el intendente Julián Ortega (26 renglones). Los teléfonos están tapados digitalmente por Mariana.
+- **Bitácora (E09):** el 13-X-99 la niña anota el balonazo del 6° A de la tarde. El 9-VI-2000 se poda el pirul, «menos la rama de la mano». El 16-VI-2000 se entregan la casa y **27 llaves**. Pedro Luévano recibe 25 (faltan 2 de la bodega). Pedro anota el hoyo de la cápsula el 23/06/2000.
+- **Libreta del profe (E12):** lista de 28 alumnos del 6° A T.V. y asistencia de marzo (días 1-17). «Lupita (oyente) — hija de D. Refugio» asiste hasta el 14. Notas al margen: «15-III ya no puede entrar (orden Dir. T.M.)» y «acta: Reg. Civ. 5-V-2000 ✓». Entre sus alumnos está Romo Díaz Jesús, el «Chuy Romo» de Facebook.
+- **Invitación (E12):** Escuela Normal «Profra. Eduviges Parga» (ficticia), generación 2008-2012. Misa y ceremonia el viernes 13-VII-2012. Padres: J. Refugio Rangel Muñoz y Ma. Guadalupe Soto Ibarra (†). Dedicatoria del 6-VII-2012.
+- **Facebook (E10):** publicación del 28-VI 10:14, editada. Hay comentarios de Itzayana, Salvador Olvera Lozano, Chuy Romo, Rocío Luévano, Mary Tiscareño (hija de Chayo), Lupita Rangel, Kevin, Rosy Medina y Yesenia Macías.
+- **Messenger (E12):** Mariana contesta el sábado 5 a las 18:36. El hijo escribe el domingo 6 a las 21:05 y Mariana agradece el lunes 7 a las 9:58.
+- **Epílogo (E14):** papel de libreta de Óscar (10/jul/2025) con la respuesta de ella (11-VII-2025). La partida sigue la del recadito H: Óscar bloquea con X abajo a la izquierda y ella pone O a la izquierda del centro. «Vamos 14 a 11».
+- **Chat del grupo (E02):** hay un mensaje eliminado de Beto. El contacto «Luisfer Durón» es Luis Fernando Durón Salas. La nota de voz dura 1:28.
+- **Tipografías = personas** (no mezclar): Itzel niña (The Girl Next Door) y Lupita adulta (Shadows Into Light Two, 7 cruzado). Óscar niño (Swanky and Moo Moo) y Óscar adulto (Just Me Again Down Here). Chayo (Cedarville Cursive), profe Chava (Nothing You Could Do), Refugio (Loved by the King en mayúsculas, firma Give You Glory), Pedro (Just Another Hand) y Mariana (Kalam).

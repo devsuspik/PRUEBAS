@@ -6,8 +6,8 @@ Estimaciones de diseño para una persona atenta que juega por primera vez. **No 
 |---|---|---|---|---|
 | Apertura | Intro (3 líneas) + E01 | Leer una carta infantil y examinar anverso y reverso; espejo y contraste | 2-3 | media |
 | Exploración | E02 | Leer el chat, abrir fotos y comparar cartas | 3-4 | media |
-| Cambio de hipótesis | E03 | Escuchar 1:40 de audio (o leer la transcripción) | 2-3 | baja |
-| Primera deducción | E04 + D1 | Correo y croquis; responder dos preguntas | 2-3 | alta |
+| Cambio de hipótesis | E03 | Escuchar 1:28 de audio (o leer la transcripción) | 2 | baja |
+| Primera deducción | E04 + D1 | Correo y croquis; responder tres preguntas | 2-3 | alta |
 | **Muestra total** | | | **9-12** | |
 | Contraste de fuentes | E05 | Croquis de lugares: ventanas y cambio de lugares | 5-6 | alta |
 | | E06 | Relación de apertura; superponer la calca en espejo sobre las cartas | 5-6 | alta |
@@ -16,13 +16,13 @@ Estimaciones de diseño para una persona atenta que juega por primera vez. **No 
 | **Etapa 1 total** | | | **21-26** | |
 | Comparación | E09 | Bitácora: comparar letra y fechas; nota en mayúsculas | 5-6 | alta |
 | Respiro social | E10 | Publicación de Facebook y comentarios | 3-4 | baja |
-| Testimonio | E11 | Segundo audio (1:50) | 2-3 | media |
+| Testimonio | E11 | Segundo audio (1:32) | 2-3 | media |
 | Documento | E12 | Libreta del profe e invitación (anverso y reverso) | 4-5 | media |
 | Cierre | E13 | Lista de firmas de la apertura | 2-3 | media |
 | Reconstrucción final | D3 | Formulario de 5 respuestas; revisar pruebas | 5-8 | alta |
-| Epílogo | E14 | Dos recaditos | 1-2 | baja |
-| **Etapa 2 total** | | | **22-31** | |
-| **TOTAL** | 14 piezas + 3 controles | | **52-69** (con ayudas y relecturas: 60-75) | |
+| **Etapa 2 total** | | | **21-29** | |
+| Epílogo | E14 | Un papelito con dos letras | 1-2 | baja |
+| **TOTAL** | 14 evidencias + 3 controles | | **52-69** (con ayudas y relecturas, 60-75 estimados) | |
 
 ## Principios aplicados
 - Después de cada evidencia exigente viene una breve o de otra naturaleza: E05 y E06 → E07; E09 → E10 → E11.

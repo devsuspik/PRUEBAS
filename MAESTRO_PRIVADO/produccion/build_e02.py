@@ -64,7 +64,7 @@ def itzel_wa():
     im = Image.open(os.path.join(ROOT, 'JUGADOR_GRATIS', 'E01', 'img', 'IMG_20250627_134112.jpg'))
     im = im.resize((1200, 1600), Image.LANCZOS)
     im = recompress(im, 78)
-    jpeg(im, os.path.join(OUT, 'IMG-20250627-WA0014.jpg'), q=76)
+    jpeg(im, os.path.join('_render', 'IMG-20250627-WA0014.jpg'), q=76)  # solo para componer la captura
 
 if __name__ == '__main__':
     pintarron()

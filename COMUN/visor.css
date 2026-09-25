@@ -120,3 +120,4 @@ details.pn[open] > summary::after{content:'–'}
 .msg-cli{background:#1f2a22;border:1px solid #2f4536;border-radius:12px;padding:12px 14px;margin:10px 0;font-size:15.5px;line-height:1.5}
 .msg-cli .de{font-size:12.5px;color:var(--ok);font-weight:600;margin-bottom:4px}
 select{background:#111214;color:var(--tx);border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:14px;max-width:100%}
+[hidden]{display:none!important}

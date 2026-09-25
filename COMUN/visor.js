@@ -241,7 +241,8 @@
   if (E.superponer) tb('ov', 'Superponer', 'ov', () => setModo(modo === 'ov' ? 'uno' : 'ov'), true);
   doc.body.appendChild(tools);
   // El visor y la barra llenan la pantalla cuando la cabecera sale de vista.
-  function alto() { main.style.height = Math.max(380, window.innerHeight - tools.offsetHeight - 6) + 'px'; }
+  let compacto = false;
+  function alto() { main.style.height = compacto ? '340px' : Math.max(380, window.innerHeight - (tools.hidden ? 0 : tools.offsetHeight) - 6) + 'px'; }
   window.addEventListener('resize', alto);
   new ResizeObserver(alto).observe(tools);
   alto();
@@ -282,7 +283,8 @@
     const oc = doc.querySelector('.ov-ctrl'); if (oc) oc.remove();
   }
   function herramientas(on) {
-    ['fit', 'zin', 'zout', 'rot', 'mir', 'fx'].forEach((k) => { if (B[k]) B[k].disabled = !on; });
+    ['fit', 'zin', 'zout', 'rot', 'mir', 'fx', 'cmp', 'ov'].forEach((k) => { if (B[k]) B[k].hidden = !on; });
+    tools.hidden = !on;
     if (B.mir) B.mir.setAttribute('aria-pressed', 'false');
     if (B.fx) { B.fx.setAttribute('aria-pressed', 'false'); B.fx.querySelector('span').textContent = 'Realce'; }
   }
@@ -293,17 +295,16 @@
     limpiar();
     const p = piezas[i];
     transcripcion(p);
+    compacto = p.tipo === 'audio';
     if (p.tipo === 'audio') {
       audioBox = reproductor(p); stage.appendChild(audioBox); herramientas(false);
-      if (B.cmp) B.cmp.disabled = true; if (B.ov) B.ov.disabled = true;
     } else if (p.tipo === 'ordenar') {
       stage.appendChild(ordenar(p)); herramientas(false);
-      if (B.cmp) B.cmp.disabled = true; if (B.ov) B.ov.disabled = true;
     } else {
       const h = el('div'); stage.appendChild(h);
       vA = new Visor(h); vA.load(p.src, p.alt); herramientas(true);
-      if (B.cmp) B.cmp.disabled = false; if (B.ov) B.ov.disabled = false;
     }
+    alto();
   }
 
   function selector(v, idx) {
