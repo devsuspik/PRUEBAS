@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../lib/base.css">
+<script src="../lib/filters.js"></script>
+<script src="../lib/hand.js"></script>
+<style>
+/* Cuaderno profesional de cuadro chico (5 mm), 20.5 x 27 cm a 48 px/cm, espiral a la izquierda. */
+#hoja{position:relative;width:1044px;height:1296px;overflow:hidden;background:transparent}
+.pap{position:absolute;left:60px;top:0;width:984px;height:1296px;background-color:#f6f5ef;
+ background-image:linear-gradient(#b9c6d3 1px,transparent 1px),linear-gradient(90deg,#b9c6d3 1px,transparent 1px);
+ background-size:24px 24px;background-position:0 12px}
+.hole{position:absolute;left:78px;width:14px;height:22px;border-radius:7px;background:#3b3530}
+.coil{position:absolute;left:18px;width:84px;height:26px}
+.w{position:absolute;white-space:nowrap}
+.cur{font-family:'cedarville-cursive'}
+.pegado{position:absolute;background:#fbfaf6;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.cell{position:absolute;border:1.6px solid #2a3e87;border-radius:3px}
+</style></head>
+<body>
+<div id="hoja"><div class="pap" id="pap"></div></div>
+<script>
+const Q = new URLSearchParams(location.search);
+const PAG = Q.get('pag') || 'lista';
+const hoja = document.getElementById('hoja');
+let h = '';
+// espiral
+for (let y = 22; y < 1296; y += 38) {
+  h += `<div class="hole" style="top:${y}px"></div>`;
+  h += `<svg class="coil" style="top:${y - 2}px" viewBox="0 0 84 26"><path d="M66 13 C 50 -2, 10 -2, 4 13 C 10 26, 50 26, 66 13" fill="none" stroke="#8d9096" stroke-width="3.2"/><path d="M66 13 C 50 -1, 12 0, 6 12" fill="none" stroke="#d7d9dd" stroke-width="1.2"/></svg>`;
+}
+function W(x, y, t, o = {}) {
+  const f = o.f || 'cedarville-cursive', s = o.s || 25, cls = o.cls || 'ink-blue';
+  return `<div class="w hw ${cls}" data-seed="${o.seed || Math.round(x * 3 + y * 7)}" data-jit="${o.j || 0.8}" data-slope="0.35" style="left:${x}px;top:${y - s}px;font-family:'${f}';font-size:${s}px;${o.css || ''}"><span class="ln">${t}</span></div>`;
+}
+const LISTA = ['Ávila Romo José Luis','Castañeda Luévano Diana Laura','Chávez Medina Juan Carlos','De Luna Esparza Adriana','Delgado Ruiz Brenda Yesenia','Díaz de León Padilla Karla Patricia','Durón Salas Luis Fernando','Esparza Reyes Mariana','Flores Tiscareño Érick','García Velasco Ana Karen','González Campos Christian Alejandro','Guerrero López Nancy Guadalupe','Hernández Martínez Miguel Ángel','Ibarra Delgado Itzayana','Jiménez Serna Jorge Alberto','López Romo Fabiola','Macías Ávila Roberto','Martínez Durón Claudia Ivonne','Medina Castañeda Eduardo','Mendoza Luévano Óscar','Morales Esparza Gabriela','Muñoz Chávez Ricardo','Ortiz Lozano Daniel','Padilla Hernández Verónica','Ramírez Torres Francisco Javier','Reyes Macías Lizbeth','Romo Salas Alejandro','Ruvalcaba Ortiz Kevin Omar','Salas De Luna Mónica','Serna Guerrero Paola','Tiscareño Flores Jessica','Torres Medina Sandra Luz','Velasco Jiménez Arturo','Zamarripa Díaz Nayeli'];
+let p = '';
+function tick(x, y, i) {
+  const a = (i * 13 % 7) - 3, b = (i * 7 % 5) - 2;
+  return `<svg style="position:absolute;left:${x}px;top:${y}px;overflow:visible" width="30" height="26"><path class="ink-red" d="M2 ${13 + b} C 5 16, 8 19, 10 ${22 + b} C 14 14, 19 7, ${27 + a} 1" fill="none" stroke="#c0262d" stroke-width="2.3" stroke-linecap="round" style="filter:url(#ink)"/></svg>`;
+}
+if (PAG === 'lista') {
+  p += W(100, 70, '6° "B"', { s: 36, seed: 11 });
+  p += W(520, 66, 'Ciclo escolar 1999 - 2000', { s: 27, seed: 12 });
+  p += W(260, 118, 'Relación de alumnos', { s: 33, seed: 13 });
+  p += `<svg style="position:absolute;left:250px;top:124px" width="320" height="12"><path d="M2 6 C 90 3, 200 9, 316 4" fill="none" stroke="#213d8f" stroke-width="2" style="filter:url(#ink)"/></svg>`;
+  p += W(760, 160, 'Carta 2025', { s: 21, cls: 'ink-red', seed: 14 });
+  p += W(790, 184, '16/jun', { s: 19, cls: 'ink-red', seed: 15 });
+  LISTA.forEach((n, i) => {
+    const y = 214 + i * 30;
+    p += W(62, y, String(i + 1) + '.', { s: 22, seed: 100 + i, j: 0.6, css: 'width:40px;text-align:right' });
+    p += W(112, y, n, { s: 23, seed: 200 + i, j: 0.75 });
+    p += tick(818 + (i * 37 % 9), y - 22, i);
+  });
+  p += W(112, 1256, '34 alumnos: 18 niñas, 16 niños', { s: 21, seed: 21 });
+  p += W(640, 1256, 'Total 34 cartas', { s: 21, cls: 'ink-red', seed: 22 });
+  p += tick(818, 1234, 99);
+}
+document.getElementById('pap').innerHTML = p;
+hoja.insertAdjacentHTML('beforeend', h);
+</script>
+</body></html>

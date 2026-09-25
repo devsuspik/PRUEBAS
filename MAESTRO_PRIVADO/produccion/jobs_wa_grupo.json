@@ -1,0 +1,56 @@
+[
+ {
+  "html": "fuentes_html/whatsapp.html",
+  "query": "?chat=grupo&hora=5:12",
+  "out": "_render/wa_grupo_1.png",
+  "width": 412,
+  "height": 914,
+  "dpr": 2.625,
+  "scroll": 0
+ },
+ {
+  "html": "fuentes_html/whatsapp.html",
+  "query": "?chat=grupo&hora=5:12",
+  "out": "_render/wa_grupo_2.png",
+  "width": 412,
+  "height": 914,
+  "dpr": 2.625,
+  "scroll": 690
+ },
+ {
+  "html": "fuentes_html/whatsapp.html",
+  "query": "?chat=grupo&hora=5:12",
+  "out": "_render/wa_grupo_3.png",
+  "width": 412,
+  "height": 914,
+  "dpr": 2.625,
+  "scroll": 1380
+ },
+ {
+  "html": "fuentes_html/whatsapp.html",
+  "query": "?chat=grupo&hora=5:13",
+  "out": "_render/wa_grupo_4.png",
+  "width": 412,
+  "height": 914,
+  "dpr": 2.625,
+  "scroll": 2070
+ },
+ {
+  "html": "fuentes_html/whatsapp.html",
+  "query": "?chat=grupo&hora=5:13",
+  "out": "_render/wa_grupo_5.png",
+  "width": 412,
+  "height": 914,
+  "dpr": 2.625,
+  "scroll": 2760
+ },
+ {
+  "html": "fuentes_html/whatsapp.html",
+  "query": "?chat=grupo&hora=5:13",
+  "out": "_render/wa_grupo_6.png",
+  "width": 412,
+  "height": 914,
+  "dpr": 2.625,
+  "scroll": 3486
+ }
+]

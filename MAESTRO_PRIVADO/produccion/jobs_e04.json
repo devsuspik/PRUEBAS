@@ -1,0 +1,2 @@
+[{"html":"fuentes_html/croquis.html","out":"_render/croquis.png","width":1340,"height":1037,"dpr":1.6,"selector":"#pag"},
+ {"html":"fuentes_html/correo.html","out":"_render/correo.png","width":816,"height":1056,"dpr":2,"selector":".pag"}]

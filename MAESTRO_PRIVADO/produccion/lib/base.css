@@ -1,0 +1,24 @@
+@import url('fuentes.css');
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:transparent}
+body{-webkit-font-smoothing:antialiased}
+.hc{display:inline-block;white-space:pre}
+.hsp{white-space:pre}
+.ln{white-space:nowrap;display:block}
+.c7{position:relative}
+.c7::after{content:'';position:absolute;left:14%;right:4%;top:50%;height:.075em;background:currentColor;transform:rotate(-6deg);border-radius:1px}
+/* Instrumentos */
+.pencil{color:#38383c;filter:url(#pencil)}
+.pencil-soft{color:#6a6a6e;filter:url(#pencil)}
+.gel-green{color:#138a52;filter:url(#ink)}
+.gel-purple{color:#6b3fa0;filter:url(#ink)}
+.bic-blue{color:#1d3f9c;filter:url(#ink)}
+.bic-black{color:#1b1b20;filter:url(#ink)}
+.ink-blue{color:#213d8f;filter:url(#ink)}
+.ink-red{color:#c0262d;filter:url(#ink)}
+.gel-black{color:#141418;filter:url(#ink)}
+.marker-blue{color:#1f4fb8;filter:url(#marker)}
+.marker-black{color:#1c1c22;filter:url(#marker)}
+.marker-red{color:#c3262e;filter:url(#marker)}
+.strike{position:relative}
+.strike::after{content:'';position:absolute;left:-2%;right:-2%;top:48%;height:.09em;background:currentColor;transform:rotate(-2deg)}

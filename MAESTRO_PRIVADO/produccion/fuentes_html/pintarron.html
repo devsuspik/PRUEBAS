@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../lib/base.css">
+<script src="../lib/filters.js"></script>
+<script src="../lib/hand.js"></script>
+<style>
+/* Muro del aula 6 con el pintarrón (2025). Escena plana; la cámara se simula en Python. */
+#escena{position:relative;width:2000px;height:1300px;overflow:hidden;
+ background:linear-gradient(#ece3cf 0 58%, #6f8f78 58% 59%, #8fae96 59%)}
+.pint{position:absolute;left:190px;top:170px;width:1560px;height:760px;background:#f7f8f8;
+ box-shadow:inset 0 0 0 1px #c9cdd0}
+.marco{position:absolute;left:176px;top:156px;width:1588px;height:788px;border:14px solid #b8bec4;border-radius:4px;
+ box-shadow:0 3px 6px rgba(0,0,0,.25), inset 0 0 0 1px #8d949b}
+.charola{position:absolute;left:176px;top:940px;width:1588px;height:22px;background:linear-gradient(#c7ccd1,#98a0a7);border-radius:0 0 6px 6px}
+.plumon{position:absolute;top:928px;height:16px;border-radius:5px}
+.w{position:absolute;white-space:nowrap;font-family:'shadows-into-light-two'}
+.borrado{position:absolute;font-family:'kalam';color:rgba(60,70,120,.12);filter:blur(3.2px);transform:scaleX(1.04)}
+.cartel{position:absolute;left:1800px;top:260px;width:230px;height:330px;background:#f4d35e;transform:rotate(1.5deg);box-shadow:0 2px 4px rgba(0,0,0,.2)}
+.cartel .t{position:absolute;left:18px;top:22px;font:700 26px 'permanent-marker';color:#b52a2a}
+.cartel .l{position:absolute;left:18px;font:400 17px 'kalam';color:#1d2c6b}
+.cinta{position:absolute;width:70px;height:22px;background:rgba(240,235,215,.75)}
+.foco{position:absolute;left:520px;top:190px;width:700px;height:170px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.55),rgba(255,255,255,0));filter:blur(8px)}
+.gato line{stroke:#1f4fb8;stroke-width:5;stroke-linecap:round}
+.contacto{position:absolute;left:32px;top:1010px;width:92px;height:62px;background:#f1f0ea;border:2px solid #cfcfc6;border-radius:4px}
+</style></head>
+<body>
+<div id="escena">
+ <div class="marco"></div>
+ <div class="pint" id="pint"></div>
+ <div class="charola"></div>
+ <div class="plumon" style="left:420px;width:120px;background:#1f4fb8"></div>
+ <div class="plumon" style="left:560px;width:118px;background:#c3262e"></div>
+ <div class="plumon" style="left:1390px;width:130px;background:#2b2b30"></div>
+ <div class="plumon" style="left:1250px;width:96px;height:40px;top:918px;background:#3a3f49;border-radius:6px"></div>
+ <div class="cartel"><div class="cinta" style="left:80px;top:-10px;transform:rotate(-4deg)"></div>
+  <div class="t">REGLAMENTO</div>
+  <div class="l" style="top:80px">1. Levanto la mano.</div>
+  <div class="l" style="top:112px">2. Respeto a todos.</div>
+  <div class="l" style="top:144px">3. Cuido mi salón.</div>
+  <div class="l" style="top:176px">4. Tiro la basura</div>
+  <div class="l" style="top:200px;left:40px">en su lugar.</div>
+  <div class="l" style="top:232px">5. Traigo mi tarea.</div>
+  <div class="l" style="top:282px;left:120px;font-size:15px">6° A T.V.</div>
+ </div>
+ <div class="contacto"></div>
+ <div class="foco"></div>
+</div>
+<script>
+const P = document.getElementById('pint');
+function W(x, y, t, s, cls, seed, o = {}) {
+  return `<div class="w hw ${cls}" data-seed="${seed}" data-jit="${o.j || 1}" data-cross7="1" data-slope="${o.sl || 0.8}" data-press="0.12" style="left:${x}px;top:${y - s}px;font-size:${s}px;${o.css || ''}"><span class="ln">${t}</span></div>`;
+}
+let h = '';
+// restos borrados de la clase del vespertino (fantasma de plumón)
+h += `<div class="borrado" style="left:60px;top:560px;font-size:44px">Tarea: Lección 12, pág. 118</div>`;
+h += `<div class="borrado" style="left:1040px;top:600px;font-size:40px">3/4 + 1/2 =</div>`;
+h += `<div class="borrado" style="left:1080px;top:660px;font-size:40px">5/8 - 1/4 =</div>`;
+h += W(1060, 92, 'Viernes 27-VI-2025', 50, 'marker-blue', 501);
+h += W(230, 300, '¡Bienvenidos,', 118, 'marker-blue', 502, { sl: 0.6 });
+h += W(300, 450, 'generación 1994-2000!', 104, 'marker-blue', 503, { sl: 0.6 });
+h += W(420, 590, 'Esta sigue siendo su casa.', 66, 'marker-red', 504, { sl: 0.9 });
+// gato en la esquina superior izquierda, con una O al centro
+h += `<svg class="gato" style="position:absolute;left:44px;top:40px;filter:url(#marker)" width="170" height="170" viewBox="0 0 170 170">
+ <path d="M60 10 C 58 60, 59 110, 56 160" fill="none" stroke="#1f4fb8" stroke-width="5" stroke-linecap="round"/>
+ <path d="M111 9 C 113 60, 112 110, 115 157" fill="none" stroke="#1f4fb8" stroke-width="5" stroke-linecap="round"/>
+ <path d="M8 58 C 60 56, 110 62, 162 60" fill="none" stroke="#1f4fb8" stroke-width="5" stroke-linecap="round"/>
+ <path d="M11 113 C 60 110, 112 112, 160 108" fill="none" stroke="#1f4fb8" stroke-width="5" stroke-linecap="round"/>
+ <path d="M86 70 C 70 70, 68 98, 84 100 C 100 101, 104 74, 88 70" fill="none" stroke="#1f4fb8" stroke-width="5" stroke-linecap="round"/></svg>`;
+// neblina de borrador: manchas grises muy tenues
+let hz = '';
+const R = (i) => (Math.sin(i * 12.9898) * 43758.5453) % 1;
+for (let i = 1; i < 26; i++) {
+  const x = Math.abs(R(i)) * 1400, y = Math.abs(R(i + 50)) * 680, w = 180 + Math.abs(R(i + 90)) * 380;
+  hz += `<div style="position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${40 + Math.abs(R(i+7))*90}px;border-radius:50%;background:rgba(120,130,150,${0.025 + Math.abs(R(i+3)) * 0.03});filter:blur(14px);transform:rotate(${R(i+11)*12}deg)"></div>`;
+}
+P.innerHTML = hz + h;
+</script>
+</body></html>

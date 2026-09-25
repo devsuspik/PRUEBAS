@@ -1,0 +1,5 @@
+# Renders intermedios (se regeneran con los scripts de MAESTRO_PRIVADO/produccion)
+MAESTRO_PRIVADO/produccion/_render/
+__pycache__/
+*.pyc
+.DS_Store

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../lib/base.css">
+<script src="../lib/filters.js"></script>
+<script src="../lib/hand.js"></script>
+<style>
+/* Hoja arrancada de cuaderno profesional de raya, 20.5 x 27 cm a 48 px/cm */
+#hoja{position:relative;width:984px;height:1296px;background:#f5f3ea;overflow:hidden}
+.reng{position:absolute;left:0;right:0;height:1.3px;background:#9fb4d4}
+.sup{position:absolute;left:0;right:0;top:124px;height:1.6px;background:#e0a0a6}
+.mar{position:absolute;top:0;bottom:0;width:1.6px;background:#e3a3a9}
+.w{position:absolute;white-space:nowrap;font-family:'the-girl-next-door';font-size:31px}
+.firma svg{position:absolute}
+.smudge{position:absolute;border-radius:40%;background:repeating-linear-gradient(-8deg,rgba(95,95,100,.10) 0 3px,rgba(95,95,100,.05) 3px 6px);filter:blur(1.6px)}
+.ghostw{position:absolute;font-family:'the-girl-next-door';font-size:29px;color:rgba(80,80,86,.16);filter:blur(.6px)}
+body.solo-texto #hoja{background:transparent}
+body.solo-texto .reng,body.solo-texto .sup,body.solo-texto .mar{display:none}
+</style></head>
+<body>
+<div id="hoja"></div>
+<script>
+const Q = new URLSearchParams(location.search);
+const CARA = Q.get('cara') || 'anverso';
+if (Q.get('modo') === 'texto') document.body.classList.add('solo-texto');
+const H = document.getElementById('hoja');
+const R0 = 166, SP = 33.6;
+let h = '';
+for (let i = 0; i < 34; i++) h += `<div class="reng" style="top:${R0 + i * SP}px"></div>`;
+h += `<div class="sup"></div><div class="mar" style="left:118px"></div>`;
+function L(r, x, t, o = {}) {
+  const y = R0 + r * SP - (o.s || 31) * 1.0;
+  return `<div class="w hw pencil" data-seed="${900 + r * 7 + (o.k || 0)}" data-jit="${o.j || 1.15}" data-cross7="1" data-slope="0.7" data-press="0.26" style="left:${x}px;top:${y}px;${o.s ? 'font-size:' + o.s + 'px;' : ''}${o.css || ''}"><span class="ln">${t}</span></div>`;
+}
+if (CARA === 'anverso') {
+  h += L(0, 736, '9-VI-2000');
+  h += L(1, 138, 'Hola:');
+  h += L(2, 138, 'Si estás leyendo esto ya es el 2025 y ya estamos');
+  h += L(3, 132, 'viejos jaja. Yo voy a tener 37 años.');
+  h += L(5, 138, 'Ya se que la capsula es <span class="strike nohw">nomas</span> de tu salón. Gracias');
+  h += L(6, 132, 'por dejarme. Te la doy a ti porque tu si sabes quien soy.');
+  h += `<div class="smudge" style="left:506px;top:${R0 + 8 * SP - 28}px;width:96px;height:30px"></div>`;
+  h += L(8, 138, 'Cosas que quiero que se sepan en el 2025:');
+  h += L(9, 138, '1. El pirul del patio tiene una rama que parece mano.');
+  h += L(10, 138, '2. El vidrio de la ventana no lo rompio nadie de tu');
+  h += L(11, 168, 'salón. Fue el balón del profe Chava.');
+  h += L(12, 138, '3. La mejor hora del salón es cuando se esta llendo el');
+  h += L(13, 168, 'sol y prenden las lámparas y pasa el tren de las seis');
+  h += L(14, 168, 'y tiembla el vidrio.');
+  h += L(15, 138, '4. Te gané 14 a 11. El ultimo cuenta aunque no');
+  h += L(16, 168, 'contestaste.');
+  h += L(17, 138, '5. Cuando sea grande quiero tener mi cuarto con');
+  h += L(18, 168, 'ventana y un perro y que me digan como yo quiero.');
+  h += L(20, 138, 'Ojalá cuando abran la capsula yo este ahi. Y tu');
+  h += L(21, 132, 'también. Si no estoy no es porque se me olvido.');
+  h += L(23, 640, 'Itzel', { s: 36, j: 1.3 });
+  h += `<svg style="position:absolute;left:712px;top:${R0 + 23 * SP - 34}px" width="80" height="40" viewBox="0 0 80 40"><path class="pencil" d="M2 30 C 14 34, 30 26, 44 14 C 50 9, 58 6, 70 4" fill="none" stroke="#4d4d51" stroke-width="2.2" stroke-linecap="round" style="filter:url(#pencil)"/></svg>`;
+} else {
+  // Reverso: solo la leyenda exterior en el panel de en medio (el que quedó como portada al doblar).
+  h += L(12, 250, 'Para el de la mañana.', { s: 36, j: 1.2 });
+  h += `<svg style="position:absolute;left:520px;top:${R0 + 12 * SP + 2}px" width="170" height="14"><path d="M2 7 C 50 3, 110 10, 166 5" fill="none" stroke="#505055" stroke-width="2" style="filter:url(#pencil)"/></svg>`;
+  h += L(14, 270, 'No la leas hasta el 2025.', { s: 34, j: 1.2 });
+}
+H.innerHTML = h;
+</script>
+</body></html>

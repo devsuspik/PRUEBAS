@@ -1,0 +1,2 @@
+[{"html":"fuentes_html/pintarron.html","out":"_render/pintarron.png","width":2000,"height":1300,"dpr":1,"selector":"#escena"},
+ {"html":"fuentes_html/chayo_cuaderno.html","query":"?pag=lista","out":"_render/chayo_lista.png","width":1044,"height":1296,"dpr":2,"selector":"#hoja","transparent":true}]

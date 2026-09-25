@@ -1,0 +1,11 @@
+[
+ {"html":"fuentes_html/e01_carta_itzel.html","query":"?cara=anverso","out":"_render/itzel_anverso.png","width":984,"height":1296,"dpr":2,"selector":"#hoja"},
+ {"html":"fuentes_html/e01_carta_itzel.html","query":"?cara=reverso","out":"_render/itzel_reverso.png","width":984,"height":1296,"dpr":2,"selector":"#hoja"},
+ {"html":"fuentes_html/carta6b.html","query":"?kid=oscar","out":"_render/c_oscar.png","width":1037,"height":1339,"dpr":2,"selector":"#hoja"},
+ {"html":"fuentes_html/carta6b.html","query":"?kid=oscar&modo=texto","out":"_render/c_oscar_texto.png","width":1037,"height":1339,"dpr":2,"selector":"#hoja","transparent":true},
+ {"html":"fuentes_html/carta6b.html","query":"?kid=itza","out":"_render/c_itza.png","width":1037,"height":1339,"dpr":2,"selector":"#hoja"},
+ {"html":"fuentes_html/carta6b.html","query":"?kid=beto","out":"_render/c_beto.png","width":1037,"height":1339,"dpr":2,"selector":"#hoja"},
+ {"html":"fuentes_html/carta6b.html","query":"?kid=karla","out":"_render/c_karla.png","width":1037,"height":1339,"dpr":2,"selector":"#hoja"},
+ {"html":"fuentes_html/carta6b.html","query":"?kid=eduardo","out":"_render/c_eduardo.png","width":1037,"height":1339,"dpr":2,"selector":"#hoja"},
+ {"html":"fuentes_html/carta6b.html","query":"?kid=gaby","out":"_render/c_gaby.png","width":1037,"height":1339,"dpr":2,"selector":"#hoja"}
+]
