@@ -14,7 +14,7 @@ bash MAESTRO_PRIVADO/produccion/qa_todo.sh
 | 4 | Texto libre (D2 q4) | «Le decían Lupita» | Aceptada |
 | 5 | Mesa de ordenar (E08) | `qa_ordenar.js`: revisar sin mover, reordenar con los botones ↑ y abrir la ampliación | Al inicio, «0 de 8 en su lugar»; al final, mensaje de éxito; la ampliación abre |
 | 6 | Superponer calca (E06) | `qa_superponer.js`: elegir la carta #20, activar espejo, arrastrar la capa hasta la posición correcta y acercar | Alinea letra por letra (capturas `QA/capturas/E06_*_superponer*.png`) en móvil y escritorio |
-| 7 | Audio (E03) | `qa_audio.js`: metadatos, `canPlayType('audio/mpeg')` y reproducción | 87,7 s, «probably», avanza el tiempo |
+| 7 | Audio (E03) | `qa_audio.js`: metadatos, `canPlayType('audio/mpeg')` y reproducción | 87,7 s, «probably», avanza el tiempo. El registro muestra un `ERR_ABORTED` de la primera petición del MP3: con `preload="metadata"` Chromium la corta tras leer la cabecera y vuelve a pedir el archivo al reproducir; no afecta la reproducción |
 | 8 | Espejo y realce (E01) | `test_ui.js`: reverso → espejo → realce ×2 → acercar ×2 | Funciona; la calca se lee (`QA/capturas/E01_movil_reverso_espejo.png`) |
 | 9 | Comparar (E02) | `test_ui.js` | Pantalla dividida con selector en cada lado |
 | 10 | Vista local de punta a punta | `test_vista.js`: muestra → D1 → simular compra → etapa 1 → D2 → etapa 2 → D3 → epílogo | Piezas abiertas: 5 → 5 (sin compra) → 10 → 16 → 17. Sin errores |

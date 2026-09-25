@@ -32,3 +32,7 @@
 | 28 | Vista local | Mostraba «Lupe» (título de la etapa 2) antes de descubrirlo | Revisión de filtraciones | Etapas bloqueadas con nombres neutros |
 | 29 | Paquete gratis | Copia de foto de WhatsApp sin uso en E02 | Revisión del paquete | Movida a los renders privados |
 | 30 | Pruebas | El test interpretaba mal selectores con «=» | Error del test | Separación por el primer «=» |
+| 31 | E02 | Muro del pintarrón liso, como de render | Mirar la foto | Canaleta, restos de cinta, chincheta y manchas de uso (sigue provisional, P1) |
+| 32 | E09 | Portada de la bitácora demasiado limpia: etiqueta blanca nueva y manchas redondas en las esquinas | Mirar la foto | Etiqueta amarillenta con cinta, tela con textura y esquinas gastadas que dejan ver el cartón |
+| 33 | E12 | La respuesta de Mariana en Messenger (19:48) quedaba después de «ya le contesté» | Auditoría de horarios | 18:36 |
+| 34 | Ritmo | Los tiempos de E03, E04 y D1 del manifest no sumaban el rango de la muestra | Revisión cruzada ritmo ↔ manifest | Tiempos ajustados (muestra 9-12 min en ambos) |

@@ -16,7 +16,8 @@
 .firma{font-family:'give-you-glory';font-size:26px}
 #hoja.portada{background:#1d1d1f}
 .lomo{position:absolute;left:0;top:0;bottom:0;width:70px;background:#7b1d1f;box-shadow:inset -6px 0 10px rgba(0,0,0,.35)}
-.etq{position:absolute;left:210px;top:250px;width:420px;height:230px;background:#f2efe6;transform:rotate(-2deg);border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.5)}
+.etq{position:absolute;left:210px;top:250px;width:420px;height:230px;background:radial-gradient(ellipse at 45% 40%,#ece3cb 0%,#e4d7b6 70%,#d6c69e 100%);transform:rotate(-2deg);border-radius:6px 3px 5px 4px;box-shadow:0 1px 2px rgba(0,0,0,.6)}
+.etq .cinta{position:absolute;height:34px;background:rgba(235,222,170,.16);border-top:1px solid rgba(255,255,255,.10);border-bottom:1px solid rgba(255,255,255,.10);box-shadow:inset 0 0 5px rgba(150,120,40,.14)}
 .etq .w{font-family:'permanent-marker';color:#1a1a1e}
 .raspa{position:absolute;border-radius:40%;background:rgba(255,255,255,.07);filter:blur(3px)}
 </style></head>
@@ -47,11 +48,20 @@ let h = '';
 if (P === 'portada') {
   H.className = 'portada';
   h += '<div class="lomo"></div>';
-  for (let i = 0; i < 14; i++) h += `<div class="raspa" style="left:${90 + (i * 137) % 640}px;top:${40 + (i * 251) % 900}px;width:${40 + (i * 37) % 120}px;height:${8 + (i * 13) % 20}px"></div>`;
+  // textura de tela y desgaste de esquinas y cantos
+  h += `<svg style="position:absolute;inset:0" width="792" height="1008"><filter id="tela"><feTurbulence type="fractalNoise" baseFrequency="0.9 0.35" numOctaves="3" seed="12"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.10 0"/></filter><rect width="792" height="1008" filter="url(#tela)"/></svg>`;
+  h += `<div style="position:absolute;inset:0;box-shadow:inset 0 0 26px rgba(255,255,255,.10), inset 0 0 3px rgba(255,255,255,.25)"></div>`;
+  // esquinas gastadas: la tela se fue y asoma el cartón gris
+  h += `<svg style="position:absolute;inset:0" width="792" height="1008"><filter id="fibra"><feTurbulence type="fractalNoise" baseFrequency="0.25" numOctaves="4" seed="4"/><feDisplacementMap in="SourceGraphic" scale="9"/></filter>`
+     + `<g filter="url(#fibra)" fill="#6f6860" opacity=".85"><path d="M792 0 L748 0 Q758 20 770 30 Q782 40 792 46 Z"/><path d="M792 1008 L792 950 Q776 968 766 982 Q756 996 744 1008 Z"/></g>`
+     + `<g filter="url(#fibra)" fill="none" stroke="#8a847c" stroke-width="2" opacity=".35"><path d="M110 1004 L790 1002"/><path d="M788 60 L789 930"/></g>`
+     // roces tenues
+     + `<g opacity=".035" stroke="#fff" stroke-width="6" filter="url(#fibra)" style="filter:blur(2px)"><path d="M300 640 l180 -40"/><path d="M520 760 l90 -30"/></g></svg>`;
   h += '<div class="etq">';
   h += `<div class="w hw" data-seed="1400" data-jit="0.8" style="left:34px;top:30px;font-size:44px"><span class="ln">BITÁCORA</span></div>`;
   h += `<div class="w hw" data-seed="1401" data-jit="0.8" style="left:34px;top:94px;font-size:38px"><span class="ln">CONSERJERÍA</span></div>`;
   h += `<div class="w hw" data-seed="1402" data-jit="0.8" style="left:60px;top:156px;font-size:34px"><span class="ln">1998 - 2001</span></div>`;
+  h += '<div class="cinta" style="left:-26px;top:-12px;width:150px;transform:rotate(-24deg)"></div><div class="cinta" style="right:-30px;bottom:-10px;width:160px;transform:rotate(-20deg)"></div>';
   h += '</div>';
 } else {
   H.className = 'pag';
