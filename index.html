@@ -1,0 +1,516 @@
+<meta charset="utf-8">
+<title>La carta 35</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600&family=IBM+Plex+Mono:wght@400;500&family=Zilla+Slab:wght@500;700&display=swap">
+<style>
+:root{
+  --papel:#EEF1EC; --hoja:#FBFCF8; --tinta:#1B2433; --tenue:#566070; --linea:#CBD3DC;
+  --azul:#1F3A93; --azul-suave:#DCE3F6; --rojo:#C8322B; --kraft:#B98A4E; --kraft-suave:#EADBC4;
+  --sombra:0 1px 2px rgba(27,36,51,.08),0 6px 18px rgba(27,36,51,.07);
+  --display:"Zilla Slab",Rockwell,"Roboto Slab",Georgia,serif;
+  --texto:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --mano:"Caveat","Segoe Print","Bradley Hand",cursive;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --papel:#141B18; --hoja:#1C2521; --tinta:#E4EAE2; --tenue:#9AA69E; --linea:#33403A;
+    --azul:#98AEFF; --azul-suave:#233054; --rojo:#FF7B6F; --kraft:#D6A869; --kraft-suave:#3A2F21;
+    --sombra:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --papel:#141B18; --hoja:#1C2521; --tinta:#E4EAE2; --tenue:#9AA69E; --linea:#33403A;
+  --azul:#98AEFF; --azul-suave:#233054; --rojo:#FF7B6F; --kraft:#D6A869; --kraft-suave:#3A2F21;
+  --sombra:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+body{background:var(--papel);color:var(--tinta);font:16px/1.55 var(--texto);margin:0}
+a{color:var(--azul)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--azul);outline-offset:2px}
+.envoltura{max-width:1180px;margin:0 auto;padding-inline:16px}
+
+/* Encabezado */
+header.portada{padding-block:36px 22px}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--tenue)}
+h1{font:700 clamp(40px,7vw,72px)/1 var(--display);margin:10px 0 4px;letter-spacing:-.01em;text-wrap:balance}
+.pregunta{font:600 clamp(28px,4.5vw,40px)/1.1 var(--mano);color:var(--azul);margin:0 0 14px;transform:rotate(-1.2deg);transform-origin:left}
+.sinopsis{max-width:64ch;color:var(--tinta);margin:0 0 18px}
+.sobres{display:flex;flex-wrap:wrap;gap:4px;align-items:flex-end;margin:0 0 8px}
+.sobres i{display:block;width:14px;height:10px;background:var(--kraft-suave);border:1px solid var(--kraft);border-radius:1px}
+.sobres i.itzel{width:14px;height:18px;background:var(--hoja);border:1.5px solid var(--rojo);border-radius:1px}
+.sobres-pie{font:13px/1.4 var(--mono);color:var(--tenue);margin:0 0 20px}
+.sobres-pie b{color:var(--rojo);font-weight:500}
+.cifras{display:flex;flex-wrap:wrap;gap:8px 24px;font:14px/1.3 var(--mono);color:var(--tenue);font-variant-numeric:tabular-nums}
+.cifras b{font:700 22px/1 var(--display);color:var(--tinta);margin-right:6px}
+
+/* Pestañas de carpeta */
+nav.pestanas{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--papel);border-bottom:2px solid var(--kraft)}
+nav.pestanas .envoltura{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-top:10px}
+nav.pestanas .envoltura::-webkit-scrollbar{display:none}
+.pestana{flex:none;border:1.5px solid var(--kraft);border-bottom:none;background:var(--kraft-suave);color:var(--tinta);padding:8px 16px 7px;border-radius:8px 8px 0 0;font:500 15px/1 var(--display);cursor:pointer;text-decoration:none;position:relative;top:2px}
+.pestana[aria-selected="true"]{background:var(--hoja);border-color:var(--kraft);padding-bottom:9px;box-shadow:0 2px 0 var(--hoja)}
+.pestana small{font:12px var(--mono);color:var(--tenue);margin-left:6px}
+
+main{padding-block:26px 60px}
+section.vista[hidden]{display:none}
+h2{font:700 28px/1.15 var(--display);margin:0 0 6px;text-wrap:balance}
+h3{font:700 20px/1.2 var(--display);margin:0;text-wrap:balance}
+.intro{max-width:70ch;color:var(--tenue);margin:0 0 20px}
+.fila{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.boton{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--azul);background:var(--azul);color:var(--hoja);padding:9px 16px;border-radius:6px;font-weight:700;cursor:pointer;text-decoration:none;font-size:15px}
+.boton.sec{background:transparent;color:var(--azul)}
+.boton.rojo{background:transparent;color:var(--rojo);border-color:var(--rojo)}
+.chip{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 7px;border-radius:3px;border:1px solid var(--linea);color:var(--tenue);white-space:nowrap}
+.chip.gratis{border-color:var(--azul);color:var(--azul)}
+.chip.spoiler{border-color:var(--rojo);color:var(--rojo)}
+
+/* Jugar */
+.marco-juego{margin-top:16px;border:1.5px solid var(--linea);border-radius:8px;overflow:hidden;background:var(--hoja);box-shadow:var(--sombra)}
+.marco-juego iframe{display:block;width:100%;height:min(82vh,900px);min-height:520px;border:0;background:#fff}
+.barra-juego{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--linea);font:13px var(--mono);color:var(--tenue)}
+
+/* Evidencias */
+.etapa{margin-top:30px}
+.etapa-cab{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;border-bottom:1px solid var(--linea);padding-bottom:8px;margin-bottom:16px}
+.etapa-cab span{font:13px var(--mono);color:var(--tenue)}
+.tarjetas{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.tarjeta{background:var(--hoja);border:1px solid var(--linea);border-radius:8px;box-shadow:var(--sombra);padding:14px;display:flex;flex-direction:column;gap:10px}
+.tarjeta-cab{display:flex;gap:10px;align-items:flex-start}
+.folio{flex:none;font:500 13px/1 var(--mono);color:var(--rojo);border:1.5px solid var(--rojo);padding:5px 6px;border-radius:3px;transform:rotate(-2deg)}
+.tarjeta .fuente{font-size:14px;color:var(--tenue);margin:0}
+.miniaturas{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:6px}
+.mini{aspect-ratio:1;max-width:100%;padding:0;border:1px solid var(--linea);border-radius:4px;overflow:hidden;background:var(--papel);cursor:zoom-in}
+.mini img{width:100%;height:100%;object-fit:cover;display:block}
+.mini.audio{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font:500 11px var(--mono);color:var(--azul);cursor:pointer}
+.mini.audio svg{width:26px;height:26px}
+.tarjeta .acciones{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.tarjeta .acciones .boton{font-size:14px;padding:7px 12px}
+.interacciones{display:flex;flex-wrap:wrap;gap:4px}
+.deduccion{border-style:dashed;border-color:var(--kraft)}
+
+/* Lector de documentos */
+.lector{display:grid;grid-template-columns:260px minmax(0,1fr);gap:22px;align-items:start}
+.indice{display:flex;flex-direction:column;gap:14px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 64px);max-height:calc(100vh - 90px);overflow:auto}
+.indice h4{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--tenue);margin:0 0 4px}
+.indice button{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;background:none;border:0;border-left:3px solid transparent;padding:6px 8px;cursor:pointer;border-radius:0 4px 4px 0;font-size:15px}
+.indice button:hover{background:var(--azul-suave)}
+.indice button[aria-current="true"]{border-left-color:var(--rojo);background:var(--hoja);font-weight:700}
+.hoja{background:var(--hoja);border:1px solid var(--linea);border-radius:8px;box-shadow:var(--sombra);padding:26px clamp(16px,4vw,44px);min-width:0;position:relative}
+.hoja-cab{display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:space-between;align-items:center;border-bottom:1px solid var(--linea);padding-bottom:12px;margin-bottom:18px}
+.hoja-cab code{font:13px var(--mono);color:var(--tenue);word-break:break-all}
+.md{max-width:78ch}
+.md h1{font:700 30px/1.15 var(--display);margin:.2em 0 .5em}
+.md h2{font-size:23px;margin:1.4em 0 .4em}
+.md h3{font-size:18px;margin:1.2em 0 .3em}
+.md p,.md li{margin:.45em 0}
+.md code{font:.88em var(--mono);background:var(--papel);padding:1px 4px;border-radius:3px}
+.md pre{background:var(--papel);border:1px solid var(--linea);padding:12px;border-radius:6px;overflow-x:auto}
+.md pre code{background:none;padding:0}
+.md blockquote{border-left:3px solid var(--azul);margin:.8em 0;padding:.2em 0 .2em 14px;color:var(--tinta);background:var(--azul-suave);border-radius:0 4px 4px 0}
+.md .tabla{overflow-x:auto;margin:1em 0}
+.md table{border-collapse:collapse;font-size:14px;min-width:100%}
+.md th,.md td{border:1px solid var(--linea);padding:6px 9px;text-align:left;vertical-align:top}
+.md th{background:var(--papel);font-weight:700}
+.md hr{border:0;border-top:1px solid var(--linea);margin:1.6em 0}
+pre.crudo{font:13px/1.5 var(--mono);white-space:pre;overflow-x:auto;background:var(--papel);border:1px solid var(--linea);border-radius:6px;padding:14px;margin:0;max-height:75vh;overflow-y:auto;tab-size:2}
+.velo{position:absolute;inset:0;background:var(--hoja);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px;z-index:2}
+.velo p{max-width:42ch;margin:0;color:var(--tenue)}
+.velo strong{font:700 22px var(--display);color:var(--rojo)}
+
+/* Capturas */
+.galeria{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.galeria figure{margin:0;background:var(--hoja);border:1px solid var(--linea);border-radius:6px;overflow:hidden}
+.galeria button{display:block;width:100%;aspect-ratio:4/3;padding:0;border:0;background:var(--papel);cursor:zoom-in}
+.galeria img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.galeria figcaption{font:12px/1.3 var(--mono);color:var(--tenue);padding:6px 8px;word-break:break-all}
+
+/* Descargas */
+.zip{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:28px}
+.zip .tarjeta p{margin:0;color:var(--tenue);font-size:15px}
+.filtro{width:100%;max-width:420px;padding:10px 12px;border:1.5px solid var(--linea);border-radius:6px;background:var(--hoja);color:var(--tinta);font:15px var(--texto)}
+.tabla-arch{overflow-x:auto;margin-top:12px;border:1px solid var(--linea);border-radius:8px;background:var(--hoja)}
+.tabla-arch table{border-collapse:collapse;width:100%;font-size:14px}
+.tabla-arch td,.tabla-arch th{padding:7px 12px;border-bottom:1px solid var(--linea);text-align:left;white-space:nowrap}
+.tabla-arch th{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--tenue);background:var(--papel)}
+.tabla-arch td.ruta{font:13px var(--mono);white-space:normal;word-break:break-all;min-width:220px}
+.tabla-arch td.num{font:13px var(--mono);color:var(--tenue);text-align:right;font-variant-numeric:tabular-nums}
+.tabla-arch tr:last-child td{border-bottom:0}
+.contador{font:13px var(--mono);color:var(--tenue);margin-left:8px}
+
+/* Capas: visor de evidencia y lupa */
+.capa{position:fixed;inset:0;z-index:50;background:rgba(10,14,20,.86);display:flex;flex-direction:column;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+.capa[hidden]{display:none}
+.capa-barra{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 16px;color:#F2F4F0}
+.capa-barra strong{font:700 17px var(--display);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.capa-barra .fila{flex:none}
+.cerrar,.nav-foto{background:#F2F4F0;color:#1B2433;border:0;border-radius:6px;padding:8px 14px;font-weight:700;cursor:pointer}
+.capa iframe{flex:1;width:100%;border:0;background:#fff}
+.lupa{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+.lupa-img{overflow:auto;display:flex;align-items:center;justify-content:center;min-height:0;padding:8px}
+.lupa-img img{max-width:100%;max-height:100%;object-fit:contain;cursor:zoom-in;display:block}
+.lupa-img.real{align-items:flex-start;justify-content:flex-start}
+.lupa-img.real img{max-width:none;max-height:none;cursor:zoom-out}
+.lupa-img audio{width:min(520px,100%)}
+.lupa-texto{background:var(--hoja);color:var(--tinta);overflow:auto;padding:18px;display:flex;flex-direction:column;gap:12px}
+.lupa-texto h3{font-size:18px}
+.lupa-texto p{margin:0;font-size:15px}
+.lupa-texto details summary{cursor:pointer;font-weight:700;color:var(--azul)}
+.lupa-texto pre{white-space:pre-wrap;font:13px/1.5 var(--mono);background:var(--papel);padding:10px;border-radius:6px;margin:8px 0 0}
+
+@media (max-width:820px){
+  .lector{grid-template-columns:1fr}
+  .indice{position:static;max-height:none;flex-direction:row;flex-wrap:wrap;gap:12px 20px}
+  .indice>div{min-width:200px;flex:1}
+  .lupa{grid-template-columns:1fr;grid-template-rows:minmax(0,1.3fr) minmax(0,1fr)}
+  .marco-juego iframe{height:78vh;min-height:480px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="portada envoltura">
+  <div class="eyebrow">Caso digital · Aguascalientes · junio de 2025</div>
+  <h1>La carta 35</h1>
+  <p class="pregunta">¿Quién es Itzel?</p>
+  <p class="sinopsis" id="sinopsis"></p>
+  <div class="sobres" id="sobres" aria-hidden="true"></div>
+  <p class="sobres-pie">34 alumnos · 34 sobres · <b>1 hoja sin sobre</b></p>
+  <div class="cifras" id="cifras"></div>
+</header>
+
+<nav class="pestanas" aria-label="Secciones">
+  <div class="envoltura" role="tablist" id="pestanas">
+    <a class="pestana" role="tab" href="#jugar" data-vista="jugar">Jugar</a>
+    <a class="pestana" role="tab" href="#evidencias" data-vista="evidencias">Evidencias <small>14</small></a>
+    <a class="pestana" role="tab" href="#prompts" data-vista="prompts">Prompts</a>
+    <a class="pestana" role="tab" href="#documentos" data-vista="documentos">Documentos</a>
+    <a class="pestana" role="tab" href="#codigo" data-vista="codigo">Producción</a>
+    <a class="pestana" role="tab" href="#capturas" data-vista="capturas">Capturas QA</a>
+    <a class="pestana" role="tab" href="#descargas" data-vista="descargas">Descargas</a>
+  </div>
+</nav>
+
+<main class="envoltura">
+  <section class="vista" id="v-jugar">
+    <h2>Jugar el caso</h2>
+    <p class="intro">La vista local del juego completo. Empieza con la muestra gratuita (E01-E04 y D1). Marca «Simular compra del caso completo» para seguir; cada etapa se abre al resolver la deducción anterior. El modo pruebas abre todo y muestra las respuestas.</p>
+    <div class="fila">
+      <button class="boton" type="button" id="btn-juego">Vista de jugador</button>
+      <button class="boton sec" type="button" id="btn-pruebas">Modo pruebas (todo abierto)</button>
+      <button class="boton sec" type="button" id="btn-completa">Pantalla completa</button>
+    </div>
+    <div class="marco-juego" id="marco-juego">
+      <div class="barra-juego"><span id="ruta-juego">VISTA_LOCAL/index.html</span><span>El progreso se guarda en este navegador</span></div>
+      <iframe id="ifr-juego" title="La carta 35 · vista local" src="VISTA_LOCAL/index.html"></iframe>
+    </div>
+  </section>
+
+  <section class="vista" id="v-evidencias" hidden>
+    <h2>Todas las evidencias</h2>
+    <p class="intro">Las 14 evidencias y las 3 deducciones, en el orden del juego. Toca una miniatura para verla en grande con su descripción y transcripción. «Abrir con herramientas» carga la pieza con zoom, espejo, realce, comparar y superponer.</p>
+    <div id="lista-evidencias"></div>
+  </section>
+
+  <section class="vista" id="v-prompts" hidden>
+    <h2>Prompts</h2>
+    <p class="intro">Los prompts de imagen para sustituir fondos y escenas, y la lista de recursos provisionales que conviene cambiar.</p>
+    <div class="lector" data-grupos="Prompts"></div>
+  </section>
+
+  <section class="vista" id="v-documentos" hidden>
+    <h2>Documentos</h2>
+    <p class="intro">Solución, diseño maestro, integración y control de calidad. Los documentos marcados como spoiler revelan la respuesta y piden confirmación antes de mostrarse.</p>
+    <div class="lector" data-grupos="Solución,Diseño,Integración,QA"></div>
+  </section>
+
+  <section class="vista" id="v-codigo" hidden>
+    <h2>Producción</h2>
+    <p class="intro">Fuentes HTML de cada documento, scripts de render y postproceso, trabajos de render y pruebas automáticas. Las tipografías OFL están en la descarga completa.</p>
+    <div class="lector" id="lector-codigo"></div>
+  </section>
+
+  <section class="vista" id="v-capturas" hidden>
+    <h2>Capturas de QA</h2>
+    <p class="intro">Capturas de las pruebas en móvil (390×844) y escritorio (1280×800). <code>pg_*_m</code> es móvil y <code>pg_*_d</code> escritorio.</p>
+    <div class="galeria" id="galeria"></div>
+  </section>
+
+  <section class="vista" id="v-descargas" hidden>
+    <h2>Descargas</h2>
+    <p class="intro">Todo el proyecto está en GitHub. Los enlaces abren GitHub en otra pestaña; si el repositorio es privado, inicia sesión con tu cuenta.</p>
+    <div class="zip">
+      <div class="tarjeta">
+        <h3>Proyecto completo (.zip)</h3>
+        <p>Juego, evidencias, audios, documentos, solución, prompts, código de producción, tipografías y capturas. Unos 53 MB.</p>
+        <div class="acciones"><a class="boton" id="zip-todo" target="_blank" rel="noopener">Descargar ZIP</a></div>
+      </div>
+      <div class="tarjeta">
+        <h3>Archivo por archivo</h3>
+        <p>La tabla de abajo tiene los <span id="n-archivos"></span> archivos del proyecto. «Descargar» baja el archivo original y «Ver» lo abre en GitHub.</p>
+        <div class="acciones"><a class="boton sec" id="repo" target="_blank" rel="noopener">Abrir el repositorio</a></div>
+      </div>
+    </div>
+    <label for="filtro" class="eyebrow">Buscar archivo</label>
+    <div class="fila" style="margin-top:6px"><input class="filtro" id="filtro" type="search" placeholder="Ej.: E06, prompts, .mp3, solucion"><span class="contador" id="contador"></span></div>
+    <div class="tabla-arch"><table><thead><tr><th>Archivo</th><th style="text-align:right">Tamaño</th><th>Enlaces</th></tr></thead><tbody id="tbody-arch"></tbody></table></div>
+  </section>
+</main>
+
+<div class="capa" id="capa-pieza" hidden role="dialog" aria-modal="true" aria-labelledby="pieza-titulo">
+  <div class="capa-barra"><strong id="pieza-titulo"></strong><div class="fila"><button class="cerrar" type="button" data-cerrar>Cerrar</button></div></div>
+  <iframe id="ifr-pieza" title="Pieza del caso"></iframe>
+</div>
+
+<div class="capa" id="capa-lupa" hidden role="dialog" aria-modal="true" aria-labelledby="lupa-titulo">
+  <div class="capa-barra">
+    <strong id="lupa-titulo"></strong>
+    <div class="fila"><button class="nav-foto" type="button" id="lupa-ant" aria-label="Anterior">←</button><button class="nav-foto" type="button" id="lupa-sig" aria-label="Siguiente">→</button><button class="cerrar" type="button" data-cerrar>Cerrar</button></div>
+  </div>
+  <div class="lupa">
+    <div class="lupa-img" id="lupa-img"></div>
+    <div class="lupa-texto" id="lupa-texto"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="portal/datos.js" charset="utf-8"></script>
+<script>
+(function(){
+  const D = window.PORTAL;
+  const REPO = 'https://github.com/devsuspik/PRUEBAS';
+  const RAMA = 'claude/bold-babbage-44msrf';
+  const $ = s => document.querySelector(s);
+  const el = (tag, attrs, ...hijos) => {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) {
+      if (k === 'class') n.className = v;
+      else if (k === 'text') n.textContent = v;
+      else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
+      else if (v !== null && v !== undefined && v !== false) n.setAttribute(k, v);
+    }
+    for (const h of hijos) if (h != null) n.append(h);
+    return n;
+  };
+  const guardar = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+  const leer = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+  const enc = p => p.split('/').map(encodeURIComponent).join('/');
+  const tam = b => b < 1024 ? b + ' B' : b < 1048576 ? (b / 1024).toFixed(0) + ' KB' : (b / 1048576).toFixed(1) + ' MB';
+
+  /* Portada */
+  $('#sinopsis').textContent = D.caso.sinopsis;
+  const sobres = $('#sobres');
+  for (let i = 0; i < 34; i++) sobres.append(el('i'));
+  sobres.append(el('i', {class: 'itzel'}));
+  const ev = D.piezas.filter(p => p.tipo === 'evidencia');
+  const nArch = ev.reduce((s, p) => s + (p.archivos || []).length, 0);
+  const cifras = [[ev.length, 'evidencias'], [D.piezas.length - ev.length, 'deducciones'], [nArch, 'imágenes y audios'], [D.docs.length, 'documentos'], [D.caso.duracion_estimada_min.join('-'), 'minutos de juego']];
+  for (const [n, t] of cifras) $('#cifras').append(el('span', {}, el('b', {text: n}), t));
+
+  /* Pestañas */
+  const vistas = ['jugar', 'evidencias', 'prompts', 'documentos', 'codigo', 'capturas', 'descargas'];
+  function mostrar(v) {
+    if (!vistas.includes(v)) v = 'jugar';
+    for (const x of vistas) $('#v-' + x).hidden = x !== v;
+    document.querySelectorAll('.pestana').forEach(a => a.setAttribute('aria-selected', a.dataset.vista === v ? 'true' : 'false'));
+    if (v === 'capturas') cargarGaleria();
+  }
+  document.querySelectorAll('.pestana').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    mostrar(a.dataset.vista);
+    try { history.replaceState(null, '', '#' + a.dataset.vista); } catch (err) {}
+  }));
+  window.addEventListener('hashchange', () => mostrar(location.hash.slice(1)));
+
+  /* Jugar */
+  const ifrJuego = $('#ifr-juego');
+  $('#btn-juego').onclick = () => { ifrJuego.src = 'VISTA_LOCAL/index.html'; $('#ruta-juego').textContent = 'VISTA_LOCAL/index.html'; };
+  $('#btn-pruebas').onclick = () => { ifrJuego.src = 'VISTA_LOCAL/pruebas.html'; $('#ruta-juego').textContent = 'VISTA_LOCAL/pruebas.html · modo pruebas'; };
+  $('#btn-completa').onclick = () => { const m = $('#marco-juego'); if (m.requestFullscreen) m.requestFullscreen().catch(() => {}); };
+
+  /* Capas */
+  let capaAbierta = null;
+  function abrirCapa(c) { capaAbierta = c; c.hidden = false; document.body.style.overflow = 'hidden'; c.querySelector('[data-cerrar]').focus(); }
+  function cerrarCapa() {
+    if (!capaAbierta) return;
+    capaAbierta.hidden = true;
+    if (capaAbierta.id === 'capa-pieza') $('#ifr-pieza').src = 'about:blank';
+    const a = capaAbierta.querySelector('audio'); if (a) a.pause();
+    capaAbierta = null; document.body.style.overflow = '';
+  }
+  document.querySelectorAll('[data-cerrar]').forEach(b => b.onclick = cerrarCapa);
+  document.addEventListener('keydown', e => {
+    if (!capaAbierta) return;
+    if (e.key === 'Escape') { cerrarCapa(); return; }
+    if (capaAbierta.id === 'capa-lupa' && e.key === 'ArrowRight') moverLupa(1);
+    if (capaAbierta.id === 'capa-lupa' && e.key === 'ArrowLeft') moverLupa(-1);
+  });
+  function abrirPieza(p) {
+    $('#pieza-titulo').textContent = p.id + ' · ' + p.titulo;
+    $('#ifr-pieza').src = p.ruta;
+    abrirCapa($('#capa-pieza'));
+  }
+
+  /* Lupa */
+  let lupaLista = [], lupaI = 0, lupaPieza = null;
+  function abrirLupa(lista, i, pieza) { lupaLista = lista; lupaI = i; lupaPieza = pieza; pintarLupa(); abrirCapa($('#capa-lupa')); }
+  function moverLupa(d) { if (lupaLista.length < 2) return; lupaI = (lupaI + d + lupaLista.length) % lupaLista.length; pintarLupa(); }
+  $('#lupa-ant').onclick = () => moverLupa(-1);
+  $('#lupa-sig').onclick = () => moverLupa(1);
+  function pintarLupa() {
+    const a = lupaLista[lupaI];
+    const caja = $('#lupa-img'), txt = $('#lupa-texto');
+    caja.className = 'lupa-img'; caja.textContent = ''; txt.textContent = '';
+    $('#lupa-ant').hidden = $('#lupa-sig').hidden = lupaLista.length < 2;
+    const titulo = (lupaPieza ? lupaPieza.id + ' · ' : '') + (a.etiqueta || a.src.split('/').pop()) + (lupaLista.length > 1 ? '  (' + (lupaI + 1) + '/' + lupaLista.length + ')' : '');
+    $('#lupa-titulo').textContent = titulo;
+    if (a.tipo === 'audio') {
+      caja.append(el('audio', {controls: '', src: a.src, preload: 'metadata'}));
+    } else {
+      const img = el('img', {src: a.src, alt: a.alt || '', title: 'Clic para ver a tamaño real'});
+      img.onclick = () => caja.classList.toggle('real');
+      caja.append(img);
+    }
+    if (lupaPieza) txt.append(el('h3', {text: lupaPieza.titulo}));
+    if (a.alt) txt.append(el('p', {text: a.alt}));
+    if (a.descripcion) txt.append(el('p', {text: a.descripcion}));
+    if (lupaPieza && lupaPieza.fuente) txt.append(el('p', {}, el('b', {text: 'Fuente: '}), lupaPieza.fuente));
+    if (a.transcripcion) txt.append(el('details', {open: ''}, el('summary', {text: 'Transcripción'}), el('pre', {text: a.transcripcion})));
+    txt.append(el('p', {}, el('code', {text: a.src})));
+  }
+
+  /* Evidencias */
+  const iconoAudio = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg>';
+  const cont = $('#lista-evidencias');
+  for (const et of D.etapas) {
+    const piezas = D.piezas.filter(p => p.etapa === et.id).sort((a, b) => a.orden - b.orden);
+    const grid = el('div', {class: 'tarjetas'});
+    for (const p of piezas) {
+      const t = el('article', {class: 'tarjeta' + (p.tipo === 'deduccion' ? ' deduccion' : '')});
+      t.append(el('div', {class: 'tarjeta-cab'}, el('span', {class: 'folio', text: p.id}), el('div', {}, el('h3', {text: p.titulo}), p.paquete === 'gratis' ? el('span', {class: 'chip gratis', text: 'Muestra gratis'}) : null)));
+      if (p.fuente) t.append(el('p', {class: 'fuente', text: p.fuente}));
+      if (p.nota && p.nota.texto) t.append(el('p', {class: 'fuente'}, el('i', {text: '«' + p.nota.texto + '» '}), '— ' + p.nota.de));
+      if (p.archivos && p.archivos.length) {
+        const m = el('div', {class: 'miniaturas'});
+        p.archivos.forEach((a, i) => {
+          let b;
+          if (a.tipo === 'audio') { b = el('button', {class: 'mini audio', type: 'button', 'aria-label': 'Escuchar ' + (a.etiqueta || 'audio')}); b.innerHTML = iconoAudio + '<span>Audio</span>'; }
+          else b = el('button', {class: 'mini', type: 'button', 'aria-label': 'Ver ' + (a.etiqueta || 'imagen')}, el('img', {src: a.src, alt: '', loading: 'lazy'}));
+          b.onclick = () => abrirLupa(p.archivos, i, p);
+          m.append(b);
+        });
+        t.append(m);
+      }
+      if (p.tipo === 'deduccion') t.append(el('p', {class: 'fuente', text: 'Preguntas de la deducción con validación. Se puede responder aquí mismo.'}));
+      const inter = el('div', {class: 'interacciones'});
+      (p.interaccion || []).forEach(x => inter.append(el('span', {class: 'chip', text: x})));
+      t.append(inter);
+      t.append(el('div', {class: 'acciones'}, el('button', {class: 'boton', type: 'button', text: p.tipo === 'deduccion' ? 'Abrir deducción' : 'Abrir con herramientas', onclick: () => abrirPieza(p)})));
+      grid.append(t);
+    }
+    cont.append(el('div', {class: 'etapa'}, el('div', {class: 'etapa-cab'}, el('h3', {text: et.titulo}), el('span', {text: et.acceso === 'gratis' ? 'Gratis' : 'De pago'}), el('span', {text: piezas.map(p => p.id).join(' · ')})), grid));
+  }
+
+  /* Documentos */
+  function renderMd(texto, destino) {
+    if (window.marked && marked.parse) {
+      destino.innerHTML = marked.parse(texto);
+      destino.querySelectorAll('table').forEach(tb => { const w = el('div', {class: 'tabla'}); tb.replaceWith(w); w.append(tb); });
+      destino.querySelectorAll('a[href]').forEach(a => { if (/^https?:/.test(a.getAttribute('href'))) { a.target = '_blank'; a.rel = 'noopener'; } });
+    } else destino.append(el('pre', {class: 'crudo', text: texto}));
+  }
+  const vistos = new Set();
+  function montarLector(lector, items, agrupar, clave) {
+    const indice = el('div', {class: 'indice'});
+    const hoja = el('article', {class: 'hoja'});
+    lector.append(indice, hoja);
+    const botones = [];
+    function abrir(i) {
+      const d = items[i];
+      botones.forEach((b, j) => b.setAttribute('aria-current', j === i ? 'true' : 'false'));
+      guardar(clave, d.ruta);
+      hoja.textContent = '';
+      const cab = el('div', {class: 'hoja-cab'}, el('code', {text: d.ruta}),
+        el('div', {class: 'fila'},
+          el('a', {class: 'boton sec', href: REPO + '/raw/' + RAMA + '/' + enc(d.ruta), target: '_blank', rel: 'noopener', text: 'Descargar'}),
+          el('a', {class: 'boton sec', href: REPO + '/blob/' + RAMA + '/' + enc(d.ruta), target: '_blank', rel: 'noopener', text: 'Ver en GitHub'})));
+      hoja.append(cab);
+      const cuerpo = el('div', {class: 'md'});
+      if (/\.md$/.test(d.ruta)) renderMd(d.texto, cuerpo);
+      else cuerpo.append(el('pre', {class: 'crudo', text: d.texto}));
+      hoja.append(cuerpo);
+      if (d.spoiler && !vistos.has(d.ruta)) {
+        hoja.append(el('div', {class: 'velo'}, el('strong', {text: 'Spoiler'}), el('p', {text: 'Este documento revela quién es Itzel. Si todavía vas a jugar el caso, no lo abras.'}),
+          el('button', {class: 'boton rojo', type: 'button', text: 'Mostrar de todos modos', onclick: e => { vistos.add(d.ruta); e.target.closest('.velo').remove(); }})));
+      }
+    }
+    const grupos = [...new Set(items.map(agrupar))];
+    for (const g of grupos) {
+      const bloque = el('div', {}, el('h4', {text: g}));
+      items.forEach((d, i) => {
+        if (agrupar(d) !== g) return;
+        const b = el('button', {type: 'button', onclick: () => { abrir(i); if (window.innerWidth < 820) hoja.scrollIntoView({block: 'start'}); }},
+          el('span', {text: d.titulo || d.ruta.split('/').pop()}), d.spoiler ? el('span', {class: 'chip spoiler', text: 'Spoiler'}) : null);
+        botones[i] = b; bloque.append(b);
+      });
+      indice.append(bloque);
+    }
+    const previo = items.findIndex(d => d.ruta === leer(clave));
+    abrir(previo >= 0 ? previo : 0);
+  }
+  document.querySelectorAll('.lector[data-grupos]').forEach(l => {
+    const gs = l.dataset.grupos.split(',');
+    montarLector(l, D.docs.filter(d => gs.includes(d.grupo)), d => d.grupo, 'portal:doc:' + gs[0]);
+  });
+  const grupoCodigo = d => {
+    const r = d.ruta.replace('MAESTRO_PRIVADO/produccion/', '');
+    if (r.startsWith('fuentes_html/')) return 'Fuentes HTML de los documentos';
+    if (r.startsWith('lib/')) return 'Bibliotecas';
+    if (/^build_|^paginas|^render|^shot|^chat2json/.test(r)) return 'Render y construcción';
+    if (/^jobs_|^_jobs/.test(r)) return 'Trabajos de render';
+    return 'Pruebas y QA';
+  };
+  const codigo = D.codigo.map(c => Object.assign({titulo: c.ruta.split('/').pop()}, c)).sort((a, b) => grupoCodigo(a).localeCompare(grupoCodigo(b)) || a.ruta.localeCompare(b.ruta));
+  montarLector($('#lector-codigo'), codigo, grupoCodigo, 'portal:codigo');
+
+  /* Capturas */
+  let galeriaLista = false;
+  function cargarGaleria() {
+    if (galeriaLista) return; galeriaLista = true;
+    const lista = D.capturas.map(c => ({tipo: 'imagen', src: c, etiqueta: c.split('/').pop()}));
+    lista.forEach((a, i) => {
+      $('#galeria').append(el('figure', {}, el('button', {type: 'button', 'aria-label': 'Ver ' + a.etiqueta, onclick: () => abrirLupa(lista, i, null)}, el('img', {src: a.src, alt: a.etiqueta, loading: 'lazy'})), el('figcaption', {text: a.etiqueta})));
+    });
+  }
+
+  /* Descargas */
+  $('#zip-todo').href = REPO + '/archive/refs/heads/' + RAMA + '.zip';
+  $('#repo').href = REPO + '/tree/' + RAMA;
+  $('#n-archivos').textContent = D.archivos.length;
+  const tbody = $('#tbody-arch');
+  const filas = D.archivos.map(f => {
+    const tr = el('tr', {},
+      el('td', {class: 'ruta', text: f.ruta}),
+      el('td', {class: 'num', text: tam(f.bytes)}),
+      el('td', {}, el('div', {class: 'fila'},
+        el('a', {href: REPO + '/raw/' + RAMA + '/' + enc(f.ruta), target: '_blank', rel: 'noopener', text: 'Descargar'}),
+        el('a', {href: REPO + '/blob/' + RAMA + '/' + enc(f.ruta), target: '_blank', rel: 'noopener', text: 'Ver'}))));
+    tbody.append(tr);
+    return [f.ruta.toLowerCase(), tr];
+  });
+  function filtrar() {
+    const q = $('#filtro').value.trim().toLowerCase();
+    let n = 0;
+    for (const [r, tr] of filas) { const ok = !q || r.includes(q); tr.hidden = !ok; if (ok) n++; }
+    $('#contador').textContent = n + ' de ' + filas.length;
+  }
+  $('#filtro').addEventListener('input', filtrar);
+  filtrar();
+
+  mostrar(location.hash.slice(1));
+})();
+</script>

@@ -5,6 +5,9 @@ Caso digital de investigación **no criminal** para adultos de México, en espa�
 > Junio de 2025, Aguascalientes. Los exalumnos del 6° B de una primaria pública abren la cápsula del tiempo que enterraron en el año 2000. Eran 34 alumnos y hay 34 sobres. Pero al fondo de la caja aparece una hoja más, sin sobre, firmada por «Itzel». Nadie se llama así. Nadie la recuerda.
 > **¿Quién es Itzel?**
 
+## Portal del proyecto
+Abre **`index.html`** (en la raíz) para tener todo en un solo lugar: el juego, las 14 evidencias con sus transcripciones, los prompts, la solución, el diseño maestro, QA, el código de producción y la lista de descargas. Sus datos salen de `portal/datos.js`; si cambia algún documento, se regenera con `python3 portal/generar.py`.
+
 ## Abrir la vista local
 Abre **`VISTA_LOCAL/index.html`** en el navegador (funciona con doble clic, desde `file://`). También se puede servir:
 ```bash
