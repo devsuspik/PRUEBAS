@@ -62,6 +62,8 @@ python3 -m http.server 8000     # desde esta carpeta
 - **Terminado:** las 14 evidencias, las 3 deducciones, el visor, la vista local, el manifest, la solución y la documentación.
 - **Provisional funcional (se juega bien, conviene sustituir):** las 2 notas de voz (TTS → locución humana) y la foto del pintarrón (fondo sintético → foto real con el texto compuesto por código). Los fondos procedurales (mesabanco, hule, cartón) se pueden mejorar con fotos reales. Detalle en `ASSETS_PENDIENTES/`.
 
+- **Auditoría independiente:** un solo auditor resolvió el caso a ciegas (llegó a todas las respuestas) y señaló 1 fallo crítico, 7 importantes y varios menores. Todos se corrigieron; el detalle está en `QA/auditoria_logica.md` §6.
+
 ## Decisiones importantes
 - **Premisa:** de tres evaluadas (`MAESTRO_PRIVADO/premisas.md`) se eligió la cápsula del tiempo. La pregunta se entiende de inmediato y la solución se apoya en algo cotidiano de la escuela pública mexicana: dos turnos, dos escuelas y una sola aula.
 - **Sin culpables:** cada persona calla o se equivoca por razones comprensibles (vergüenza, reglamento, protección de una compañera, entusiasmo).

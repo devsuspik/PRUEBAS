@@ -18,7 +18,8 @@ Si una evidencia contradice este archivo, se corrige la evidencia. Si hay que ca
 | Fecha | Día | Hecho |
 |---|---|---|
 | 23-VIII-1999 | lun | Inicio del ciclo 1999-2000 (Acuerdo SEP 258) |
-| 13-X-1999 | mié | Balonazo: se estrella el vidrio de la 3.ª ventana |
+| 12-X-1999 | mar | Balonazo del 6° A de la tarde: se estrella el vidrio de la 3.ª ventana |
+| 13-X-1999 | mié | La niña lo anota en la bitácora («Amaneció estrellado…») y la maestra Chayo en su diario |
 | 22-XI-1999 | lun | Primer recadito (sacapuntas) |
 | 24-XI-1999 | mié | «Soy Itzel… ¿Juegas gato?» |
 | 30-XI-1999 | mar | Hoja de partidas 1 |
@@ -45,7 +46,7 @@ Si una evidencia contradice este archivo, se corrige la evidencia. Si hay que ca
 | 29-VI-2025 | dom | Comentario de «Lupita Rangel»; Mariana quita la foto |
 | 30-VI-2025 | lun | Correo de la directora 11:48 |
 | 1-VII-2025 | mar | Fotos del cuaderno de Chayo |
-| 2-VII-2025 | mié | Relación de apertura y cartas 18-21 al jugador; Mariana confronta a Óscar |
+| 2-VII-2025 | mié | Relación de apertura, escaneos de las cartas mojadas 19-21 y de la hoja de Itzel; Mariana confronta a Óscar |
 | 3-VII-2025 | jue | Mensajes de Óscar; fotos de los recados (mamá de Óscar) |
 | 4-VII-2025 | vie | Mariana en la bodega: bitácora |
 | 5-VII-2025 | sáb | Segundo audio de Chayo |
@@ -102,13 +103,13 @@ Si una evidencia contradice este archivo, se corrige la evidencia. Si hay que ca
 | Mano | Instrumento | Rasgos persistentes |
 |---|---|---|
 | Itzel niña | lápiz del n.º 2, a veces gastado | letra de molde con ligaduras sueltas; **7 cruzado**; fechas romanas; firma «Itzel» con un pequeño trazo final ascendente; «jaja» |
-| Lupita adulta | plumón de pintarrón / pluma negra | letra más fluida, **7 cruzado**, fechas romanas; firma que empieza con **Y** grande (Y + Rangel) |
+| Lupita adulta | plumón de pintarrón; pluma azul (dedicatoria de 2012, firma de la lista, epílogo) | letra más fluida, **7 cruzado**, fechas romanas; firma que empieza con **Y** grande (Y + Rangel) |
 | Óscar niño | pluma de gel **verde** (carta); lápiz o Bic azul en recados | letra redonda, mayúsculas en palabras sueltas, «!!» |
 | Itzayana niña | gel **verde** también | letra redonda con círculos sobre las íes; firma «Itza» |
 | Beto | Bic azul | letra apretada, inclinada |
 | Karla | gel morado | cursiva escolar |
 | Maestra Chayo | pluma azul; rojo para anotaciones | cursiva Palmer |
-| Profe Chava | lápiz / pluma negra | cursiva masculina, apretada |
+| Profe Chava | pluma negra (lista); lápiz (notas al margen); pluma azul (nota del acta, añadida después) | cursiva masculina, apretada |
 | Refugio | lápiz, mayúsculas | trazo pesado y tembloroso, sin acentos, errores («ESTA BIEN», «SALONES») |
 | Pedro Luévano | pluma negra | letra alta y angosta; fechas con diagonales |
 | Mariana adulta | gel negro | letra de molde redondeada, flechas, subrayados |

@@ -7,12 +7,12 @@ Revisión hecha **mirando los renders** (imágenes y capturas de página en móv
 | E01 | ✓ | ✗→✓ | ✓ | ✓ | ✗→✓ | ✗→✓ | ✓ | ✓ | La orilla arrancada parecía peine, el cerco de agua parecía humo gris y el mesabanco tenía vetas de mármol: corregidos. La calca se leía sin herramientas: atenuada. La uniformidad de la fuente se rompe con variación por letra. |
 | E02 | ✓ | ◐ | ✗→✓ | ✓ | ✓ | ◐ | ✗→✓ | ✓ | Las capturas parecen reales. El pintarrón aún se nota sintético en el muro (provisional, P1). Las motas de fotocopia eran excesivas: reducidas. El apodo «Chucho» no correspondía a Luis Fernando: ahora «Luisfer». La duración del audio en el chat no coincidía: 1:28. |
 | E03 | ✓ | ◐ | ✓ | ✓ | ✓ | ◐ | ✓ | ✓ | Voz sintética (provisional). Se corrigió la pronunciación de «Itzel» y «hoja», detectada con transcripción automática. |
-| E04 | ✓ | ✓ | ✓ | ✓ | ✓ | ✗→✓ | ✓ | ✓ | Croquis: la flecha del norte tapaba el aula 9, un extintor tapaba un rótulo y el acceso no coincidía con el hueco del edificio: corregidos. Sin sellos ni escudos. |
+| E04 | ✓ | ✓ | ✓ | ✓ | ✓ | ✗→✓ | ✓ | ✓ | Croquis: la flecha del norte tapaba el aula 9, un extintor tapaba un rótulo y el acceso no coincidía con el hueco del edificio: corregidos. Sin sellos ni escudos. Se añadió la tabla de horario y ocupación, habitual en estos croquis. |
 | E05 | ✓ | ✓ | ✓ | ✓ | ✗→✓ | ✓ | ✓ | ✓ | La anotación del vidrio apuntaba al puesto 4: se reubicaron las ventanas. El diario saltaba de marzo a junio en la misma página: dividido en 4 páginas con entradas rutinarias. |
 | E06 | ✓ | ✓ | ✓ | ✓ | ✗→✓ | ✓ | ✓ | ✓ | La fecha de la libreta se encimaba con «Fecha»: corregido. La tinta corrida era poco visible: reforzada. Escala común para la superposición. |
-| E07 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Se añadió el álbum 2×2 «+4», como lo muestra la app. |
-| E08 | ✓ | ✗→✓ | ✓ | ✓ | ✓ | ✗→✓ | ✓ | ✓ | El texto se salía del papel y el «¿» caía bajo el renglón: corregidos. La letra ahora va sobre los renglones y el encuadre es más cerrado. |
-| E09 | ✓ | ✓ | ✓ | ✓ | ✓ | ✗→✓ | ✓ | ✓ | Las mayúsculas del padre se enciman y parecían limpias: fuente torpe y renglones propios. Páginas medio vacías: se añadieron entradas rutinarias. |
+| E07 | ✓ | ✓ | ✗→✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Se añadió el álbum 2×2 «+4», como lo muestra la app. Los mensajes de Óscar eran demasiado pulidos: ahora en minúsculas, sin acentos y con abreviaturas. |
+| E08 | ✓ | ✗→✓ | ✓ | ✓ | ✓ | ✗→✓ | ✓ | ✓ | El texto se salía del papel y el «¿» caía bajo el renglón: corregidos. La letra ahora va sobre los renglones y el encuadre es más cerrado. Tras la auditoría: fechas romanas con palotes separados y partidas de gato posibles (validadas con script). |
+| E09 | ✓ | ✓ | ✓ | ✓ | ✓ | ✗→✓ | ✓ | ✓ | Las mayúsculas del padre se enciman y parecían limpias: fuente torpe y renglones propios. Páginas medio vacías: se añadieron entradas rutinarias. Portada envejecida (etiqueta amarillenta con cinta, esquinas gastadas). Fechas romanas del margen legibles a resolución real. |
 | E10 | ✓ | ✓ | ✓ | ✓ | ✓ | ◐ | ✓ | ✓ | Avatares de degradado: aceptables en miniatura (sustitución opcional, P7). |
 | E11 | ✓ | ◐ | ✓ | ✓ | ✓ | ◐ | ✓ | ✓ | Voz sintética (provisional). |
 | E12 | ✓ | ✓ | ✓ | ✓ | ✓ | ✗→✓ | ✓ | ✓ | Se veía una palomita de fuente de respaldo: ahora es trazo dibujado. Los iconos de la barra de estado eran glifos: ahora SVG. |

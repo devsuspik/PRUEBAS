@@ -36,3 +36,19 @@
 | 32 | E09 | Portada de la bitácora demasiado limpia: etiqueta blanca nueva y manchas redondas en las esquinas | Mirar la foto | Etiqueta amarillenta con cinta, tela con textura y esquinas gastadas que dejan ver el cartón |
 | 33 | E12 | La respuesta de Mariana en Messenger (19:48) quedaba después de «ya le contesté» | Auditoría de horarios | 18:36 |
 | 34 | Ritmo | Los tiempos de E03, E04 y D1 del manifest no sumaban el rango de la muestra | Revisión cruzada ritmo ↔ manifest | Tiempos ajustados (muestra 9-12 min en ambos) |
+| 35 | D2/D3 | La opción correcta destacaba por larga y regalaba el nombre y el cargo | Auditor independiente | Opciones equilibradas; nombre y cargo solo en q3 y q5; distractor nuevo |
+| 36 | E07 | «Nunca le vi la cara» contra el encuentro en el portón | Auditor independiente | «En todo ese tiempo…», «fue la única vez que la vi» |
+| 37 | E05/E08 | Cronología de marzo contradictoria (10, 13 y 15-III) | Auditor independiente | Diario con entradas del 10 y del 15; recadito del 13 en condicional |
+| 38 | E07/E08 | No se explicaba cómo llegó a Óscar el último recadito | Auditor independiente | Se lo pasó Kevin |
+| 39 | E08/E09 | Palotes de las fechas romanas encimados (XII→XI, III→II) | Auditor independiente | Espaciado propio para fechas romanas en el motor de manuscrito; fechas del margen de la bitácora más chicas |
+| 40 | E08 | Cuatro partidas de gato imposibles | Auditor independiente; `qa_gato.py` lo confirmó | Partidas rehechas y validador en la batería |
+| 41 | D1/E04 | La ayuda citaba horarios que no aparecían en ninguna evidencia | Auditor independiente | Tabla «Horario y ocupación» en el croquis |
+| 42 | E02/E05 | El cuaderno de la maestra «aparecía» dos veces | Auditor independiente | Texto de Mariana corregido |
+| 43 | E04 | Llamadas en sábado; petición de quitar una foto ya quitada; agradecimiento plantado | Auditor independiente | Correo reescrito en esos tres puntos |
+| 44 | E02/E06/E14 | Pequeñas filtraciones y detalles de calendario | Auditor independiente | Ver auditoría lógica §6 |
+| 45 | E07 | Mensajes de Óscar demasiado pulidos para un WhatsApp de noche | Auditor independiente | Minúsculas, sin acentos, abreviaturas |
+| 46 | Visor común | Texto del caso dentro del código público | Auditor independiente | Mensaje movido a la configuración de E08 |
+| 47 | Manifest | Títulos de piezas bloqueadas visibles para la plataforma | Auditor independiente | `titulo_bloqueado` |
+| 48 | Muestra | Faltaba decir al jugador qué se le pide | Auditor independiente | Encargo breve en E01 |
+| 49 | E02 | Contacto eléctrico del muro como rectángulo liso | Mirar la foto | Placa con tomas y tornillo |
+| 50 | Producción | Las capturas de E07 y el render del epílogo no tenían script reproducible | Revisión del pipeline | `build_e07.py` y epílogo en `jobs_e13.json` |

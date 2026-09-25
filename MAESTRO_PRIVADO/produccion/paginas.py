@@ -153,9 +153,9 @@ Reciba un cordial saludo. En atención a su correo del sábado, le informo lo si
 
 3. Le comparto el croquis del Programa Interno de Protección Civil del plantel para que pueda ubicar el aula.
 
-Por otra parte, le solicito de la manera más atenta retirar de Facebook la publicación con la fotografía de la carta. Desde el sábado varios padres de familia han llamado a la escuela preguntando por "la niña de la cápsula" y circulan versiones que no le ayudan a nadie. Le recuerdo que las cartas son documentos personales y que la escuela se comprometió a entregarlas únicamente a sus autores o a sus familiares.
+Por otra parte, le agradezco que haya quitado la fotografía de la carta, pero le solicito de la manera más atenta retirar también la publicación. Esta mañana varios padres de familia llamaron a la escuela preguntando por "la niña de la cápsula" y circulan versiones que no le ayudan a nadie. Le recuerdo que las cartas son documentos personales y que la escuela se comprometió a entregarlas únicamente a sus autores o a sus familiares.
 
-Agradezco nuevamente a la Mtra. Rangel, titular del 6° "A" vespertino, que amablemente les facilitó el aula y se quedó a apoyarnos durante la apertura.
+Si el grupo desea volver a reunirse en el aula 6, le pido que lo coordine con anticipación con esta Dirección y con la Mtra. Rangel, titular del 6° "A" vespertino, que en esta ocasión les facilitó su salón.
 
 Sin más por el momento, quedo a sus órdenes.
 
@@ -193,15 +193,20 @@ Prevención y combate de incendios: Sr. Julián Ortega (intendente) / Profr. Jes
 Comunicación: Profra. Ana Luisa Medina / Profra. Karina López Serna
 
 EN CASO DE SISMO: NO CORRO · NO GRITO · NO EMPUJO. Emergencias: 911.
+
+HORARIO Y OCUPACIÓN DEL INMUEBLE
+Matutino (T.M.): 8:00 a 12:30 h · 402 alumnos · 19 personas
+Vespertino (T.V.): 14:00 a 18:30 h · 236 alumnos · 13 personas
 Elaboró: Comisión de Seguridad Escolar T.M. / T.V. · Actualización: septiembre de 2024 · Hoja 1 de 1"""
 
-IMG_E02 = {'IMG-20250627-WA0012.jpg': 'pintarrón', 'IMG-20250627-WA0014.jpg': 'la carta de Itzel (E01)',
+IMG_E02 = {'IMG-20250627-WA0012.jpg': 'pintarrón', 'IMG-20250627-WA0014.jpg': 'la carta de Itzel',
            'IMG-20250627-WA0016.jpg': 'carta de Itzayana', 'IMG-20250627-WA0021.jpg': 'carta de Beto',
            'IMG-20250627-WA0022.jpg': 'carta de Karla', 'IMG-20250627-WA0031.jpg': 'lista de la maestra Chayo'}
 
 # ======================================================================= MUESTRA (gratis)
 def muestra():
     e01 = dict(id='E01', titulo='Carta sin sobre', etapa='Muestra', orden=1,
+        encargo='<p>«Abrimos la cápsula del tiempo y salió una carta de más, firmada por una tal Itzel. Nadie la conoce. ¿Me ayudas a averiguar quién es?» — <b>Mariana Esparza</b>, exalumna del 6° B.</p><p>Al final de la muestra hay una primera deducción.</p>',
         fuente='Dos fotos del celular de Mariana Esparza, tomadas en el aula 6 el viernes 27 de junio de 2025 (13:41 y 13:42), durante la apertura de la cápsula del tiempo del 6° B.',
         nota=dict(de='Mariana', texto='Esta es la hoja que salió hasta el fondo de la caja. No venía en ningún sobre. Le tomé foto de los dos lados antes de que alguien la agarrara.'),
         piezas=[dict(tipo='imagen', etiqueta='Anverso', src='img/IMG_20250627_134112.jpg',
@@ -234,7 +239,7 @@ def muestra():
              alt='Pintarrón del aula 6 con un mensaje de bienvenida escrito con plumón azul y rojo.',
              descripcion='Foto que Mariana mandó al grupo (27 jun, 2:52 p. m.). Pintarrón del aula 6 antes de la apertura.',
              transcripcion='Arriba a la derecha (azul): «Viernes 27-VI-2025»\nAl centro (azul): «¡Bienvenidos, generación 1994-2000!»\nAbajo (rojo): «Esta sigue siendo su casa.»\nRestos borrados: «Tarea: Lección 12, pág. 118», «3/4 + 1/2 =», «5/8 - 1/4 =»\nCartel en la pared: «REGLAMENTO: 1. Levanto la mano. 2. Respeto a todos. 3. Cuido mi salón. 4. Tiro la basura en su lugar. 5. Traigo mi tarea. — 6° A T.V.»',
-             accesible='En la esquina superior izquierda del pintarrón hay un gato (la cuadrícula #) dibujado con plumón azul, con una sola jugada: una O en la casilla del centro. El 7 de «27» está cruzado con una rayita.'),
+             accesible='En la esquina superior izquierda del pintarrón hay un gato (la cuadrícula #) dibujado con plumón azul, con una sola jugada: una O en la casilla del centro.'),
         dict(tipo='imagen', etiqueta='Foto: carta de Itzayana', src='img/IMG-20250627-WA0016.jpg',
              alt='Carta en hoja fotocopiada, escrita con pluma de gel verde.', descripcion='Carta del sobre 14 (Itzayana Ibarra), escrita con gel verde en la hoja fotocopiada del grupo.',
              transcripcion=carta6b_txt('Itzayana Ibarra Delgado', ITZA)),
@@ -326,9 +331,9 @@ def muestra():
             dict(de='Mariana', texto='¡¿Chava de Salvador?! Obvio 🤦‍♀️ Entonces Itzel iba en la tarde, en nuestro mismo salón.'),
             dict(de='Mariana', texto='Pero la directora dice que en la lista de la tarde tampoco hay ninguna Itzel. ¿Cómo vas a clases sin estar en ninguna lista?'),
             dict(de='Mariana', texto='Y otra cosa: la maestra jura que no había hojas sueltas. O sea que alguien de nosotros metió esa hoja en su sobre. «Para el de la mañana»… ¿quién era el de la mañana?')],
-            cierre='<b>Aquí termina la muestra gratuita.</b> En el caso completo, Mariana consigue el cuaderno de la maestra Chayo y las cartas mojadas del fondo de la caja, y alguien por fin contesta.'),
+            cierre='<b>Aquí termina la muestra gratuita.</b> En el caso completo, Mariana consigue más páginas del cuaderno de la maestra Chayo y las cartas mojadas del fondo de la caja, y alguien por fin contesta.'),
         ayudas=[dict(tema='Pregunta 1', niveles=['Lee otra vez el correo de la directora: ¿quién estaba en el aula 6 en la tarde?', '«Chava» es el apodo de un nombre que aparece en el correo.', 'Salvador → Chava. La maestra Chayo nunca fue «profe».']),
-                dict(tema='Preguntas 2 y 3', niveles=['¿Cuándo prenden las lámparas en un salón y cuándo pasa «el tren de las seis»?', 'Compara con los horarios de los turnos: el 6° B salía antes del mediodía.', 'Ella estaba en el aula por la tarde. La leyenda «Para el de la mañana», el correo y lo que dice la maestra Chayo lo confirman.'])])
+                dict(tema='Preguntas 2 y 3', niveles=['¿Cuándo prenden las lámparas en un salón y cuándo pasa «el tren de las seis»?', 'Compara con el horario de los turnos que viene en el croquis (E04): ¿a qué hora sale el matutino?', 'Ella estaba en el aula por la tarde. La leyenda «Para el de la mañana», el correo y lo que dice la maestra Chayo lo confirman.'])])
     escribir(G, 'D1', d1, DEDUC, 'DEDUCCION')
     return [e01, e02, e03, e04, d1]
 
@@ -395,10 +400,10 @@ RECADOS = {
 (lápiz) Jajaja no espantan. Soy yo. Hago la tarea aquí en la noche porque en el cuarto no hay luz buena. Mi papá tiene las llaves. No le digas a nadie.   7-XII-99"""),
  'D': ('Recadito del chocolate', """[Papelito de cuaderno de cuadro con una mancha de chocolate]
 (pluma azul) Te dejé un chocolate por lo de navidad. ¿Cuándo es tu cumpleaños? El mío es el 14 de febrero jaja
-(lápiz) Gracias!! Te dejé colación de la posada de aquí. Mi papá dice que nací en mayo pero no sé bien porque no tengo acta. Por eso no salgo en la lista del profe. Soy oyente.   11-I-2000"""),
+(lápiz) Gracias!! Te dejé colación de la posada de aquí. Mi papá dice que nací en mayo pero no sé bien porque no tengo acta. Soy oyente.   11-I-2000"""),
  'E': ('Recadito de «oyente»', """[Papelito de cuaderno de raya]
 (pluma azul) ¿Qué es oyente? Mi mamá dice que si no tienes acta no existes jaja
-(lápiz) Oyente es que vengo pero no cuento. Pero sí existo, te gano en gato. En mi casa me dicen Lupe pero tú dime Itzel.   18-I-2000"""),
+(lápiz) Oyente es que vengo pero no cuento, ni salgo en la lista. Pero sí existo, te gano en gato. En mi casa me dicen Lupe pero tú dime Itzel.   18-I-2000"""),
  'F': ('Segunda hoja de partidas', """[Papelito de cuaderno de cuadro con tres partidas de gato]
 (pluma azul) ya te voy alcanzando!!
 (lápiz) Nomás porque te dejé. Van: Itzel 11, Óscar 9.   15-II-2000"""),
@@ -408,7 +413,7 @@ RECADOS = {
 (pluma azul) Sí. Me la das y la meto con la mía. Pero no le digas a nadie.
 (lápiz) Trato. 2-III-2000"""),
  'H': ('Último recadito', """[Papelito de cuaderno de raya, solo a lápiz]
-¿Ya no me vas a contestar? Si es por lo que dijeron los de tu salón no importa. Me dijeron que ya no puedo venir con el profe. Sigo aquí atrás.
+¿Ya no me vas a contestar? Si es por lo que dijeron los de tu salón no importa. Dicen que ya no voy a poder venir con el profe. Sigo aquí atrás.
 Te dejé tu tiro. Si no contestas gano yo. Vamos 13 a 11.
 [Un gato empezado: O al centro, X en una esquina, O en otra esquina.]
 13-III-2000"""),
@@ -418,7 +423,7 @@ ORDEN_OK = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 def etapa1():
     e05 = dict(id='E05', titulo='El cuaderno de la maestra Chayo', etapa='Etapa 1 · El de la mañana', orden=6,
         fuente='Cinco fotos que la maestra Chayo tomó de su cuaderno de planeación de 1999-2000 y le mandó a Mariana el martes 1 de julio de 2025, de noche.',
-        nota=dict(de='Mariana', texto='La maestra encontró su cuaderno de ese año (¡lo tenía guardado!). Me mandó las páginas donde hay algo de las cartas.'),
+        nota=dict(de='Mariana', texto='La maestra volvió a sacar el cuaderno de donde me mandó la lista. Me mandó las páginas donde hay algo de las cartas y del salón.'),
         piezas=[dict(tipo='imagen', etiqueta='Acomodo del grupo', src='img/IMG-20250701-WA0004.jpg', alt='Página de cuaderno de cuadro con el acomodo de los mesabancos del 6° B, nombres en cursiva y dos nombres tachados.', descripcion='Croquis de lugares hecho por la maestra en su cuaderno (septiembre de 1999), con correcciones posteriores.', transcripcion=T_CROQ_CHAYO),
                 dict(tipo='imagen', etiqueta='Diario · octubre 1999', src='img/IMG-20250701-WA0005.jpg', alt='Página del diario de clase de octubre de 1999.', transcripcion=diario_txt('diario_oct')),
                 dict(tipo='imagen', etiqueta='Diario · febrero 2000', src='img/IMG-20250701-WA0006.jpg', alt='Página del diario de clase de febrero de 2000.', transcripcion=diario_txt('diario_feb')),
@@ -431,9 +436,9 @@ def etapa1():
                     'Busca la anotación en rojo en el acomodo del grupo y fíjate a qué mesabanco apunta.',
                     'El vidrio estrellado era el de la 3a. ventana, junto al tercer mesabanco de la fila de las ventanas. Ahí se sentaba Óscar M. hasta el 9 de marzo; después, Kevin R.']),
                 dict(tema='¿Qué pasó el 9 de marzo de 2000?', niveles=[
-                    'Lee la entrada de ese día y la del día siguiente.',
+                    'Lee la entrada de ese día y las siguientes.',
                     '¿De qué turno era la niña de los recaditos? ¿En qué fila estaban? ¿Con quién habló la directora?',
-                    'Encontraron recaditos de una niña de la tarde en un mesabanco de la fila de las ventanas. Cambiaron a Óscar de lugar y la directora habló con el conserje y con la Dirección de la tarde.'])])
+                    'Encontraron recaditos de una niña de la tarde en un mesabanco de la fila de las ventanas. Cambiaron a Óscar de lugar; al día siguiente la directora revisó las llaves con el conserje y el 15 lo dejó «arreglado» con la Dirección de la tarde.'])])
     escribir(C, 'E05', e05)
 
     bases = [dict(etiqueta='Carta #19 (Eduardo)', src='img/Escaneo_0031.jpg', alt='Escaneo de la carta de Eduardo'),
@@ -441,7 +446,7 @@ def etapa1():
              dict(etiqueta='Carta #21 (Gaby)', src='img/Escaneo_0033.jpg', alt='Escaneo de la carta de Gaby')]
     e06 = dict(id='E06', titulo='Las cartas del fondo de la caja', etapa='Etapa 1 · El de la mañana', orden=7,
         fuente='Foto de la libreta donde Mariana anotó el estado de los sobres durante la apertura, y los escaneos que hizo en su casa el miércoles 2 de julio de 2025.',
-        nota=dict(de='Mariana', texto='Óscar todavía no me da permiso de enseñar la suya, pero te la paso nomás para esto. Escaneé también la de Itzel: por atrás se ve mejor la mancha.'),
+        nota=dict(de='Mariana', texto='Las tres cartas mojadas son de compañeros que todavía no me dan permiso de enseñarlas; te las paso nomás para esto. Escaneé también la de Itzel: por atrás se ve mejor la mancha.'),
         piezas=[dict(tipo='imagen', etiqueta='Libreta: relación de apertura', src='img/IMG_20250702_203015.jpg', alt='Página de libreta con notas a mano sobre el estado de los sobres.', transcripcion=T_LIBRETA),
                 dict(tipo='imagen', etiqueta='Escaneo: carta #19', src='img/Escaneo_0031.jpg', alt='Carta de Eduardo, mojada, pluma azul.', transcripcion=carta6b_txt('Eduardo Medina Castañeda', EDUARDO)),
                 dict(tipo='imagen', etiqueta='Escaneo: carta #20', src='img/Escaneo_0032.jpg', alt='Carta de Óscar, muy mojada, tinta verde corrida en la parte de abajo.', transcripcion=carta6b_txt('Óscar Mendoza Luévano', OSCAR)),
@@ -483,7 +488,7 @@ def etapa1():
         fuente='Ocho fotos que la mamá de Óscar tomó de los recaditos que él guardaba en una lata de galletas. Óscar se las reenvió a Mariana el jueves 3 de julio de 2025. Llegaron revueltas.',
         nota=dict(de='Mariana', texto='Óscar dice que se los mandaron revueltos. ¿Me ayudas a ponerlos en orden? Yo ya lloré dos veces.'),
         piezas=[dict(tipo='ordenar', etiqueta='Mesa: ordenar', instruccion='Pon los recaditos en el orden en que se escribieron (el primero arriba). Toca una foto para ampliarla y usa las flechas para moverla.',
-                     items=items, h=hs, exito='Así quedan en orden: del 22 de noviembre de 1999 al 13 de marzo de 2000. El marcador del gato va subiendo hasta 13 a 11, y el último recadito se quedó sin respuesta.',
+                     items=items, h=hs, parcial='{n} de {t} recados están en su lugar. Revisa las fechas y el marcador del gato.', exito='Así quedan en orden: del 22 de noviembre de 1999 al 13 de marzo de 2000. El marcador del gato va subiendo hasta 13 a 11, y el último recadito se quedó sin respuesta.',
                      descripcion='Mesa para ordenar los recaditos. Cada foto tiene su transcripción en su pestaña.', transcripcion='Abre cada foto en su pestaña para leer su transcripción.')] + fotos,
         ayudas=[dict(tema='¿Cómo se ordenan?', niveles=[
                     'Casi todos tienen una fecha con la letra de Itzel. El mes está en números romanos.',
@@ -492,34 +497,34 @@ def etapa1():
                 dict(tema='¿Qué cuentan de Itzel?', niveles=[
                     'Fíjate dónde hace la tarea, quién tiene las llaves y por qué no está en la lista.',
                     'Compara con el croquis de Protección Civil (E04): ¿qué hay «aquí atrás» del edificio B?',
-                    'Itzel vivía dentro de la escuela, en la casa del conserje, detrás del aula 6. No tenía acta, así que no podía inscribirse: iba de oyente. En su casa le decían Lupe.'])])
+                    'Itzel vivía dentro de la escuela, en la casa del conserje, en el patio de atrás del edificio B. No tenía acta, así que no podía inscribirse: iba de oyente. En su casa le decían Lupe.'])])
     escribir(C, 'E08', e08)
 
     d2 = dict(id='D2', titulo='Segunda deducción', etapa='Etapa 1 · El de la mañana', orden=10,
         intro='Con lo que sabes hasta E08, responde. Todavía falta saber quién es Itzel hoy.',
         preguntas=[
             dict(id='q1', tipo='unica', texto='¿A quién iba dirigida la carta y cómo llegó a la cápsula?', opciones=[
-                dict(id='w3', t='A Kevin Ruvalcaba, que en junio ocupaba ese mesabanco; Itzel la dejó en su canastilla.'),
-                dict(id='h8', t='A Itzayana, por el parecido del nombre; se la dio en el recreo.'),
-                dict(id='f5', t='A Óscar Mendoza, que ocupaba su mismo mesabanco en la mañana; él la metió en su propio sobre.'),
-                dict(id='j1', t='A la maestra Chayo, que la guardó en el archivero con los sobres.'),
-                dict(id='v6', t='A nadie en particular; alguien la metió en la caja la noche antes de enterrarla.')],
+                dict(id='w3', t='A Kevin Ruvalcaba, que en junio ocupaba ese mesabanco; ella la dejó en la canastilla.'),
+                dict(id='h8', t='A Itzayana, por el parecido de los nombres; se la dio en el recreo y ella la guardó.'),
+                dict(id='f5', t='A Óscar Mendoza, que ocupaba ese mesabanco por la mañana; él la metió en su sobre.'),
+                dict(id='j1', t='A la maestra Chayo, que la guardó en el archivero junto con los sobres del grupo.'),
+                dict(id='v6', t='A nadie en particular; alguien la metió suelta en la caja antes de enterrarla.')],
                 h=[H('D2', 'q1', 'f5')]),
             dict(id='q2', tipo='unica', texto='¿Por qué Itzel no aparece en ninguna lista, ni de la mañana ni de la tarde?', opciones=[
-                dict(id='c2', t='Porque estaba inscrita con otro nombre en el turno vespertino.'),
-                dict(id='u9', t='Porque no tenía acta de nacimiento: no podía inscribirse y entraba de oyente a la clase del profe Chava.'),
-                dict(id='g4', t='Porque se dio de baja antes de fin de año y la borraron de las listas.'),
-                dict(id='s7', t='Porque era de otra escuela y solo venía de visita.')],
+                dict(id='c2', t='Porque estaba inscrita con otro nombre en el turno vespertino y nadie la relacionó.'),
+                dict(id='u9', t='Porque no tenía acta: no podía inscribirse y entraba de oyente con el profe Chava.'),
+                dict(id='g4', t='Porque se dio de baja antes de fin de año y la borraron de las dos listas.'),
+                dict(id='s7', t='Porque era alumna de otra escuela y solo venía de visita algunas tardes.')],
                 h=[H('D2', 'q2', 'u9')]),
             dict(id='q3', tipo='unica', texto='¿Dónde vivía Itzel en 1999-2000?', opciones=[
-                dict(id='k8', t='Con el profe Salvador (Chava), porque era su hija.'),
+                dict(id='k8', t='Con el profe Salvador (Chava), porque era su hija y la llevaba a su clase.'),
                 dict(id='p1', t='Enfrente de la escuela, del otro lado de la calle Maquinistas.'),
-                dict(id='m6', t='En la escuela misma: en la casa del conserje, detrás del edificio B. Su papá era el conserje.'),
+                dict(id='m6', t='Dentro de la escuela: en la casa del conserje, porque su papá era el conserje.'),
                 dict(id='x2', t='No se puede saber con estas pruebas.')],
                 h=[H('D2', 'q3', 'm6')]),
             dict(id='q4', tipo='texto', texto='¿Cómo le decían en su casa?', placeholder='Un nombre', grupos=[[TOK(x) for x in ['lupe', 'lupita', 'guadalupe', 'lupis']]])],
         exito=dict(titulo='Itzel vivía en la escuela', mensajes=[
-            dict(de='Mariana', texto='Vivía en la escuela… detrás de nuestro salón. Y nosotros diciendo que espantaban 😔'),
+            dict(de='Mariana', texto='Vivía en la escuela… en el patio de atrás, a unos pasos de nuestro salón. Y nosotros diciendo que espantaban 😔'),
             dict(de='Mariana', texto='Lupe. Itzel. Sin acta, de oyente. Y en marzo le prohibieron entrar por nuestra culpa, o por la de la maestra, ya no sé.'),
             dict(de='Mariana', texto='Ahora sí necesito saber quién es y dónde está. El viernes voy a la escuela a dejar las cartas que faltan; la bodega de atrás era la casa del conserje. A ver qué encuentro.')],
             cierre='<b>Etapa 2 · Lupe.</b> Se desbloquean E09 a E13.'),
@@ -648,7 +653,7 @@ Ya me contaron todo.
 [Un gato: X en la esquina de arriba a la izquierda y abajo a la izquierda; O al centro, arriba a la derecha y, en azul, una O nueva en el centro de la izquierda.]
 [Abajo, en pluma azul:]
 11-VII-2025
-Te dejo seguir. Pero vamos 14 a 11. Mañana te toca.
+Te dejo seguir. Pero vamos 14 a 11. Te toca.
 — I."""
 
 def etapa2():
@@ -738,34 +743,35 @@ def etapa2():
         intro='Reconstruye lo que pasó. Puedes volver a cualquier evidencia antes de contestar. Al terminar, Mariana decidirá qué hacer con la carta.',
         preguntas=[
             dict(id='q1', tipo='unica', texto='¿Quién escribió la carta firmada «Itzel»?', opciones=[
-                dict(id='a1', t='Itzayana Ibarra Delgado, alumna del 6° B.'),
-                dict(id='b7', t='Óscar Mendoza, que la escribió él mismo.'),
-                dict(id='c3', t='Una hija del profe Salvador Olvera que se quedaba en su clase.'),
-                dict(id='e2', t='La hija del conserje, de quien nadie volvió a saber nada.'),
-                dict(id='d9', t='María Guadalupe Ytzel Rangel Soto, «Lupita», la hija del conserje, que hoy es la maestra del 6° A vespertino de la misma escuela.'),
-                dict(id='f4', t='Una alumna del 6° A matutino que se cambió de escuela.'),
-                dict(id='g6', t='Nancy Guadalupe Guerrero, alumna del 6° B.')],
+                dict(id='a1', t='Itzayana Ibarra, del 6° B, que firmó con otra forma de su nombre.'),
+                dict(id='b7', t='Óscar Mendoza, que la escribió él mismo cambiando la letra.'),
+                dict(id='c3', t='Una hija del profe Salvador que lo acompañaba a sus clases de la tarde.'),
+                dict(id='e2', t='Una alumna del 6° A vespertino que estaba inscrita con otro nombre.'),
+                dict(id='d9', t='La hija del conserje, que vivía en la escuela y entraba de oyente por la tarde.'),
+                dict(id='f4', t='Una alumna del 6° A matutino que se cambió de escuela a mitad de año.'),
+                dict(id='g6', t='Nancy Guadalupe Guerrero, del 6° B, a la que le decían «Itzel».')],
                 h=[H('D3', 'q1', 'd9')]),
             dict(id='q2', tipo='unica', texto='¿Por qué dejó de ir a la clase del profe Chava en marzo de 2000?', opciones=[
-                dict(id='h1', t='Porque su familia se mudó ese mes.'),
-                dict(id='h2', t='Porque el profe Chava la corrió por pelearse con Óscar.'),
-                dict(id='h3', t='Porque al encontrarse los recaditos, la maestra Chayo avisó a la Dirección y, como no estaba inscrita, le prohibieron entrar a los salones.'),
-                dict(id='h4', t='Porque se enfermó y ya no pudo regresar.')],
+                dict(id='h1', t='Porque su familia se mudó a otra colonia ese mismo mes.'),
+                dict(id='h2', t='Porque el profe Chava la sacó de su clase por pelearse con Óscar.'),
+                dict(id='h3', t='Porque la maestra Chayo reportó los recaditos y, como no estaba inscrita, le prohibieron entrar.'),
+                dict(id='h4', t='Porque se enfermó en marzo y, cuando se alivió, ya no quiso regresar.')],
                 h=[H('D3', 'q2', 'h3')]),
             dict(id='q3', tipo='unica', texto='El día de la apertura, ¿dónde estaba ella?', opciones=[
-                dict(id='k1', t='En otra ciudad: nunca supo de la apertura.'),
-                dict(id='k2', t='En el salón: prestó el aula, escribió la bienvenida en el pintarrón y firmó la lista de asistencia.'),
-                dict(id='k3', t='En su casa: se enteró días después por Facebook.'),
-                dict(id='k4', t='Afuera de la escuela: mandó a alguien por la carta.')],
+                dict(id='k1', t='En otra ciudad: se fue de Aguascalientes y nunca supo de la apertura.'),
+                dict(id='k2', t='En el mismo salón: les prestó el aula y firmó la lista de asistencia.'),
+                dict(id='k3', t='En su casa: se enteró días después por la publicación de Facebook.'),
+                dict(id='k4', t='Afuera de la escuela: le pidió a otra persona que recogiera la carta.')],
                 h=[H('D3', 'q3', 'k2')]),
             dict(id='q4', tipo='multiple', texto='¿Qué pruebas la identifican? Marca todas las que sirven (al menos tres).', opciones=[
-                dict(id='p1', t='La invitación de la Normal: «María Guadalupe Ytzel Rangel Soto», hija de J. Refugio Rangel, dedicada al profe Chava por «su oyente».'),
-                dict(id='p2', t='Itzayana escribió con tinta verde.'),
-                dict(id='p3', t='La lista de asistencia: «Ma. Guadalupe Y. Rangel S., docente 6° A T.V.».'),
-                dict(id='p4', t='El croquis y el correo de la directora: la Mtra. Rangel, del 6° A vespertino, les prestó el aula.'),
+                dict(id='p1', t='La invitación de graduación de la Normal, dedicada al profe Chava.'),
+                dict(id='p2', t='La tinta verde de la carta de Itzayana.'),
+                dict(id='p3', t='La lista de asistencia de la apertura, con su firma.'),
+                dict(id='p4', t='El croquis y el correo de la directora sobre quién les prestó el aula.'),
                 dict(id='p5', t='Beto recuerda que la carta se hizo en casa.'),
-                dict(id='p6', t='El pintarrón: la fecha con el mes en números romanos y un gato con una O al centro, como en sus partidas.'),
-                dict(id='p7', t='La bitácora: la misma letra de la carta, firmada por J. Refugio Rangel M.')],
+                dict(id='p8', t='El comentario de Rosy Medina: que era hija del profe.'),
+                dict(id='p6', t='El pintarrón: la fecha con el mes en números romanos y el gato con una O al centro.'),
+                dict(id='p7', t='La bitácora de la conserjería: la misma letra de la carta.')],
                 h=[H('D3', 'q4', x) for x in ['p1', 'p3', 'p4', 'p6', 'p7']], min=3,
                 no='Alguna de las marcadas no la identifica, o faltan pruebas (al menos tres).'),
             dict(id='q5', tipo='texto', texto='¿Cómo se llama hoy, tal como aparece en sus papeles?', placeholder='Nombre y apellido', nota='Basta con nombre y apellido paterno.',
@@ -820,7 +826,9 @@ def manifest(todo):
         deps = sorted({x.split('/')[1] for x in ext})
         prim = next((p for p in cfg.get('piezas', []) if p.get('tipo') == 'imagen'), None)
         mini_ = f"{base}/{cfg['id']}/{prim['src']}" if prim else None
-        piezas.append(dict(id=cfg['id'], tipo='deduccion' if cfg['id'].startswith('D') else 'evidencia', titulo=cfg['titulo'],
+        es_d = cfg['id'].startswith('D')
+        piezas.append(dict(id=cfg['id'], tipo='deduccion' if es_d else 'evidencia', titulo=cfg['titulo'],
+                           titulo_bloqueado=(f"Deducción {cfg['id'][1:]}" if es_d else f"Evidencia {int(cfg['id'][1:])}"),
                            etapa=ETAPA[cfg['etapa']], orden=cfg['orden'], paquete=paquete, ruta=f"{base}/{cfg['id']}/index.html",
                            miniatura=mini_, recursos=sorted(set(rec)), recursos_de_otras_piezas=sorted(set(ext)), dependencias=deps,
                            interaccion=INTER[cfg['id']], duracion_estimada_min=DUR[cfg['id']]))
@@ -831,10 +839,10 @@ def manifest(todo):
              runtime=dict(css='COMUN/visor.css', js_evidencia=['COMUN/sha256.js', 'COMUN/visor.js'], js_deduccion=['COMUN/sha256.js', 'COMUN/deduccion.js'],
                           evento_deduccion={'origen': 'window.parent.postMessage', 'datos': {'tipo': 'lc35:deduccion', 'id': 'D1|D2|D3', 'ok': True}},
                           nota='Las evidencias leen su configuración de window.EVIDENCIA dentro de su index.html. No requieren servidor ni red.'),
-             etapas=[dict(id='muestra', titulo='Muestra gratuita', acceso='gratis', requiere=[], piezas=['E01', 'E02', 'E03', 'E04', 'D1']),
-                     dict(id='etapa1', titulo='El de la mañana', acceso='pago', requiere=['compra', 'D1'], piezas=['E05', 'E06', 'E07', 'E08', 'D2']),
-                     dict(id='etapa2', titulo='Lupe', acceso='pago', requiere=['compra', 'D2'], piezas=['E09', 'E10', 'E11', 'E12', 'E13', 'D3']),
-                     dict(id='epilogo', titulo='Epílogo', acceso='pago', requiere=['compra', 'D3'], piezas=['E14'])],
+             etapas=[dict(id='muestra', titulo='Muestra gratuita', titulo_bloqueado='Muestra gratuita', acceso='gratis', requiere=[], piezas=['E01', 'E02', 'E03', 'E04', 'D1']),
+                     dict(id='etapa1', titulo='El de la mañana', titulo_bloqueado='Etapa 1', acceso='pago', requiere=['compra', 'D1'], piezas=['E05', 'E06', 'E07', 'E08', 'D2']),
+                     dict(id='etapa2', titulo='Lupe', titulo_bloqueado='Etapa 2', acceso='pago', requiere=['compra', 'D2'], piezas=['E09', 'E10', 'E11', 'E12', 'E13', 'D3']),
+                     dict(id='epilogo', titulo='Epílogo', titulo_bloqueado='Epílogo', acceso='pago', requiere=['compra', 'D3'], piezas=['E14'])],
              piezas=piezas)
     os.makedirs(os.path.join(ROOT, 'INTEGRACION'), exist_ok=True)
     json.dump(m, open(os.path.join(ROOT, 'INTEGRACION', 'manifest.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)

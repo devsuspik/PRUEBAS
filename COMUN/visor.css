@@ -20,6 +20,8 @@ a{color:var(--acc)}
 .ev-id{background:var(--acc);color:#1a1a1a;font-weight:700;border-radius:5px;padding:1px 7px;letter-spacing:.04em}
 .ev-title{font-size:20px;font-weight:650;margin:4px 0 2px;line-height:1.25}
 .ev-src{font-size:13.5px;color:var(--tx2);line-height:1.4;margin:0}
+.ev-encargo{margin:6px 0 8px;padding:8px 11px;background:var(--panel2);border:1px solid var(--line, rgba(127,127,127,.25));border-radius:8px;font-size:14px;line-height:1.45}
+.ev-encargo p{margin:0 0 6px}.ev-encargo p:last-child{margin:0}
 .ev-nota{margin:10px 0 0;padding:9px 12px;border-left:3px solid var(--acc);background:var(--panel2);border-radius:0 8px 8px 0;font-size:14.5px;line-height:1.45}
 .ev-nota b{color:var(--acc);font-weight:600}
 

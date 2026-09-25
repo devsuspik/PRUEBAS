@@ -29,9 +29,9 @@ const P = Q.get('p') || 'p1';
 const H = document.getElementById('hoja');
 function N(r, t, o = {}) { // renglón r, letra de la niña en pluma azul
   const s = o.s || 22, y = 96 + r * 30 - 2;
-  return `<div class="w hw nina bic-blue" data-seed="${1500 + r * 11 + (o.k || 0)}" data-jit="1.1" data-cross7="1" data-slope="0.8" data-press="0.2" style="left:${o.x || 96}px;top:${y - s}px;font-size:${s}px"><span class="ln">${t}</span></div>`;
+  return `<div class="w hw nina bic-blue" data-seed="${1500 + r * 11 + (o.k || 0)}" data-jit="1.1" data-cross7="1" data-romano="1" data-slope="0.8" data-press="0.2" style="left:${o.x || 96}px;top:${y - s}px;font-size:${s}px"><span class="ln">${t}</span></div>`;
 }
-function D(r, t) { return N(r, t, { x: 10, s: 20, k: 3 }); } // fecha en el margen
+function D(r, t) { return N(r, t, { x: 6, s: 18, k: 3 }); } // fecha en el margen
 function Papa(r, t, x = 96) {
   const y = 96 + r * 30 - 3;
   return `<div class="w hw papa pencil" data-seed="${1700 + Math.round(r * 7)}" data-jit="1.5" data-slope="0.9" data-press="0.35" style="left:${x}px;top:${y - 30}px"><span class="ln">${t}</span></div>`;

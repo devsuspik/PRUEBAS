@@ -41,8 +41,8 @@ Formato: **Creó / Para qué / Destinatario / Soporte y herramienta / Incluye / 
 ### E05 · Cuaderno de planeación de la maestra Chayo (fotos)
 - **Creó:** la maestra Chayo, 1999-2000. Cuaderno profesional de cuadro chico con forro de plástico.
 - **Para qué:** planeación y registro diario del grupo (costumbre de la docente). **Destinatario:** ella misma y la supervisión.
-- **Cómo llega:** Chayo lo busca después del audio y le manda a Mariana tres fotos el 1-VII-2025, tomadas de noche sobre el mantel de su mesa.
-- **Incluye:** croquis de lugares pegado con Resistol, con tachones de marzo; anotación roja del vidrio; entradas del diario del 13-X-99, 7-II, 9-III, 10-III, 16-VI y 23-VI-2000. **No incluye:** el nombre de la niña (no lo sabía), ni la palabra «conserje» salvo como oficio.
+- **Cómo llega:** es el mismo cuaderno del que salió la lista de E02. Chayo lo revisa después del audio y le manda a Mariana cinco fotos el 1-VII-2025, tomadas de noche sobre el mantel de su mesa.
+- **Incluye:** croquis de lugares pegado con Resistol, con tachones de marzo; anotación roja del vidrio; cuatro páginas del diario con entradas rutinarias alrededor de las clave: 13-X-99, 7-II, 9-III, 10-III, 15-III, 16-VI y 23-VI-2000. **No incluye:** el nombre de la niña (no lo sabía), ni la palabra «conserje» salvo como oficio.
 - **Se investiga:** qué mesabanco estaba junto al vidrio estrellado y quién lo ocupaba; el cambio de lugares; el «conserje nuevo».
 - **Imperfecciones:** fotos algo chuecas; sombra de la mano; hoja pegada que se levanta de una esquina; tinta roja más reciente que la azul.
 
@@ -56,7 +56,7 @@ Formato: **Creó / Para qué / Destinatario / Soporte y herramienta / Incluye / 
 ### E07 · Mensajes de Óscar
 - **Creó:** Óscar, 2-3 de julio de 2025, por WhatsApp privado con Mariana. Capturas de Mariana.
 - **Para qué:** explicar, disculparse y pedir que no lo expongan. **Incluye:** su versión de los hechos (sin nombre real de ella), su error («yo pensaba que era hija del profe de la tarde») y que su mamá guarda los recaditos en una lata. **No incluye:** detalles que no podía saber.
-- **Imperfecciones:** minúsculas, faltas de acentos, un audio que Mariana no transcribió (se ve el globo de audio sin reproducir; no es necesario).
+- **Imperfecciones:** minúsculas, sin acentos, «q» y «porq», mensajes cortados en ráfagas; la conversación de noche y la de la mañana siguiente en capturas que se enciman.
 
 ### E08 · Los recaditos (8 fotos)
 - **Creó:** Itzel y Óscar, XI-1999 a III-2000; papelitos arrancados, doblados en cuadrito. Los que conserva Óscar son los que ella tuvo en la mano al final (en varios papeles hay mensajes de los dos).

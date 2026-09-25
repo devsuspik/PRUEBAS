@@ -23,6 +23,9 @@ bash MAESTRO_PRIVADO/produccion/qa_todo.sh
 | 13 | Metadatos de imagen | PIL (EXIF e info) | 0 archivos con metadatos |
 | 14 | Inteligibilidad de las voces sintéticas | Transcripción automática local (faster-whisper «small») | Se entienden. Se corrigieron malas pronunciaciones («Itzel», «hoja») con reescritura fonética solo para el sintetizador |
 | 15 | Funcionamiento sin red | Todas las pruebas corren desde `file://` | Sin peticiones externas |
+| 16 | Distractor nuevo de D3 (q4 `p8`) y nombre incompleto | `test_deduccion.js` con q4 = p1, p3, p8 y q5 = «Rangel» | Se rechazan las dos: «3 de 5 respuestas cuadran» |
+| 17 | Partidas de gato posibles (E08) | `qa_gato.py`: turnos alternos, casillas sin repetir, nada después de ganar, raya sobre la línea ganadora | 0 partidas imposibles (antes de la auditoría había 4) |
+| 18 | Palabras que adelantan la solución en la muestra y en `COMUN` | grep por palabra completa: Lupe, Lupita, Refugio, oyente, Ytzel, Cuco | Ninguna |
 
 ## No ejecutadas (limitaciones honestas)
 - **Safari iOS / WebKit y Firefox:** no disponibles en el entorno. Riesgos conocidos: `:has()` en los estilos de las opciones (Firefox reciente y Safari lo soportan); `crypto.subtle` en `file://` (hay respaldo `sha256.js`); MP3 (compatible en todos).

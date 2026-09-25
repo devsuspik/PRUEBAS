@@ -31,7 +31,7 @@
       sec.className = 'et';
       const min = et.piezas.reduce((s, id) => s + piezas.find((p) => p.id === id).duracion_estimada_min[0], 0);
       const max = et.piezas.reduce((s, id) => s + piezas.find((p) => p.id === id).duracion_estimada_min[1], 0);
-      const nombre = abierta ? et.titulo : ({ etapa1: 'Etapa 1', etapa2: 'Etapa 2', epilogo: 'Epílogo' }[et.id] || et.titulo);
+      const nombre = abierta ? et.titulo : (et.titulo_bloqueado || 'Etapa');
       sec.innerHTML = `<h2>${nombre} <small>${et.acceso === 'gratis' ? 'gratis' : 'caso completo'} · ${min}–${max} min estimados</small></h2>`;
       const req = document.createElement('p');
       req.className = 'req';
@@ -50,7 +50,7 @@
         const esAudio = p.interaccion.includes('audio');
         const th = p.tipo === 'deduccion' ? '<div class="th">?</div>' : `<div class="th" style="background-image:url('${abierta ? mini(p) : ''}')">${esAudio ? '<span class="aud">▶</span>' : ''}</div>`;
         // En etapas bloqueadas no se muestran títulos (evita adelantar contenido)
-        const titulo = abierta ? p.titulo : (p.tipo === 'deduccion' ? 'Deducción' : 'Evidencia bloqueada');
+        const titulo = abierta ? p.titulo : (p.titulo_bloqueado || (p.tipo === 'deduccion' ? 'Deducción' : 'Evidencia'));
         b.innerHTML = `${th}<div class="bd"><span class="id">${p.id}</span><span class="ti">${titulo}</span><span class="du">${p.duracion_estimada_min[0]}–${p.duracion_estimada_min[1]} min</span></div>`;
         if (!abierta) b.disabled = true;
         else { abiertas.push(p); b.addEventListener('click', () => abrir(p)); }

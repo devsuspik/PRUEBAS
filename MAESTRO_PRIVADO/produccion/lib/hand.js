@@ -23,6 +23,7 @@
     const cross7 = el.dataset.cross7 === '1';
     const press = +(el.dataset.press || 0.18);
     const slope = +(el.dataset.slope || 0.5);
+    const romano = el.dataset.romano === '1';
     const lines = el.querySelectorAll('.ln');
     const targets = lines.length ? lines : [el];
     targets.forEach((ln) => {
@@ -39,7 +40,13 @@
         if (tn.parentElement.closest('.nohw')) return;
         const frag = document.createDocumentFragment();
         let wordShift = 0;
-        for (const ch of tn.textContent) {
+        // data-romano: en las fechas del tipo 13-III-2000 se separan los palotes y el «1» de la cifra siguiente
+        const txt = tn.textContent;
+        const enFecha = new Set();
+        if (romano) for (const m of txt.matchAll(/\d{1,2}-[IVX]{1,4}-\d{2,4}/g)) for (let k = m.index; k < m.index + m[0].length; k++) enFecha.add(k);
+        let pos = -1;
+        for (const ch of txt) {
+          pos++;
           if (ch === ' ') {
             const sp = document.createElement('span');
             sp.className = 'hsp';
@@ -63,6 +70,11 @@
             : `translateY(${by}px) rotate(${r}deg) skewX(${sk}deg) scale(${sc})`;
           s.style.opacity = (1 - press / 2 + g() * press / 2).toFixed(3);
           s.style.marginRight = (g() * 0.6 * J) + 'px';
+          if (enFecha.has(pos)) {
+            const sig = txt[pos + 1] || '';
+            const extra = (/[IVX]/.test(ch) && /[IVX]/.test(sig)) ? 0.16 : (ch === '1' && /\d/.test(sig)) ? 0.12 : 0.02;
+            s.style.marginRight = `calc(${(g() * 0.4 * J).toFixed(2)}px + ${extra}em)`;
+          }
           if (cross7 && ch === '7') s.classList.add('c7');
           frag.appendChild(s);
         }

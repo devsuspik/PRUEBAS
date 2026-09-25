@@ -15,7 +15,7 @@
   "width": 412,
   "height": 914,
   "dpr": 2.625,
-  "scroll": 690
+  "scroll": 684
  },
  {
   "html": "fuentes_html/whatsapp.html",
@@ -24,7 +24,7 @@
   "width": 412,
   "height": 914,
   "dpr": 2.625,
-  "scroll": 1300
+  "scroll": 1306
  },
  {
   "html": "fuentes_html/whatsapp.html",
@@ -33,6 +33,6 @@
   "width": 412,
   "height": 914,
   "dpr": 2.625,
-  "scroll": 1547
+  "scroll": 1666
  }
 ]

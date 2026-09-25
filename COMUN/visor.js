@@ -203,6 +203,7 @@
   const head = el('header', { class: 'ev-head' },
     el('div', { class: 'ev-kicker' }, el('span', { class: 'ev-id' }, E.id), el('span', null, E.caso || 'La carta 35'), E.etapa ? el('span', null, '· ' + E.etapa) : null),
     el('h1', { class: 'ev-title' }, E.titulo),
+    E.encargo ? el('div', { class: 'ev-encargo', html: E.encargo }) : null,
     el('p', { class: 'ev-src' }, E.fuente || ''),
     E.nota ? el('p', { class: 'ev-nota', html: `<b>${E.nota.de}:</b> ${E.nota.texto}` }) : null);
   doc.body.appendChild(head);
@@ -377,7 +378,7 @@
     tools.after(ctrl);
   }
 
-  /* ------------------------------------------------------------ Ordenar (recaditos) */
+  /* ------------------------------------------------------------ Ordenar (mesa de piezas) */
   function ordenar(p) {
     const wrap = el('div', { class: 'ord' });
     const ol = el('ol');
@@ -417,7 +418,7 @@
     chk.onclick = async () => {
       let bien = 0;
       for (let i = 0; i < items.length; i++) if (p.h.includes(await sha256(`lc35|ord|${items[i].id}|${i}`))) bien++;
-      res.textContent = bien === items.length ? p.exito : `${bien} de ${items.length} recados están en su lugar. Revisa las fechas y el marcador del gato.`;
+      res.textContent = bien === items.length ? p.exito : (p.parcial || '{n} de {t} en su lugar.').replace('{n}', bien).replace('{t}', items.length);
     };
     wrap.append(el('p', { class: 'res', style: 'margin-top:0' }, p.instruccion || ''), ol, chk, res);
     return wrap;

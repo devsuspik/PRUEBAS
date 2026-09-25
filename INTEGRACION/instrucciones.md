@@ -16,6 +16,7 @@ Estructura de rutas: cada pieza es `PAQUETE/ID/index.html` más sus recursos en 
 |---|---|
 | `id` | Identificador estable (E01…E14, D1…D3). No cambiar. |
 | `tipo` | `evidencia` o `deduccion` |
+| `titulo` / `titulo_bloqueado` | Título real y rótulo neutro («Evidencia 7», «Deducción 2») para mostrar mientras la pieza esté bloqueada |
 | `etapa` / `orden` | `muestra`, `etapa1`, `etapa2` o `epilogo`; el orden recomendado es 1-17 |
 | `paquete` | `gratis` o `completo` |
 | `ruta` | Página de la pieza |
@@ -31,7 +32,7 @@ Estructura de rutas: cada pieza es `PAQUETE/ID/index.html` más sus recursos en 
 3. **Etapa 2** (D2 resuelta): E09 → E13 y luego D3.
 4. **Epílogo** (D3 resuelta): E14.
 
-Mientras una etapa esté bloqueada, **no se deben mostrar sus títulos** (algunos adelantan hallazgos; por ejemplo, la etapa 2 se llama «Lupe»). Usar rótulos neutros como «Etapa 2» o «Evidencia bloqueada».
+Mientras una etapa esté bloqueada, **no se deben mostrar sus títulos ni los de sus piezas**: algunos adelantan hallazgos (la etapa 2 se llama «Lupe»; E07 es «Óscar contesta»; E12, «Lo que guardaba el profe Salvador»). Etapas y piezas traen `titulo_bloqueado` con un rótulo neutro para ese caso. Tampoco conviene mostrar miniaturas de piezas bloqueadas.
 
 ## Evento de deducción
 Al acertar, cada página de deducción ejecuta:
@@ -69,7 +70,7 @@ pip install pillow numpy piper-tts imageio-ffmpeg        # una vez
 export NODE_PATH=/ruta/a/node_modules                     # donde esté playwright
 node render.js jobs_cartas.json && node render.js jobs_e02.json   # etc. (jobs_*.json)
 python3 build_e01.py && python3 build_e02.py && python3 build_e04.py && python3 build_e05.py
-python3 build_e06.py && python3 build_e08.py && python3 build_e09.py && python3 build_e12.py && python3 build_e13_e14.py
+python3 build_e06.py && python3 build_e07.py && python3 build_e08.py && python3 build_e09.py && python3 build_e12.py && python3 build_e13_e14.py
 python3 build_audio.py chayo1 && python3 build_audio.py chayo2   # requiere voces piper en /tmp/voices
 python3 paginas.py      # regenera las páginas, el manifest y VISTA_LOCAL/manifest_local.js
 ```

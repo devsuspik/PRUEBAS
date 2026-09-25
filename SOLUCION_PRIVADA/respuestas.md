@@ -14,16 +14,16 @@ Las páginas de deducción guardan cada respuesta como SHA-256 de `lc35|<control
 |---|---|---|
 | q1 Destinatario y vía | `f5` | A Óscar Mendoza; él la metió en su sobre |
 | q2 Por qué no aparece en listas | `u9` | No tenía acta; entraba de oyente con el profe Chava |
-| q3 Dónde vivía | `m6` | En la casa del conserje, detrás del edificio B; su papá era el conserje |
+| q3 Dónde vivía | `m6` | Dentro de la escuela, en la casa del conserje (patio de atrás del edificio B); su papá era el conserje |
 | q4 Cómo le decían en casa (texto) | Lupe, Lupita, Guadalupe o Lupis | Se acepta la palabra dentro de una frase («le decían Lupita») |
 
 ## D3 · Reconstrucción final
 | Pregunta | Correcta | Texto |
 |---|---|---|
-| q1 Autora | `d9` | María Guadalupe Ytzel Rangel Soto, Lupita, hija del conserje, hoy maestra del 6° A vespertino |
+| q1 Autora | `d9` | La hija del conserje, que vivía en la escuela y entraba de oyente por la tarde (el nombre y el cargo actual se piden en q3 y q5) |
 | q2 Por qué dejó la clase en marzo | `h3` | Aviso de la maestra Chayo a la Dirección y prohibición por no estar inscrita |
-| q3 Dónde estaba el día de la apertura | `k2` | En el salón: prestó el aula, escribió el pintarrón y firmó la lista |
-| q4 Pruebas (múltiple, mínimo 3) | `p1`, `p3`, `p4`, `p6`, `p7` | Invitación · lista de asistencia · croquis y correo · pintarrón · bitácora. Incorrectas: `p2` (Itzayana), `p5` (Beto) |
+| q3 Dónde estaba el día de la apertura | `k2` | En el mismo salón: les prestó el aula y firmó la lista |
+| q4 Pruebas (múltiple, mínimo 3) | `p1`, `p3`, `p4`, `p6`, `p7` | Invitación · lista de asistencia · croquis y correo · pintarrón · bitácora. Incorrectas: `p2` (Itzayana), `p5` (Beto), `p8` (Rosy Medina) |
 | q5 Nombre en sus papeles (texto) | «Rangel» y además uno de: Guadalupe, Lupita, Lupe, Ytzel, Itzel, María | Ejemplos aceptados: «Guadalupe Rangel», «la maestra Lupita Rangel», «Itzel Rangel», «María Guadalupe Ytzel Rangel Soto». Rechazado: «Rangel» solo |
 
 ## E08 · Orden de los recaditos
