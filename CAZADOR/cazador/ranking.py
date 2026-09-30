@@ -24,7 +24,7 @@ from .descarga import RAIZ
 RES = RAIZ / "resultados"
 
 
-def cargar(prefijos: Tuple[str, ...] = ("ronda1", "ronda1b")) -> tuple[pd.DataFrame, dict]:
+def cargar(prefijos: Tuple[str, ...] = ("ronda1", "ronda1b", "ronda1c", "ronda1d")) -> tuple[pd.DataFrame, dict]:
     dfs, dia = [], {}
     for p in prefijos:
         f = RES / f"{p}.parquet"
@@ -82,14 +82,17 @@ def matriz_regimen(df: pd.DataFrame, top: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(out)
 
 
+def total_pruebas_lanzadas() -> int:
+    """TODAS las pruebas lanzadas (con o sin operaciones), incluidas las 72 primeras de carry (primera versión, con filtro de base distinto)."""
+    from . import carry, ronda1
+    n = sum(len(j["exits"]) for j in ronda1.grid_a()) * 3 + sum(len(j["exits"]) for j in ronda1.grid_b()) * 3
+    n += 144 + len(carry.grid_carry()) + 72
+    return n
+
+
 def main() -> None:
     df, dia = cargar()
-    n_trials = int((df.attrs.get("n_trials", 0)) or 0)
-    # total real de pruebas lanzadas (todas las combinaciones, con o sin operaciones)
-    from . import ronda1
-    n_trials = sum(len(j["exits"]) for j in ronda1.grid_a() + ronda1.grid_b()) * 3
-    if not (RES / "ronda1b.parquet").exists():
-        n_trials = sum(len(j["exits"]) for j in ronda1.grid_a()) * 3
+    n_trials = total_pruebas_lanzadas()
     ev = evaluar(df, dia, n_trials)
     pb = pbo_global(ev, dia)
     ev.to_parquet(RES / "ranking_ronda1.parquet")
@@ -97,9 +100,12 @@ def main() -> None:
     print(ev["estado_r1"].value_counts().to_string())
     cols = ["trial", "fam", "tf", "inv", "salida", "lado", "n", "aciertos", "exp_usd", "exp_R", "pf", "meses_pos", "sharpe_dia", "dsr",
             "peso_mejor_moneda", "estado_r1", "criterios_fallidos"]
-    print("\nTOP 25 por Sharpe diario (n >= mínimo):")
-    top = ev[ev["n"] >= ev["n_min"]].sort_values("sharpe_dia", ascending=False).head(25)
-    print(top[cols].round(3).to_string())
+    print("\nMejor prueba por familia (n >= mínimo, por Sharpe diario):")
+    val = ev[ev["n"] >= ev["n_min"]]
+    mejor = val.sort_values("sharpe_dia", ascending=False).groupby("fam").head(1).sort_values("sharpe_dia", ascending=False)
+    print(mejor[cols].round(3).head(40).to_string())
+    print("\nTOP 15 global:")
+    print(val.sort_values("sharpe_dia", ascending=False).head(15)[cols].round(3).to_string())
 
 
 if __name__ == "__main__":

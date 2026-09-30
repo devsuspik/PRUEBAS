@@ -54,17 +54,21 @@ def simbolos_usdt() -> List[str]:
     return sorted(s for s in syms if s.endswith("USDT") and "_" not in s and s.isascii())
 
 
-def tareas_klines(sim: str, intervalo: str, ini: pd.Timestamp, fin: pd.Timestamp, diarios_solo_si: bool = True) -> List[str]:
-    """URLs a bajar: mensuales completos + diarios del mes en curso (hasta ``fin``)."""
+BASE_SPOT = "https://data.binance.vision/data/spot"
+
+
+def tareas_klines(sim: str, intervalo: str, ini: pd.Timestamp, fin: pd.Timestamp, base: Optional[str] = None) -> List[str]:
+    """URLs a bajar: mensuales completos + diarios del mes en curso (hasta ``fin``). ``base`` por defecto = futuros USDT-M."""
+    base = base or D.BASE
     urls = []
     for m in D.meses_entre(ini, fin):
         fin_mes = pd.Period(m, "M").end_time.normalize()
         if fin_mes <= fin:
-            urls.append(f"{D.BASE}/monthly/klines/{sim}/{intervalo}/{sim}-{intervalo}-{m}.zip")
+            urls.append(f"{base}/monthly/klines/{sim}/{intervalo}/{sim}-{intervalo}-{m}.zip")
         else:
             for dia in pd.date_range(pd.Period(m, "M").start_time, fin, freq="D"):
                 ds = dia.strftime("%Y-%m-%d")
-                urls.append(f"{D.BASE}/daily/klines/{sim}/{intervalo}/{sim}-{intervalo}-{ds}.zip")
+                urls.append(f"{base}/daily/klines/{sim}/{intervalo}/{sim}-{intervalo}-{ds}.zip")
     return urls
 
 
@@ -74,9 +78,9 @@ def _bajar(url: str, lector: Callable[[bytes], pd.DataFrame]) -> Optional[pd.Dat
 
 
 def bajar_klines(simbolos: List[str], intervalo: str, ini: pd.Timestamp, fin: pd.Timestamp,
-                 workers: int = 16) -> Dict[str, int]:
-    """Baja klines de todos los símbolos en paralelo y escribe CACHE/klines/<intervalo>/<SIM>.parquet."""
-    destino = CACHE / "klines" / intervalo
+                 workers: int = 16, base: Optional[str] = None, subdir: Optional[str] = None) -> Dict[str, int]:
+    """Baja klines de todos los símbolos en paralelo y escribe CACHE/klines/<subdir o intervalo>/<SIM>.parquet."""
+    destino = CACHE / "klines" / (subdir or intervalo)
     destino.mkdir(parents=True, exist_ok=True)
     pendientes = [s for s in simbolos if not (destino / f"{s}.parquet").exists()]
     log(f"klines {intervalo}: {len(pendientes)} símbolos pendientes de {len(simbolos)}")
@@ -84,7 +88,7 @@ def bajar_klines(simbolos: List[str], intervalo: str, ini: pd.Timestamp, fin: pd
     faltan: Dict[str, int] = {}
     tareas = []
     for s in pendientes:
-        urls = tareas_klines(s, intervalo, ini, fin)
+        urls = tareas_klines(s, intervalo, ini, fin, base)
         faltan[s] = len(urls)
         tareas += [(s, u) for u in urls]
     filas: Dict[str, int] = {}
@@ -142,6 +146,39 @@ def bajar_funding(simbolos: List[str], ini: pd.Timestamp, fin: pd.Timestamp, wor
                 p = partes.pop(s)
                 g = pd.concat(p, ignore_index=True).sort_values("t").drop_duplicates("t") if p else pd.DataFrame(columns=["t", "tasa", "horas"])
                 g.to_parquet(destino / f"{s}.parquet", compression="zstd")
+
+
+def bajar_metrics(simbolos: List[str], ini: pd.Timestamp, fin: pd.Timestamp, workers: int = 16) -> None:
+    """Open interest, long/short (top traders y global) y ratio taker cada 5 min: ficheros DIARIOS -> un parquet por símbolo."""
+    destino = CACHE / "metrics"
+    destino.mkdir(parents=True, exist_ok=True)
+    pend = [s for s in simbolos if not (destino / f"{s}.parquet").exists()]
+    log(f"metrics: {len(pend)} símbolos pendientes")
+    dias = [d.strftime("%Y-%m-%d") for d in pd.date_range(ini, fin, freq="D")]
+    partes: Dict[str, list] = {s: [] for s in pend}
+    faltan = {s: len(dias) for s in pend}
+    tareas = [(s, f"{D.BASE}/daily/metrics/{s}/{s}-metrics-{d}.zip") for s in pend for d in dias]
+    hechas, t0 = 0, time.time()
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        fut = {ex.submit(_bajar, u, D.leer_metrics_zip): (s, u) for s, u in tareas}
+        for f in as_completed(fut):
+            s, u = fut[f]
+            try:
+                df = f.result()
+            except Exception as e:  # noqa: BLE001
+                log(f"ERROR {u}: {type(e).__name__} {str(e)[:80]}")
+                df, faltan[s] = None, -10 ** 9
+            if df is not None and len(df):
+                partes[s].append(df)
+            faltan[s] -= 1
+            hechas += 1
+            if faltan[s] == 0:
+                p = partes.pop(s)
+                g = pd.concat(p, ignore_index=True).sort_values("t").drop_duplicates("t") if p else pd.DataFrame(columns=["t"])
+                g.to_parquet(destino / f"{s}.parquet", compression="zstd")
+            if hechas % 2000 == 0:
+                log(f"  metrics {hechas}/{len(tareas)} ({hechas / (time.time() - t0):.1f}/s)")
+    log("metrics: terminado")
 
 
 def cargar_1d(sim: str) -> pd.DataFrame:

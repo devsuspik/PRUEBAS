@@ -107,3 +107,12 @@
 23:09:18   3000/3150 ficheros (13.3/s)
 23:09:27 klines 1m: terminado en 234s; símbolos con datos: 50
 23:09:27 reducido: terminado
+23:26:46 klines 1h: 50 símbolos pendientes de 50
+23:27:21   500/3150 ficheros (14.7/s)
+23:27:55   1000/3150 ficheros (14.7/s)
+23:28:25   1500/3150 ficheros (15.2/s)
+23:28:58   2000/3150 ficheros (15.2/s)
+23:29:30   2500/3150 ficheros (15.3/s)
+23:30:01   3000/3150 ficheros (15.4/s)
+23:30:10 klines 1h: terminado en 203s; símbolos con datos: 40
+23:42:24 metrics: 50 símbolos pendientes
