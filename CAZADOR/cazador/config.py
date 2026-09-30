@@ -21,7 +21,7 @@ class Config:
     objetivos_beneficio_pct_margen: tuple = (5, 10, 20, 30, 50)
     max_posiciones_simultaneas: int = 5
     estrategias_aptas_objetivo: int = 3
-    region_api_bloqueada: bool = False           # True (EE. UU.) -> solo data.binance.vision
+    region_api_bloqueada: bool = True            # fapi.binance.com devuelve 451 desde este entorno -> solo data.binance.vision
 
     # Parámetros del motor que NO están en §1 pero hay que fijar (documentados):
     mantenimiento_margen_frac: float = 0.005     # margen de mantenimiento (liquidación), aprox. tramo 1 de Binance

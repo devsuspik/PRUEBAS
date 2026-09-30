@@ -1,0 +1,7 @@
+{
+ "busqueda_ini": "2024-08-01",
+ "busqueda_fin": "2026-07-31",
+ "holdout_ini": "2026-08-01",
+ "holdout_fin": "2026-09-29",
+ "previo_universo_ini": "2024-07-01"
+}

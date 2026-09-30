@@ -69,6 +69,7 @@ class DatosMoneda:
     step: float = 0.0
     min_notional: float = 5.0
     tick: float = 0.0
+    idx_eval: int = 0                   # primer índice 1 m en el que se puede operar (antes: calentamiento de indicadores)
     _slip: Optional[np.ndarray] = field(default=None, repr=False)
 
     @property

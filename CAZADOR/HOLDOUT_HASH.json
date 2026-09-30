@@ -1,0 +1,9 @@
+{
+ "bloqueado_utc": "2026-09-30 23:09:39",
+ "periodo_holdout": [
+  "2026-08-01",
+  "2026-09-29"
+ ],
+ "n_simbolos": 50,
+ "sha256_velas_1m": "22145bcc925c97304ece6bb5af95bc8766fdfda2b0619a6af8183d42eb72ed74"
+}
