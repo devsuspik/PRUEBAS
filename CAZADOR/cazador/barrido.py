@@ -59,14 +59,16 @@ def preparar(sim: str, miembros: pd.DataFrame) -> Optional[Prep]:
     return Prep(d, m, {})
 
 
-def filtrar_senales(p: Prep, s: Senales) -> Senales:
-    """Solo señales dentro del periodo de búsqueda y con la moneda dentro del universo ese día."""
+def filtrar_senales(p: Prep, s: Senales, sin_universo: bool = False) -> Senales:
+    """Solo señales dentro del periodo de búsqueda y con la moneda dentro del universo ese día
+    (``sin_universo`` se reserva a estrategias de listados nuevos, que por definición operan antes de los 7 días de volumen)."""
     if len(s) == 0:
         return s
     ok = s.idx >= p.d.idx_eval
     dia = dia_de(p.d.t0_ms + s.idx * MS_MIN)
     ok &= (dia >= 0) & (dia < ND)
-    ok &= p.miembro[np.clip(dia, 0, ND - 1)]
+    if not sin_universo:
+        ok &= p.miembro[np.clip(dia, 0, ND - 1)]
     return s.filtrar(ok)
 
 
@@ -92,6 +94,9 @@ def _agregar(t: pd.DataFrame, codigo_dia: np.ndarray) -> Dict[str, dict]:
             "costes": float(cost[m].sum()),
             "d_pnl": np.bincount(dia_sal[m], weights=p, minlength=ND),
             "d_n": np.bincount(dia_sal[m], minlength=ND).astype(np.int64),
+            "d_gw": np.bincount(dia_sal[m], weights=np.where(p > 0, p, 0.0), minlength=ND),
+            "d_gl": np.bincount(dia_sal[m], weights=np.where(p <= 0, -p, 0.0), minlength=ND),
+            "d_R": np.bincount(dia_sal[m], weights=r, minlength=ND),
             "reg_n": np.bincount(reg[m], minlength=NREG).astype(np.int64),
             "reg_pnl": np.bincount(reg[m], weights=p, minlength=NREG),
             "top5": np.sort(p)[-5:],
@@ -106,7 +111,7 @@ def _fusionar(a: Optional[dict], b: dict) -> dict:
         return b
     for k in ("n", "pnl", "pnl_sq", "R", "gw", "gl", "wins", "costes"):
         a[k] += b[k]
-    for k in ("d_pnl", "d_n", "reg_n", "reg_pnl"):
+    for k in ("d_pnl", "d_n", "reg_n", "reg_pnl", "d_gw", "d_gl", "d_R"):
         a[k] = a[k] + b[k]
     a["top5"] = np.sort(np.concatenate([a["top5"], b["top5"]]))[-5:]
     for s, v in b["sym"].items():
@@ -123,11 +128,14 @@ def salida_para(nombre: str, tf: int) -> Salida:
         "trail2R": Salida(trailing_R=2.0, max_velas_1m=mv), "trail3R": Salida(trailing_R=3.0, max_velas_1m=mv),
         "obj3R_be": Salida(objetivo_R=3.0, break_even_R=1.5, max_velas_1m=mv),
     }
+    for h in (4, 12, 24, 48, 72, 168):                  # salidas solo por tiempo (estacionalidad): el stop sigue activo
+        tabla[f"t{h}h"] = Salida(max_velas_1m=h * 60)
     for pct in CFG.objetivos_beneficio_pct_margen:
         tabla[f"obj{pct}pct"] = Salida(objetivo_pct_margen=float(pct), max_velas_1m=mv)
     return tabla[nombre]
 
 
+EXITS_TIEMPO_G = ["t4h", "t12h", "t24h"]
 EXITS_R1 = ["obj1R", "obj2R", "obj3R", "trail2R", "trail3R", "obj3R_be", "obj5pct", "obj10pct", "obj20pct", "obj30pct", "obj50pct"]
 
 
@@ -147,12 +155,18 @@ def _trabajador(idx: int, simbolos: List[str], miembros: pd.DataFrame, codigo_di
         for job in lote:
             for sim, p in preps.items():
                 try:
-                    B = p.bar(job["tf"])
-                    if len(B) < 30:
-                        continue
-                    s = E.REGISTRO[job["fam"]]["fn"](B, **{**E.REGISTRO[job["fam"]]["params"], **job["params"],
-                                                            "invertir": job["inv"]})
-                    s = filtrar_senales(p, s)
+                    if job.get("senales_pre") is not None:
+                        s = job["senales_pre"].get(sim)
+                        if s is None or len(s) == 0:
+                            continue
+                        s = filtrar_senales(p, s, job.get("sin_universo", False))
+                    else:
+                        B = p.bar(job["tf"])
+                        if len(B) < 30:
+                            continue
+                        s = E.REGISTRO[job["fam"]]["fn"](B, **{**E.REGISTRO[job["fam"]]["params"], **job["params"],
+                                                                "invertir": job["inv"]})
+                        s = filtrar_senales(p, s, job.get("sin_universo", False))
                     if len(s) == 0:
                         continue
                     for ex in job["exits"]:

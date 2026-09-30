@@ -21,7 +21,8 @@ from . import metricas as M
 from . import regimenes as RG
 from . import trials, universo
 from .config import CFG
-from .descarga import CACHE, PERIODO, RAIZ, ts, http_get
+from .descarga import CACHE, PERIODO, RAIZ, ts
+from .datos import http_get
 
 RES = RAIZ / "resultados"
 
@@ -56,8 +57,8 @@ def codigo_dia_busqueda() -> tuple[np.ndarray, pd.DataFrame]:
 
 
 # ----------------------------------------------------------------------------------------------
-def grid(rapido: bool = False) -> List[dict]:
-    """Catálogo de Ronda 1: familias A, B, C con parámetros clásicos, sus inversas y todas las salidas de EXITS_R1."""
+def grid_a(rapido: bool = False) -> List[dict]:
+    """Catálogo de Ronda 1 (A): familias A, B, C originales con parámetros clásicos, sus inversas y todas las salidas de EXITS_R1."""
     base: List[dict] = []
     for tf in (15, 60, 240, 1440):
         for r, l in ((9, 21), (20, 50), (50, 200)):
@@ -86,8 +87,94 @@ def grid(rapido: bool = False) -> List[dict]:
     return jobs
 
 
+def grid_b() -> List[dict]:
+    """Catálogo de Ronda 1 (B): derivados, flujo, estacionalidad, velas, reversión y rupturas adicionales."""
+    T4 = (15, 60, 240, 1440)
+    b: List[dict] = []
+    f = lambda fam, tf, **p: b.append(dict(fam=fam, tf=tf, params=p))
+    for tf in (60, 240):
+        for pct in (0.90, 0.95, 0.98):
+            for k in (2.0, 3.0):
+                f("funding_extremo", tf, pct=pct, k_atr=k)
+    for tf in (5, 15, 60):
+        for n in (6, 12):
+            for um in (0.56, 0.60):
+                f("flujo_taker", tf, n=n, umbral=um, k_atr=2.0)
+    for tf in T4:
+        for t in (False, True):
+            f("engulfing", tf, tendencia=t, k_atr=2.0)
+            f("inside_bar", tf, tendencia=t, k_atr=2.0)
+            for r in (2.0, 3.0):
+                f("pin_bar", tf, ratio=r, tendencia=t, k_atr=2.0)
+    for tf in (5, 15, 60):
+        for k in (1.5, 2.5):
+            f("vwap_dev", tf, k=k, k_atr=2.0)
+    for tf in (15, 60, 240):
+        for n in (20, 50):
+            f("barrida_liquidez", tf, n=n, k_atr=1.5)
+        for k in (2.5, 3.0):
+            f("zscore_rev", tf, n=50, k=k, k_atr=2.0)
+        f("squeeze_bk", tf, n=20, pct_ancho=0.2, k_atr=2.0)
+    for um in (0.10, 0.15, 0.25):
+        f("sobreextension", 60, horas=24, umbral=um, k_atr=3.0)
+    for um in (0.20, 0.30):
+        f("sobreextension", 60, horas=72, umbral=um, k_atr=3.0)
+    for tf in (60, 240, 1440):
+        f("nr7", tf, k_atr=2.0)
+    for tf in (15, 60):
+        f("max_min_ayer", tf, k_atr=1.5)
+    for tf in (60, 240, 1440):
+        for m in (2.0, 3.0):
+            f("supertrend", tf, periodo=10, mult=m, k_atr=2.0)
+    for tf in (60, 240):
+        f("adx_retroceso", tf, adx_min=25.0, ema_n=20, k_atr=2.0)
+    for tf in (240, 1440):
+        for dias in (60, 180):
+            f("max_n_dias", tf, dias=dias, k_atr=3.0)
+    jobs, i = [], 10_000
+    for x in b:
+        for inv in (False, True):
+            jobs.append({**x, "inv": inv, "id": i, "exits": BR.EXITS_R1})
+            i += 1
+    # estacionalidad: salidas solo por tiempo
+    for h in range(24):
+        for inv in (False, True):
+            jobs.append(dict(fam="hora_dia", tf=60, params=dict(hora=float(h), k_atr=3.0), inv=inv, id=i, exits=BR.EXITS_TIEMPO_G))
+            i += 1
+    for d in range(7):
+        for inv in (False, True):
+            jobs.append(dict(fam="dia_semana", tf=60, params=dict(dow=d, hora=0.0, k_atr=3.0), inv=inv, id=i, exits=["t12h", "t24h", "t48h", "t72h"]))
+            i += 1
+    return jobs
+
+
+def grid_c(mat: dict) -> List[dict]:
+    """Ronda 1 (C): transversales (F). Señales precalculadas en el proceso principal."""
+    from . import transversal as TR
+    jobs, i = [], 20_000
+    for L in (24, 72, 168, 720):
+        for R in (4, 24, 168):
+            for k in (3, 5):
+                for modo in ("momentum", "reversion"):
+                    sen = TR.senales(mat, L, R, k, modo)
+                    jobs.append(dict(fam=f"transv_{modo}", tf=60, params=dict(L=L, R=R, k=k), inv=(modo == "reversion"), id=i,
+                                     exits=[f"t{R}h"], senales_pre=sen))
+                    i += 1
+    return jobs
+
+
+def grid(rapido: bool = False, cual: str = "a", mat: dict | None = None) -> List[dict]:
+    if cual == "b":
+        return grid_b()
+    if cual == "c":
+        return grid_c(mat)
+    return grid_a(rapido)
+
+
 def main() -> int:
     rapido = "--rapido" in sys.argv
+    cual = "b" if "--grid-b" in sys.argv else ("c" if "--grid-c" in sys.argv else "a")
+    pref = {"a": "ronda1", "b": "ronda1b", "c": "ronda1c"}[cual]
     RES.mkdir(exist_ok=True)
     t0 = time.time()
     sel = json.loads((RAIZ / "UNIVERSO.json").read_text())["seleccion"]
@@ -95,8 +182,14 @@ def main() -> int:
     cod, etiquetas = codigo_dia_busqueda()
     print("régimen, días por etiqueta (búsqueda):",
           {(RG.ORDEN[i] if i < len(RG.ORDEN) else "sin_etiqueta"): int((cod == i).sum()) for i in np.unique(cod)}, flush=True)
-    jobs = grid(rapido)
-    print(f"jobs: {len(jobs)}  -> pruebas (x salidas x lados): {len(jobs) * len(BR.EXITS_R1) * 3}", flush=True)
+    mat = None
+    if cual == "c":
+        from . import transversal as TR
+        mat = TR.preparar(sel, miembros)
+        print(f"matriz transversal: {mat['nh']} horas x {len(mat['syms'])} monedas", flush=True)
+    jobs = grid(rapido, cual, mat)
+    n_trials = sum(len(j['exits']) for j in jobs) * 3
+    print(f"jobs: {len(jobs)}  -> pruebas (x salidas x lados): {n_trials}", flush=True)
     agg = BR.barrido(jobs, sel, miembros, cod, nproc=4, tam_lote=6, log=lambda *a: print(*a, flush=True))
 
     # ---- métricas y registro de pruebas
@@ -114,12 +207,9 @@ def main() -> int:
         filas.append(fila)
         diarios[tid] = a["d_pnl"].astype("float32")
     df = pd.DataFrame(filas)
-    # DSR con el total real de pruebas (todas las combinaciones lanzadas, también las sin operaciones suficientes)
-    n_trials = len(jobs) * len(BR.EXITS_R1) * 3
-    var_sr = float(np.nanvar(df["sharpe_dia"].to_numpy(), ddof=1))
-    df["dsr"] = [M.dsr(diarios[t].astype(float), n_trials, var_sr) if n >= 30 else np.nan for t, n in zip(df["trial"], df["n"])]
-    df.to_parquet(RES / "ronda1.parquet")
-    np.savez_compressed(RES / "ronda1_diario.npz", **{k.replace("|", "__"): v for k, v in diarios.items()})
+    # el DSR se calcula en ranking.py con el total REAL de pruebas de todos los barridos
+    df.to_parquet(RES / f"{pref}.parquet")
+    np.savez_compressed(RES / f"{pref}_diario.npz", **{k.replace("|", "__"): v for k, v in diarios.items()})
     for r in df.itertuples():
         trials.registrar(dict(ronda=1, estrategia=r.fam, marco_min=r.tf, params=r.params, salida=r.salida, segmento="reducido50",
                               regimen="todos", lado=r.lado, n_ops=r.n, exp_R=round(r.exp_R, 5), beneficio_usd=round(r.beneficio, 2),

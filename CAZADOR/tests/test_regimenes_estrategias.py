@@ -51,15 +51,29 @@ def datos_sinteticos(n=60 * 24 * 40, seed=11):
     o, h, l, c = gbm(n, sigma_min=0.0007, seed=seed)
     rng = np.random.default_rng(seed)
     qv = rng.uniform(2e5, 8e5, n)
-    return DatosMoneda("SINT", 0, o, h, l, c, qv, tb_qv=qv * rng.uniform(0.4, 0.6, n))
+    d = DatosMoneda("SINT", 0, o, h, l, c, qv, tb_qv=qv * np.clip(0.5 + 0.12 * np.sin(2 * np.pi * np.arange(n) / (60 * 7.3)) + rng.uniform(-0.05, 0.05, n), 0, 1))
+    d.f_ts_ms = np.arange(0, n * 60_000, 8 * 3600_000, dtype=np.int64)            # funding cada 8 h, con colas gordas
+    d.f_rate = rng.standard_t(3, len(d.f_ts_ms)) * 0.0002
+    return d
+
+
+NUEVAS = [("funding_extremo", 60), ("flujo_taker", 15), ("hora_dia", 60), ("dia_semana", 60), ("engulfing", 15),
+          ("pin_bar", 15), ("inside_bar", 15), ("vwap_dev", 15), ("barrida_liquidez", 15), ("sobreextension", 60),
+          ("zscore_rev", 15), ("squeeze_bk", 15), ("nr7", 60), ("max_min_ayer", 15), ("supertrend", 60),
+          ("adx_retroceso", 60), ("max_n_dias", 240)]
+
+
+# parámetros adaptados a los 40 días sintéticos (un +15 % en 24 h o 180 días de historia no existen aquí)
+AJUSTES = {"sobreextension": dict(umbral=0.03), "max_n_dias": dict(dias=5)}
 
 
 @pytest.mark.parametrize("nombre,tf", [("ema_cross", 15), ("donchian", 15), ("tsmom", 60), ("rsi2", 15),
-                                       ("bollinger_rev", 15), ("orb_sesion", 15)])
+                                       ("bollinger_rev", 15), ("orb_sesion", 15)] + NUEVAS)
 def test_todas_las_estrategias_son_causales(nombre, tf):
     d = datos_sinteticos()
-    assert len(E.generar(nombre, d, tf)) > 0, "la estrategia no emite señales en datos de prueba"
-    assert E.comprobar_causalidad(nombre, d, tf)
+    p = AJUSTES.get(nombre, {})
+    assert len(E.generar(nombre, d, tf, **p)) > 0, "la estrategia no emite señales en datos de prueba"
+    assert E.comprobar_causalidad(nombre, d, tf, **p)
 
 
 def test_el_test_de_causalidad_detecta_una_fuga():
