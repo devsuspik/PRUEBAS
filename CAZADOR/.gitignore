@@ -1,5 +1,8 @@
-datos_cache/
+datos_cache*/
+resultados*/*.npz
 __pycache__/
 .pytest_cache/
 *.pyc
-resultados/*.npz
+*.log
+resultados*/ml_dataset.parquet
+resultados*/ml_pred.parquet

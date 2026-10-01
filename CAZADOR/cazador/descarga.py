@@ -211,7 +211,9 @@ def fase_reducido() -> None:
     info = universo.universo_y_seleccion()
     sel = info["seleccion"]
     log(f"modo reducido: {len(sel)} monedas")
-    ini, fin = ts(PERIODO["calentamiento_ini"]), ts(PERIODO["holdout_fin"])
+    from .periodo import NOMBRE
+    ini = ts(PERIODO["calentamiento_ini"])
+    fin = ts(PERIODO["holdout_fin"]) if NOMBRE == "reciente" else ts(PERIODO["busqueda_fin"])   # en validaciones no hay holdout
     bajar_funding(sel, ini, fin)
     bajar_klines(sel, "1m", ini, fin, workers=12)
     log("reducido: terminado")

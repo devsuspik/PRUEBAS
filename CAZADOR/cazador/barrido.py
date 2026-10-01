@@ -142,6 +142,7 @@ def salida_para(nombre: str, tf: int) -> Salida:
         "trail2R": Salida(trailing_R=2.0, max_velas_1m=mv), "trail3R": Salida(trailing_R=3.0, max_velas_1m=mv),
         "obj3R_be": Salida(objetivo_R=3.0, break_even_R=1.5, max_velas_1m=mv),
     }
+    tabla["ml_1R_24h"] = Salida(objetivo_R=1.0, max_velas_1m=1440)       # objetivo = stop (1R) o salida a las 24 h (la etiqueta del modelo)
     tabla["hold"] = Salida(max_velas_1m=43_200)         # solo stop de catástrofe + salida forzada por señal contraria (30 d máx.)
     tabla["hold_trail4R"] = Salida(trailing_R=4.0, max_velas_1m=43_200)
     for h in (4, 12, 24, 48, 72, 168):                  # salidas solo por tiempo (estacionalidad): el stop sigue activo

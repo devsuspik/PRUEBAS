@@ -173,9 +173,11 @@ def construir(simbolos: List[str], miembros: pd.DataFrame, log=print) -> pd.Data
 
 
 # ----------------------------------------------------------------------------------------------
-def walk_forward_ml(df: pd.DataFrame, train_meses: int = 6, semilla: int = 7, params: Optional[dict] = None, log=print) -> pd.DataFrame:
+def walk_forward_ml(df: pd.DataFrame, train_meses: int = 6, semilla: int = 7, params: Optional[dict] = None, log=print,
+                    feats: Optional[List[str]] = None) -> pd.DataFrame:
     """Predicciones FUERA DE MUESTRA p_long / p_short para cada fila en meses 6..23 (modelo reentrenado cada mes)."""
     import lightgbm as lgb
+    feats = feats or FEATS
     P = dict(objective="binary", learning_rate=0.03, num_leaves=15, min_child_samples=300, feature_fraction=0.7,
              bagging_fraction=0.7, bagging_freq=1, lambda_l2=10.0, n_estimators=300, verbose=-1, n_jobs=4, random_state=semilla)
     if params:
@@ -197,9 +199,9 @@ def walk_forward_ml(df: pd.DataFrame, train_meses: int = 6, semilla: int = 7, pa
         pred = te[["sim", "idx", "t", "atr", "mes", "dia"]].copy()
         for lado, col in (("long", "y_long"), ("short", "y_short")):
             mdl = lgb.LGBMClassifier(**P)
-            mdl.fit(tr[FEATS], tr[col])
-            pred[f"p_{lado}"] = mdl.predict_proba(te[FEATS])[:, 1]
-            imp.append(pd.Series(mdl.booster_.feature_importance("gain"), index=FEATS, name=(m, lado)))
+            mdl.fit(tr[feats], tr[col])
+            pred[f"p_{lado}"] = mdl.predict_proba(te[feats])[:, 1]
+            imp.append(pd.Series(mdl.booster_.feature_importance("gain"), index=feats, name=(m, lado)))
         pred["y_long"], pred["y_short"] = te["y_long"].to_numpy(), te["y_short"].to_numpy()
         out.append(pred)
         log(f"  mes {m}: train {len(tr)} test {len(te)}")
@@ -239,3 +241,9 @@ def evaluar_prediccion(pred: pd.DataFrame) -> dict:
         q = pd.qcut(p[ok], 10, labels=False, duplicates="drop")
         r[f"tasa_por_decil_{lado}"] = [float(y[ok][q == i].mean()) for i in range(int(q.max()) + 1)]
     return r
+
+
+CONTEXTO = ["btc_r6", "btc_vol18", "corr_btc", "hora", "dow"]
+PROPIAS = [f for f in FEATS if f not in CONTEXTO]
+CONJUNTOS = {"todas": FEATS, "solo_propias_moneda": PROPIAS, "solo_contexto_mercado": CONTEXTO,
+             "propias_sin_oi_ls": [f for f in PROPIAS if f not in ("oi_d1", "oi_d6", "oi_rel", "ls_top", "ls_glob", "taker_ls")]}
