@@ -40,3 +40,15 @@ stop +8 %, objetivo -40 %, salida por tiempo a los 7 días; coste ida y vuelta 0
 objetivo {20 %, 40 %} x mantener {3, 7, 14} días (6 combinaciones, TODAS se informan).
 Criterio en VAL0: neto medio por operación > 0 y PF > 1 para la regla principal, y >= 4 de las 6 variantes netas > 0. t-stat y n se informan;
 con ~50-60 eventos la significación será baja y no bastará por sí sola: la regla pasaría después a simulación a 1 m con costes/slippage reales.
+
+## Adenda 3 (escrita ANTES de calcular ninguna variable condicionante): refinamiento del corto de listados nuevos
+Datos disponibles para refinar: las 608 operaciones a 1 m de la regla principal en VAL0, VAL1, VAL2 y reciente (ficheros de `resultados*/ficha_listados_trades*.parquet`).
+Reparto: se ELIGE el refinamiento con VAL0+VAL1+VAL2 (238 operaciones) y se VALIDA en reciente (370 operaciones) y, aparte, en VAL00
+(listados reales de 2020-02..2020-07; los futuros de data.binance.vision empiezan en 2020-01, así que antes no hay nada).
+Variables condicionantes a examinar (lista CERRADA, no se añaden después): (1) run-up = precio de entrada / primer precio de cotización;
+(2) funding conocido en la entrada; (3) régimen de BTC en la entrada; (4) volumen en USDT de las 24 h previas a la entrada (liquidez);
+(5) horas transcurridas entre el primer trade y la entrada; (6) rendimiento de BTC en los 7 días previos.
+Método: tercil (o 2 grupos para régimen/funding) de cada variable -> expectativa por operación en cada periodo.
+Un refinamiento solo se acepta si (a) el filtro mejora la expectativa en AL MENOS 3 DE LOS 4 periodos, (b) conserva >= 50 % de las operaciones,
+(c) mejora también en reciente (que no se usó para elegirlo). Se aceptan como máximo 2 refinamientos. Nada se ajusta después de ver VAL00.
+Si ninguna variable cumple, la regla principal queda tal cual y se declara que no hay refinamiento robusto.
