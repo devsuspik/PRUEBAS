@@ -5,11 +5,13 @@ Lee primero **[INFORME_FINAL.md](INFORME_FINAL.md)**. No es asesoramiento financ
 
 | Fichero | Para qué |
 |---|---|
-| **`MANUAL_LISTADOS.md`** | **Cuándo funciona y cuándo no el corto de listados, con probabilidades y capital necesario (empieza aquí)** |
+| **`PLAYBOOK_POR_MOMENTO.md`** | **Qué estrategia usar en cada régimen (alcista/bajista/lateral/euforia/capitulación), reglas exactas y evidencia (empieza aquí)** |
+| `MANUAL_LISTADOS.md` | **Cuándo funciona y cuándo no el corto de listados, con probabilidades y capital necesario (empieza aquí)** |
 | `INFORME_FINAL.md` | Resumen ejecutivo, matriz régimen, top, ficha de la PROMETEDORA, cementerio, veredicto por marco, plan de paper trading, lagunas |
 | `PREREGISTRO.md`, `CELDAS_CONGELADAS.json`, `CANDIDATAS_HOLDOUT.json`, `HOLDOUT_HASH.json`, `HOLDOUT_LOG.json` | Congelación y pre-registro (verificables en el historial de git) |
 | `resultados_final/` | Operaciones de la PROMETEDORA (CSV), top 20 de la Ronda 1, tabla de 24 celdas en 3 periodos |
 | `trials_log.csv` | Pruebas registradas (Ronda 1, ML, carry) |
+| `cazador/regimen_hoy.py` | Régimen actual de BTC y qué estrategias tocan hoy |
 | `cazador/paper_listados.py` | Registrador de paper trading del corto de listados (no operar real sin él) |
 | `cazador/` | Código (motor, datos, estrategias, validación) · `tests/` 72 pruebas |
 | `CHECKPOINT.md` | Estado y siguiente ronda |
