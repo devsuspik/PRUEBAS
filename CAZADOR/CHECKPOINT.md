@@ -1,13 +1,12 @@
-# CHECKPOINT – fin de Ronda 0 (parcial)
+# CHECKPOINT – fin de la sesión del 1-oct-2026
 
-- Hecho: config, motor validado, métricas/estadística de validación, régimen macro, 6 familias, lectores de datos, trials_log.
-- Bloqueo: sin acceso a data.binance.vision / fapi.binance.com (403 de la política de red). Ningún otro exchange accesible.
-- pruebas acumuladas en trials_log.csv: 0
-- APTAS 0 · PROMETEDORAS 0 · RECHAZADAS 0 (no se ha evaluado ninguna estrategia con datos reales)
+- APTAS 0 · PROMETEDORAS 1 (corto de listados nuevos) · RECHAZADAS: todo lo demás (~47.000 combinaciones evaluadas).
+- Holdout (2026-08-01..09-29): abierto UNA vez (01:54 UTC 1-oct) para donchian 1d, dia_semana 1h inv y mom14: ambas celdas negativas.
+- Periodos usados: reciente, VAL0, VAL1, VAL2 (todos "quemados" para las hipótesis ya probadas).
 
-## Siguiente ronda (cuando haya datos)
-1. `python -m cazador.datos --probar` para confirmar formatos reales (los lectores se escribieron de memoria del formato oficial).
-2. Descargar exchangeInfo + klines 1d de todos los perpetuos -> universo por fecha; 1m/1h de los elegidos; funding; metrics.
-3. Informe de calidad + calendario de regímenes sobre BTC real.
-4. Ronda 1: barrido del catálogo (>= 5.000 pruebas, todas a trials_log.csv), holdout de 2 meses bloqueado con hash ANTES de mirar nada.
-5. Implementar el resto del catálogo (D, F y G primero: es donde el prompt sitúa más probabilidad de ventaja real).
+## Siguiente ronda (por probabilidad de ventaja real)
+1. Listados nuevos refinados a 1 m (run-up, funding, régimen 🟢/⚪ PRE-REGISTRADO), universo completo de listados.
+2. aggTrades/bookTicker de las 10 monedas más líquidas -> segundos y órdenes límite.
+3. Transversales de baja rotación con universo completo, k = 2-3 por lado.
+4. Momentum BTC/ETH con volatilidad objetivo (semanas).
+5. Paper trading hacia delante del corto de listados (≥ 60-100 operaciones): único dato virgen disponible.
