@@ -118,8 +118,16 @@ def main() -> int:
     k = int(sys.argv[sys.argv.index("--celdas") + 1]) if "--celdas" in sys.argv else 24
     t0 = time.time()
     RES.mkdir(exist_ok=True)
-    ev = pd.read_parquet(RES / "ranking_ronda1.parquet")
-    celdas = elegir_celdas(ev, k)
+    congeladas = "--congeladas" in sys.argv
+    if congeladas:
+        # VALIDACIÓN: las celdas vienen del fichero congelado ANTES de mirar este periodo; no se reeligen ni se tocan
+        cong = json.loads((RAIZ / "CELDAS_CONGELADAS.json").read_text())
+        celdas = pd.DataFrame([{"fam": c["fam"], "tf": c["tf"], "inv": c["inv"], "base": c["base"], "pruebas": 0, "p90": np.nan, "mejor": np.nan}
+                               for c in cong["celdas"]])
+        ev = pd.read_parquet(RAIZ / "resultados" / "ranking_ronda1.parquet")          # solo para la varianza de Sharpe entre pruebas
+    else:
+        ev = pd.read_parquet(RES / "ranking_ronda1.parquet")
+        celdas = elegir_celdas(ev, k)
     print("celdas candidatas:\n", celdas[["fam", "tf", "inv", "pruebas", "p90", "mejor"]].round(3).to_string(), flush=True)
 
     sel = json.loads(UNIV.read_text())["seleccion"]
