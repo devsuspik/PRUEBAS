@@ -21,7 +21,7 @@ from . import metricas as M
 from . import regimenes as RG
 from .descarga import RAIZ
 
-RES = RAIZ / "resultados"
+from .periodo import RES
 
 
 def cargar(prefijos: Tuple[str, ...] = ("ronda1", "ronda1b", "ronda1c", "ronda1d")) -> tuple[pd.DataFrame, dict]:

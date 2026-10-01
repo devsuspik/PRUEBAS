@@ -24,15 +24,8 @@ import pandas as pd
 from . import datos as D
 from .config import CFG
 
-RAIZ = Path(__file__).resolve().parent.parent
-CACHE = D.CACHE
-PERIODO = {
-    "busqueda_ini": "2024-08-01", "busqueda_fin": "2026-07-31",
-    "holdout_ini": "2026-08-01", "holdout_fin": "2026-09-29",
-    "previo_universo_ini": "2024-07-01",           # 1 mes previo para poder calcular volumen a 7 d en el primer día
-    "calentamiento_ini": "2023-11-01",             # 9 meses de 1m SOLO para calcular indicadores (SMA200 diaria…); no se opera
-}
-LOG = RAIZ / "descarga.log"
+from .periodo import RAIZ, CACHE, PERIODO, UNIV, PERIODO_JSON, SUF
+LOG = RAIZ / f"descarga{SUF}.log"
 _lock = threading.Lock()
 
 
@@ -200,7 +193,7 @@ def volumen_diario(simbolos: List[str]) -> pd.DataFrame:
 
 
 def fase_universo() -> None:
-    (RAIZ / "PERIODO.json").write_text(json.dumps(PERIODO, indent=1))
+    PERIODO_JSON.write_text(json.dumps(PERIODO, indent=1))
     syms = simbolos_usdt()
     log(f"perpetuos USDT (incluye retirados): {len(syms)}")
     ini, fin = ts(PERIODO["previo_universo_ini"]), ts(PERIODO["holdout_fin"])

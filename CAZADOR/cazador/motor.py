@@ -326,14 +326,16 @@ def _simular(o, h, l, c, qv, slip, f_idx, f_rate,
     return ok, e_i, x_i, lado_o, e_px, x_px, qty_o, fee_o, fund_o, pnl_o, risk_o, mot_o
 
 
-def simular_moneda(d: DatosMoneda, s: Senales, cfg: Config, sal: Salida, latencia_velas: int = 0) -> pd.DataFrame:
-    """Simula TODAS las señales de una moneda de forma independiente (la cartera se aplica después)."""
+def simular_moneda(d: DatosMoneda, s: Senales, cfg: Config, sal: Salida, latencia_velas: int = 0,
+                   slip_mult: float = 1.0) -> pd.DataFrame:
+    """Simula TODAS las señales de una moneda de forma independiente (la cartera se aplica después).
+    ``slip_mult`` escala el deslizamiento (estrés de costes); las comisiones se escalan pasando un ``cfg`` modificado."""
     if len(s) == 0:
         return _vacio()
     fexit = s.salida_idx if s.salida_idx is not None else np.full(len(s), -1, np.int64)
     obj_frac = cfg.objetivo_frac_precio(sal.objetivo_pct_margen) if sal.objetivo_pct_margen > 0 else 0.0
     r = _simular(d.o.astype(np.float64), d.h.astype(np.float64), d.l.astype(np.float64), d.c.astype(np.float64),
-                 d.qv.astype(np.float64), d.slip(cfg), d.f_idx(), d.f_tasa(),
+                 d.qv.astype(np.float64), d.slip(cfg) * slip_mult, d.f_idx(), d.f_tasa(),
                  s.idx.astype(np.int64), s.lado.astype(np.int8), s.dist_stop.astype(np.float64),
                  fexit.astype(np.int64),
                  int(latencia_velas), cfg.nocional_usd, cfg.apalancamiento, cfg.mantenimiento_margen_frac,

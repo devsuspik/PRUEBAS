@@ -8,10 +8,11 @@ import pandas as pd
 
 from . import cargar, datos as D
 from .descarga import CACHE, PERIODO, RAIZ
+from .periodo import RES, UNIV
 
 
 def main() -> None:
-    sel = json.loads((RAIZ / "UNIVERSO.json").read_text())["seleccion"]
+    sel = json.loads(UNIV.read_text())["seleccion"]
     filas = []
     fin = int(pd.Timestamp(PERIODO["busqueda_fin"]).timestamp() * 1000) + 86_400_000
     for s in sel:
@@ -27,7 +28,7 @@ def main() -> None:
                    intervalos_funding_h=",".join(str(x) for x in sorted(f.horas.dropna().unique())) if len(f) else "")
         filas.append(rep)
     q = pd.DataFrame(filas).set_index("simbolo")
-    q.to_csv(RAIZ / "resultados" / "calidad_datos.csv")
+    q.to_csv(RES / "calidad_datos.csv")
     tot = q[["minutos_faltantes", "duplicados", "velas_imposibles", "saltos_mayores_40pct_1m"]].sum()
     print(q[["desde", "n", "minutos_faltantes", "racha_hueco_max_min", "duplicados", "velas_imposibles",
              "saltos_mayores_40pct_1m", "minutos_sin_volumen", "marcas_funding", "intervalos_funding_h"]].to_string())
@@ -35,5 +36,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    (RAIZ / "resultados").mkdir(exist_ok=True)
+    RES.mkdir(exist_ok=True)
     main()

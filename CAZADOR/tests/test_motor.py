@@ -193,3 +193,13 @@ def test_ventaja_con_fuga_de_futuro_desaparece_con_retraso():
     # ventaja esperada con fuga = 200 $ * E|r| = 200 * 0,8 * 0,0008 = 0,128 $ por operación
     assert e0 == pytest.approx(0.128, rel=0.1)
     assert abs(e1) < 0.25 * e0                        # con 1 vela de retraso la ventaja se esfuma
+
+
+def test_salida_forzada_por_senal_contraria():
+    from cazador.motor import SENAL
+    d = barras([100, 100, 101, 102, 103, 104], [100, 100.5, 101.5, 102.5, 103.5, 104.5],
+               [100, 99.5, 100.5, 101.5, 102.5, 103.5], [100, 101, 102, 103, 104, 105])
+    s = Senales(np.array([0]), np.array([1], np.int8), np.array([50.0]), np.array([3], np.int64))
+    t = simular_moneda(d, s, CFG, Salida(max_velas_1m=100))
+    assert t.motivo[0] == SENAL and t.salida_px[0] == pytest.approx(103.0)   # cierre de la vela 3
+    assert t.salida_ts[0] == 4 * 60_000

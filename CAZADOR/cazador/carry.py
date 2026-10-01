@@ -22,6 +22,7 @@ import pandas as pd
 from . import cargar
 from .config import CFG
 from .descarga import CACHE, PERIODO
+from .periodo import RES, UNIV
 from .motor import MS_MIN
 
 H_MS = 3_600_000
@@ -211,12 +212,12 @@ def main() -> None:
     import json
     from . import ronda1 as R1, trials, universo
     from .descarga import RAIZ
-    sel = json.loads((RAIZ / "UNIVERSO.json").read_text())["seleccion"]
+    sel = json.loads(UNIV.read_text())["seleccion"]
     miembros = universo.miembros_por_fecha()
     cod, _ = R1.codigo_dia_busqueda()
     df, diarios, _ = correr_carry(sel, miembros, cod)
-    df.to_parquet(RAIZ / "resultados" / "ronda1d.parquet")
-    np.savez_compressed(RAIZ / "resultados" / "ronda1d_diario.npz", **{k.replace("|", "__"): v for k, v in diarios.items()})
+    df.to_parquet(RES / "ronda1d.parquet")
+    np.savez_compressed(RES / "ronda1d_diario.npz", **{k.replace("|", "__"): v for k, v in diarios.items()})
     for r in df.itertuples():
         trials.registrar(dict(ronda=1, estrategia=r.fam, marco_min=r.tf, params=r.params, salida=r.salida, segmento="reducido50",
                               regimen="todos", lado=r.lado, n_ops=r.n, exp_R=round(r.exp_R, 5), beneficio_usd=round(r.beneficio, 2),

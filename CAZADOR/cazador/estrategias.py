@@ -235,6 +235,22 @@ def bollinger_rev(B: Barras, n: int = 20, k_sigma: float = 2.5, atr_n: int = 14,
     return _emitir(B, L, S, k_atr * atr(B, atr_n), invertir, solo)
 
 
+def con_salida_contraria(s: Senales) -> Senales:
+    """Convierte una secuencia de señales en 'mantener hasta la señal contraria': se conservan solo las señales que CAMBIAN de lado
+    (la primera de cada racha) y cada una sale en el cierre de la 1 m siguiente a la vela de la siguiente señal contraria
+    (-1 = sin salida forzada, la última). Las salidas solo dependen de señales que ya ocurrieron: causal."""
+    if len(s) == 0:
+        return s
+    orden = np.argsort(s.idx, kind="stable")
+    idx, lado, sd = s.idx[orden], s.lado[orden], s.dist_stop[orden]
+    cambia = np.ones(len(idx), bool)
+    cambia[1:] = lado[1:] != lado[:-1]
+    idx, lado, sd = idx[cambia], lado[cambia], sd[cambia]
+    sal = np.full(len(idx), -1, np.int64)
+    sal[:-1] = idx[1:] + 1
+    return Senales(idx, lado, sd, sal)
+
+
 # ----------------------------------------------------------------------------------------------
 # Registro y utilidades
 # ----------------------------------------------------------------------------------------------

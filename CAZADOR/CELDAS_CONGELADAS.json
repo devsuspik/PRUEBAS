@@ -1,0 +1,242 @@
+{
+ "congelado_utc": "2026-10-01 00:18:34",
+ "origen": "ranking Ronda 1 sobre periodo RECIENTE (2024-08..2026-07); sin mirar VAL1/VAL2",
+ "n_celdas": 24,
+ "celdas": [
+  {
+   "fam": "max_n_dias",
+   "tf": 240,
+   "inv": false,
+   "base": {
+    "dias": 180,
+    "k_atr": 3.0
+   }
+  },
+  {
+   "fam": "max_n_dias",
+   "tf": 1440,
+   "inv": false,
+   "base": {
+    "dias": 60,
+    "k_atr": 3.0
+   }
+  },
+  {
+   "fam": "inside_bar",
+   "tf": 1440,
+   "inv": true,
+   "base": {
+    "k_atr": 2.0,
+    "tendencia": false
+   }
+  },
+  {
+   "fam": "squeeze_bk",
+   "tf": 240,
+   "inv": false,
+   "base": {
+    "k_atr": 2.0,
+    "n": 20,
+    "pct_ancho": 0.2
+   }
+  },
+  {
+   "fam": "ema_cross",
+   "tf": 1440,
+   "inv": false,
+   "base": {
+    "k_atr": 2.0,
+    "lenta": 200,
+    "rapida": 50
+   }
+  },
+  {
+   "fam": "pin_bar",
+   "tf": 1440,
+   "inv": true,
+   "base": {
+    "k_atr": 2.0,
+    "ratio": 3.0,
+    "tendencia": false
+   }
+  },
+  {
+   "fam": "dia_semana",
+   "tf": 60,
+   "inv": false,
+   "base": {
+    "dow": 4,
+    "hora": 0.0,
+    "k_atr": 3.0
+   }
+  },
+  {
+   "fam": "bollinger_rev",
+   "tf": 240,
+   "inv": false,
+   "base": {
+    "k_atr": 2.0,
+    "k_sigma": 2.5,
+    "n": 20
+   }
+  },
+  {
+   "fam": "supertrend",
+   "tf": 240,
+   "inv": false,
+   "base": {
+    "k_atr": 2.0,
+    "mult": 3.0,
+    "periodo": 10
+   }
+  },
+  {
+   "fam": "supertrend",
+   "tf": 1440,
+   "inv": false,
+   "base": {
+    "k_atr": 2.0,
+    "mult": 2.0,
+    "periodo": 10
+   }
+  },
+  {
+   "fam": "donchian",
+   "tf": 1440,
+   "inv": false,
+   "base": {
+    "k_atr": 2.0,
+    "n": 55
+   }
+  },
+  {
+   "fam": "dia_semana",
+   "tf": 60,
+   "inv": true,
+   "base": {
+    "dow": 3,
+    "hora": 0.0,
+    "k_atr": 3.0
+   }
+  },
+  {
+   "fam": "zscore_rev",
+   "tf": 240,
+   "inv": true,
+   "base": {
+    "k": 2.5,
+    "k_atr": 2.0,
+    "n": 50
+   }
+  },
+  {
+   "fam": "nr7",
+   "tf": 1440,
+   "inv": true,
+   "base": {
+    "k_atr": 2.0
+   }
+  },
+  {
+   "fam": "engulfing",
+   "tf": 240,
+   "inv": false,
+   "base": {
+    "k_atr": 2.0,
+    "tendencia": false
+   }
+  },
+  {
+   "fam": "nr7",
+   "tf": 240,
+   "inv": true,
+   "base": {
+    "k_atr": 2.0
+   }
+  },
+  {
+   "fam": "engulfing",
+   "tf": 1440,
+   "inv": false,
+   "base": {
+    "k_atr": 2.0,
+    "tendencia": true
+   }
+  },
+  {
+   "fam": "ema_cross",
+   "tf": 240,
+   "inv": false,
+   "base": {
+    "k_atr": 2.0,
+    "lenta": 50,
+    "rapida": 20
+   }
+  },
+  {
+   "fam": "zscore_rev",
+   "tf": 60,
+   "inv": true,
+   "base": {
+    "k": 3.0,
+    "k_atr": 2.0,
+    "n": 50
+   }
+  },
+  {
+   "fam": "rsi2",
+   "tf": 240,
+   "inv": true,
+   "base": {
+    "k_atr": 2.0,
+    "sma_filtro": 200,
+    "umbral": 5.0
+   }
+  },
+  {
+   "fam": "rsi2",
+   "tf": 240,
+   "inv": false,
+   "base": {
+    "k_atr": 2.0,
+    "sma_filtro": 200,
+    "umbral": 10.0
+   }
+  },
+  {
+   "fam": "engulfing",
+   "tf": 1440,
+   "inv": true,
+   "base": {
+    "k_atr": 2.0,
+    "tendencia": true
+   }
+  },
+  {
+   "fam": "tsmom",
+   "tf": 1440,
+   "inv": false,
+   "base": {
+    "k_atr": 3.0,
+    "n": 7
+   }
+  },
+  {
+   "fam": "donchian",
+   "tf": 240,
+   "inv": false,
+   "base": {
+    "k_atr": 2.0,
+    "n": 55
+   }
+  }
+ ],
+ "hash_codigo": {
+  "cazador/ronda2.py": "d3fcc73e92612017",
+  "cazador/estrategias.py": "c59ad4e222de22b3",
+  "cazador/estrategias2.py": "34b9f5690953bcaa",
+  "cazador/motor.py": "9d8737a5f5343d08",
+  "cazador/walkforward.py": "ff365415a67a3943",
+  "cazador/barrido.py": "0b558d63a4435292"
+ }
+}

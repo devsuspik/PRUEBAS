@@ -9,6 +9,7 @@ Diseño:
 """
 from __future__ import annotations
 
+import dataclasses
 import itertools
 import multiprocessing as mp
 import time
@@ -73,7 +74,10 @@ def filtrar_senales(p: Prep, s: Senales, sin_universo: bool = False) -> Senales:
 
 
 # ----------------------------------------------------------------------------------------------
-def _agregar(t: pd.DataFrame, codigo_dia: np.ndarray) -> Dict[str, dict]:
+CLAVES_ADITIVAS = ("d_pnl", "d_n", "reg_n", "reg_pnl", "d_gw", "d_gl", "d_R", "dr_pnl", "dr_n", "dr_gw", "dr_gl", "dr_R")
+
+
+def _agregar(t: pd.DataFrame, codigo_dia: np.ndarray, detalle: bool = False) -> Dict[str, dict]:
     """Agregados aditivos por lado (ambos/long/short) de una lista de operaciones."""
     out = {}
     if t.empty:
@@ -102,6 +106,15 @@ def _agregar(t: pd.DataFrame, codigo_dia: np.ndarray) -> Dict[str, dict]:
             "top5": np.sort(p)[-5:],
             "sym": {t["simbolo"].iloc[0]: float(p.sum())},
         }
+        if detalle:                               # curvas diarias POR RÉGIMEN (régimen de la entrada, día de la salida)
+            ix = reg[m] * ND + dia_sal[m]
+            sz = NREG * ND
+            f32 = np.float32                          # float32: los agregados por régimen de Ronda 2 ocupan ~4 GB en float64
+            a["dr_pnl"] = np.bincount(ix, weights=p, minlength=sz).reshape(NREG, ND).astype(f32)
+            a["dr_n"] = np.bincount(ix, minlength=sz).reshape(NREG, ND).astype(np.int32)
+            a["dr_gw"] = np.bincount(ix, weights=np.where(p > 0, p, 0.0), minlength=sz).reshape(NREG, ND).astype(f32)
+            a["dr_gl"] = np.bincount(ix, weights=np.where(p <= 0, -p, 0.0), minlength=sz).reshape(NREG, ND).astype(f32)
+            a["dr_R"] = np.bincount(ix, weights=r, minlength=sz).reshape(NREG, ND).astype(f32)
         out[nombre] = a
     return out
 
@@ -111,8 +124,9 @@ def _fusionar(a: Optional[dict], b: dict) -> dict:
         return b
     for k in ("n", "pnl", "pnl_sq", "R", "gw", "gl", "wins", "costes"):
         a[k] += b[k]
-    for k in ("d_pnl", "d_n", "reg_n", "reg_pnl", "d_gw", "d_gl", "d_R"):
-        a[k] = a[k] + b[k]
+    for k in CLAVES_ADITIVAS:
+        if k in a:
+            a[k] = a[k] + b[k]
     a["top5"] = np.sort(np.concatenate([a["top5"], b["top5"]]))[-5:]
     for s, v in b["sym"].items():
         a["sym"][s] = a["sym"].get(s, 0.0) + v
@@ -128,6 +142,8 @@ def salida_para(nombre: str, tf: int) -> Salida:
         "trail2R": Salida(trailing_R=2.0, max_velas_1m=mv), "trail3R": Salida(trailing_R=3.0, max_velas_1m=mv),
         "obj3R_be": Salida(objetivo_R=3.0, break_even_R=1.5, max_velas_1m=mv),
     }
+    tabla["hold"] = Salida(max_velas_1m=43_200)         # solo stop de catástrofe + salida forzada por señal contraria (30 d máx.)
+    tabla["hold_trail4R"] = Salida(trailing_R=4.0, max_velas_1m=43_200)
     for h in (4, 12, 24, 48, 72, 168):                  # salidas solo por tiempo (estacionalidad): el stop sigue activo
         tabla[f"t{h}h"] = Salida(max_velas_1m=h * 60)
     for pct in CFG.objetivos_beneficio_pct_margen:
@@ -166,12 +182,18 @@ def _trabajador(idx: int, simbolos: List[str], miembros: pd.DataFrame, codigo_di
                             continue
                         s = E.REGISTRO[job["fam"]]["fn"](B, **{**E.REGISTRO[job["fam"]]["params"], **job["params"],
                                                                 "invertir": job["inv"]})
+                        if job.get("contraria"):
+                            s = E.con_salida_contraria(s)       # ANTES de filtrar: la señal contraria puede caer fuera del universo
                         s = filtrar_senales(p, s, job.get("sin_universo", False))
                     if len(s) == 0:
                         continue
+                    m_c = job.get("cfg_mult", 1.0)
+                    cfg_j = CFG if m_c == 1.0 else dataclasses.replace(
+                        CFG, comision_taker_pct=CFG.comision_taker_pct * m_c, comision_maker_pct=CFG.comision_maker_pct * m_c,
+                        deslizamiento_min_pct=CFG.deslizamiento_min_pct * m_c)
                     for ex in job["exits"]:
-                        t = simular_moneda(p.d, s, CFG, salida_para(ex, job["tf"]), 0)
-                        for lado, agg in _agregar(t, codigo_dia).items():
+                        t = simular_moneda(p.d, s, cfg_j, salida_para(ex, job["tf"]), job.get("latencia", 0), slip_mult=m_c)
+                        for lado, agg in _agregar(t, codigo_dia, job.get("detalle", False)).items():
                             k = (job["id"], ex, lado)
                             res[k] = _fusionar(res.get(k), agg)
                 except Exception as e:  # noqa: BLE001

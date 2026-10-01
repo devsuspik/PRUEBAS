@@ -23,7 +23,7 @@ from .motor import DatosMoneda, MS_MIN
 BASE = "https://data.binance.vision/data/futures/um"
 LISTADO = "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision"
 FAPI = "https://fapi.binance.com"
-CACHE = Path(__file__).resolve().parent.parent / "datos_cache"
+from .periodo import CACHE
 
 COLS_KLINES = ["t", "o", "h", "l", "c", "v", "t_cierre", "qv", "n", "tb_v", "tb_qv", "_ignore"]
 STABLES = {"USDC", "FDUSD", "TUSD", "BUSD", "USDP", "DAI", "EUR", "EURI", "AEUR", "USDE", "USD1", "RLUSD", "XUSD"}

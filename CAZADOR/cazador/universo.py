@@ -18,6 +18,7 @@ import pandas as pd
 from . import datos as D
 from .config import CFG
 from .descarga import CACHE, PERIODO, RAIZ
+from .periodo import UNIV
 
 MANUAL_NO_CRIPTO = {
     "XAUUSDT", "XAGUSDT", "PAXGUSDT", "XAUTUSDT", "CLUSDT", "BZUSDT", "NATGASUSDT", "COPPERUSDT", "XPDUSDT", "XPTUSDT",
@@ -66,7 +67,7 @@ def universo_y_seleccion() -> dict:
         "excluidos_por_ratio_fin_semana": ex["ratio"], "excluidos_manual": ex["manual"],
         "n_elegibles_alguna_vez_en_universo": len(elegibles), "seleccion": sel,
     }
-    (RAIZ / "UNIVERSO.json").write_text(json.dumps(info, indent=1, ensure_ascii=False))
+    UNIV.write_text(json.dumps(info, indent=1, ensure_ascii=False))
     return info
 
 

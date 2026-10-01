@@ -24,21 +24,25 @@ from .config import CFG
 from .descarga import CACHE, PERIODO, RAIZ, ts
 from .datos import http_get
 
-RES = RAIZ / "resultados"
+from .periodo import RES, UNIV
 
 
 # ----------------------------------------------------------------------------------------------
 def btc_diario() -> pd.DataFrame:
-    """BTCUSDT 1d desde 2022-01 (para tener SMA200 y percentiles desde el primer día de búsqueda). Solo hasta busqueda_fin."""
+    """BTCUSDT 1d con 20 meses de historia previa al inicio de búsqueda (SMA200 y percentiles desde el primer día). Solo hasta busqueda_fin."""
     p = CACHE / "klines" / "btc_1d_largo.parquet"
     if not p.exists():
+        ini = pd.Timestamp(PERIODO["busqueda_ini"]) - pd.DateOffset(months=20)
+        fin = pd.Timestamp(PERIODO["busqueda_fin"])
         partes = []
-        for m in D.meses_entre(pd.Timestamp("2022-01-01"), pd.Timestamp("2024-06-30")):
+        for m in D.meses_entre(ini, fin):
+            if pd.Period(m, "M").end_time.normalize() > fin:
+                break
             r = http_get(f"{D.BASE}/monthly/klines/BTCUSDT/1d/BTCUSDT-1d-{m}.zip")
             if r is not None:
                 partes.append(D.leer_klines_zip(r.content))
-        partes.append(pd.read_parquet(CACHE / "klines" / "1d" / "BTCUSDT.parquet").astype({"qv": "float64", "v": "float64", "tb_v": "float64", "tb_qv": "float64", "n": "int64"}))
         g = pd.concat(partes, ignore_index=True).sort_values("t").drop_duplicates("t")
+        p.parent.mkdir(parents=True, exist_ok=True)
         g.to_parquet(p)
     g = pd.read_parquet(p)
     g.index = pd.to_datetime(g["t"], unit="ms").dt.floor("D")
@@ -163,21 +167,47 @@ def grid_c(mat: dict) -> List[dict]:
     return jobs
 
 
+def grid_e() -> List[dict]:
+    """Ronda 1 (E): familias de tendencia con 'mantener hasta la señal contraria' (baja rotación) y stop de catástrofe ancho."""
+    b: List[dict] = []
+    f = lambda fam, tf, **p: b.append(dict(fam=fam, tf=tf, params=p))
+    for tf in (60, 240, 1440):
+        for k in (3.0, 4.0):
+            for r, l in ((9, 21), (20, 50), (50, 200)):
+                f("ema_cross", tf, rapida=r, lenta=l, k_atr=k)
+            for n in (20, 55, 100):
+                f("donchian", tf, n=n, k_atr=k)
+            for m in (2.0, 3.0):
+                f("supertrend", tf, periodo=10, mult=m, k_atr=k)
+    for tf, ns in ((240, (42, 84, 180)), (1440, (7, 14, 30, 60))):
+        for n in ns:
+            for k in (3.0, 4.0):
+                f("tsmom", tf, n=n, k_atr=k)
+    jobs, i = [], 40_000
+    for x in b:
+        for inv in (False, True):
+            jobs.append({**x, "inv": inv, "id": i, "exits": ["hold", "hold_trail4R"], "contraria": True})
+            i += 1
+    return jobs
+
+
 def grid(rapido: bool = False, cual: str = "a", mat: dict | None = None) -> List[dict]:
     if cual == "b":
         return grid_b()
     if cual == "c":
         return grid_c(mat)
+    if cual == "e":
+        return grid_e()
     return grid_a(rapido)
 
 
 def main() -> int:
     rapido = "--rapido" in sys.argv
-    cual = "b" if "--grid-b" in sys.argv else ("c" if "--grid-c" in sys.argv else "a")
-    pref = {"a": "ronda1", "b": "ronda1b", "c": "ronda1c"}[cual]
+    cual = "b" if "--grid-b" in sys.argv else ("c" if "--grid-c" in sys.argv else ("e" if "--grid-e" in sys.argv else "a"))
+    pref = {"a": "ronda1", "b": "ronda1b", "c": "ronda1c", "e": "ronda1e"}[cual]
     RES.mkdir(exist_ok=True)
     t0 = time.time()
-    sel = json.loads((RAIZ / "UNIVERSO.json").read_text())["seleccion"]
+    sel = json.loads(UNIV.read_text())["seleccion"]
     miembros = universo.miembros_por_fecha()
     cod, etiquetas = codigo_dia_busqueda()
     print("régimen, días por etiqueta (búsqueda):",
