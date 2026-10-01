@@ -128,6 +128,10 @@ def main() -> int:
     else:
         ev = pd.read_parquet(RES / "ranking_ronda1.parquet")
         celdas = elegir_celdas(ev, k)
+    celdas = celdas.reset_index(drop=True)
+    if "--solo" in sys.argv:                                             # p. ej. --solo 3,4,22 (índices de CELDAS_CONGELADAS)
+        idx = [int(x) for x in sys.argv[sys.argv.index("--solo") + 1].split(",")]
+        celdas = celdas.loc[idx]
     print("celdas candidatas:\n", celdas[["fam", "tf", "inv", "pruebas", "p90", "mejor"]].round(3).to_string(), flush=True)
 
     sel = json.loads(UNIV.read_text())["seleccion"]
@@ -135,7 +139,8 @@ def main() -> int:
     cod, _ = ronda1.codigo_dia_busqueda()
 
     jobs, celda_de, i = [], {}, 100_000
-    for ci, r in enumerate(celdas.itertuples()):
+    for r in celdas.itertuples():
+        ci = r.Index
         for v in variantes(r.fam, r.base):
             jobs.append(dict(id=i, fam=r.fam, tf=r.tf, params=v, inv=bool(r.inv), exits=BR.EXITS_R1, detalle=True, celda=ci))
             celda_de[i] = ci
@@ -149,7 +154,8 @@ def main() -> int:
     filas, detalle = [], {}
     n_total = RK.total_pruebas_lanzadas() + n_sims * 3
     n_total_con_filtros = RK.total_pruebas_lanzadas() + n_sims * 3 * len(FILTROS)
-    for ci, r in enumerate(celdas.itertuples()):
+    for r in celdas.itertuples():
+        ci = r.Index
         js = [j for j in jobs if j["celda"] == ci]
         mats, meta = matrices(aggs, js)
         res = {}

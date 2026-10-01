@@ -49,8 +49,9 @@ def cargar_moneda(sim: str, tramo: str = "busqueda", intervalo: str = "1m", step
     """
     if tramo not in ("busqueda", "holdout"):
         raise ValueError(tramo)
-    if tramo == "holdout" and not _holdout_abierto():
-        raise PermissionError("El holdout está bloqueado: usa cazador.cargar.abrir_holdout(hash_estrategias)")
+    from .periodo import NOMBRE
+    if (tramo == "holdout" or NOMBRE == "ho") and not _holdout_abierto():
+        raise PermissionError("El holdout está bloqueado: usa cazador.holdout (registra la apertura única con el hash de las estrategias)")
     p = CACHE / "klines" / intervalo / f"{sim}.parquet"
     if not p.exists():
         return None

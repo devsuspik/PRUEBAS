@@ -45,6 +45,11 @@ def btc_diario() -> pd.DataFrame:
         p.parent.mkdir(parents=True, exist_ok=True)
         g.to_parquet(p)
     g = pd.read_parquet(p)
+    fin_ms = int((pd.Timestamp(PERIODO["busqueda_fin"]) + pd.Timedelta(days=1)).timestamp() * 1000)
+    if g["t"].max() < fin_ms - 2 * 86_400_000:                       # la caché larga acaba antes: se completa con el 1d reciente
+        r = pd.read_parquet(CACHE / "klines" / "1d" / "BTCUSDT.parquet").astype(
+            {"qv": "float64", "v": "float64", "tb_v": "float64", "tb_qv": "float64", "n": "int64"})
+        g = pd.concat([g, r], ignore_index=True).sort_values("t").drop_duplicates("t")
     g.index = pd.to_datetime(g["t"], unit="ms").dt.floor("D")
     return g.loc[: PERIODO["busqueda_fin"]]
 

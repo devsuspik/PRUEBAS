@@ -1,0 +1,18 @@
+{
+ "escrito_antes_de_abrir_holdout": true,
+ "celdas_walk_forward": {
+  "indices": [
+   10,
+   11
+  ],
+  "motivo": "las dos celdas 'consistentes' (OOS>0 y PF>1 sin filtro de régimen en reciente, VAL1 y VAL2) según PREREGISTRO.md: donchian 1d (celda 10) y dia_semana 1h invertida (celda 11)"
+ },
+ "factor_transversal": {
+  "factor": "mom14",
+  "R_dias": 7,
+  "k_por_lado": 10,
+  "largo": "alto",
+  "motivo": "único factor diario con signo positivo neto en los tres periodos y t entre 0,56 y 0,73 (no significativo); añadido tras ver los resultados de los tres periodos: su evaluación en el holdout es solo informativa"
+ },
+ "nota": "El holdout tiene ~8 rebalanceos semanales y 2 meses de walk-forward: cualquier resultado será estadísticamente poco informativo. Se abre UNA vez."
+}

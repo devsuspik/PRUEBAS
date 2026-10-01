@@ -72,9 +72,14 @@ def universo_y_seleccion() -> dict:
 
 
 def miembros_por_fecha() -> pd.DataFrame:
+    from .periodo import NOMBRE
     v = volumen_busqueda()
-    ex = excluidos(v)
-    malos = set(ex["ratio"]) | set(ex["manual"])
+    if NOMBRE == "ho":      # exclusiones y selección fijadas con datos anteriores al holdout
+        info = json.loads((RAIZ / "UNIVERSO.json").read_text())
+        malos = set(info["excluidos_por_ratio_fin_semana"]) | set(info["excluidos_manual"])
+    else:
+        ex = excluidos(v)
+        malos = set(ex["ratio"]) | set(ex["manual"])
     m = D.universo_por_fecha(v)
     return m.drop(columns=[c for c in m.columns if c in malos])
 

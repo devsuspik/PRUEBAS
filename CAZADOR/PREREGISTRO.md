@@ -24,3 +24,9 @@ APTA exige TODO lo de §8 del prompt (incluido DSR >= 0,90 con el total real de 
 ## Holdout (2026-08-01..2026-09-29)
 Se abre UNA sola vez, al final, con las celdas que superen el criterio "consistente" tras VAL2 (si hay alguna). Si ninguna lo supera
 el holdout se abre igualmente UNA vez para la celda con mejor evidencia agregada, solo para documentar el resultado.
+
+## Adenda (escrita tras VAL2 y antes de abrir el holdout)
+Resultado de VAL2 y de la comparación entre periodos (ver `consistencia.py`): cumplen el criterio "consistente" las celdas 10 (donchian 1d) y
+11 (dia_semana 1h invertida). La celda 11 no alcanza PF >= 1,25 en ningún periodo y a costes x1,5 queda en ~0 en VAL2.
+Se registra además el factor transversal mom14 (semanal, k=10) como candidata informativa. Lista exacta en `CANDIDATAS_HOLDOUT.json`.
+El holdout se abre UNA vez para esas candidatas y el resultado se informa sin ajustar nada.
