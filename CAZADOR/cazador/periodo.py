@@ -29,6 +29,14 @@ PERIODOS = {
         "previo_universo_ini": "2022-12-01",
         "calentamiento_ini": "2022-06-01",
     },
+    # Los futuros de data.binance.vision empiezan en 2020-01: antes no hay nada. Se usan solo listados cuyo primer dato es >= 2020-02-15
+    # (así el primer dato es de verdad el listado y no el inicio del histórico).
+    "val00": {
+        "busqueda_ini": "2020-02-15", "busqueda_fin": "2020-08-31",
+        "holdout_ini": "2020-09-01", "holdout_fin": "2020-09-30",       # ficticio
+        "previo_universo_ini": "2020-02-01",
+        "calentamiento_ini": "2020-01-01",
+    },
     "val0": {
         "busqueda_ini": "2020-09-15", "busqueda_fin": "2021-05-31",
         "holdout_ini": "2021-06-01", "holdout_fin": "2021-06-30",       # ficticio

@@ -118,6 +118,27 @@ Con la cartera de 5 posiciones apenas se rechazan señales (2 y 6 en VAL0 y reci
 
 **Para no engañarse:** la hipótesis nació del estudio de eventos del periodo reciente; VAL1/VAL2/VAL0 son su confirmación (VAL0 es el único dato realmente nuevo para una regla congelada antes: 6/6 variantes positivas, pero con ≈ 59 eventos y t = 1,7).
 
+### 5b. Refinamiento y quinto periodo (añadido el 1-oct-2026, tras la petición de seguir)
+
+**Qué se hizo (todo pre-registrado en `PREREGISTRO.md`, adenda 3, antes de calcular nada):** seis variables condicionantes (lista cerrada), elegidas con VAL0+VAL1+VAL2 y validadas en el periodo reciente.
+Aceptadas por el criterio (mejora en ≥ 3/4 periodos, conserva ≥ 50 %, mejora en reciente): `btc7` (4/4), `vol24h` (3/4), `horas` (3/4). Rechazadas: run-up, funding y **régimen** (mejoraba 2/4).
+Se tomaron las 2 más fuertes (máximo permitido): **no abrir si BTC cayó > 1,2 % en los 7 días previos** y **no abrir si el volumen de las 24 h previas < 31,4 M$**.
+
+| Periodo | base (n / $/op / PF) | REFINADA (n / $/op / PF) |
+|---|---|---|
+| VAL0 | 56 / +7,31 / 1,77 | 14 / +13,63 / 2,55 (*usado para elegir*) |
+| VAL1 | 48 / +7,14 / 1,75 | 16 / +21,44 / 4,04 (*usado para elegir*) |
+| VAL2 | 134 / +4,06 / 1,40 | 74 / +6,10 / 1,61 (*usado para elegir*) |
+| **Reciente (validación)** | 370 / +2,10 / 1,18 | **221 / +3,91 / 1,33**, total +864 $ (vs +778 $) |
+
+**Test de permutación en reciente:** un filtro aleatorio que conserve el mismo 60 % de operaciones iguala o supera esa mejora en el **9,9 %** de los casos (p = 0,099). **No es significativo al 5 %.** Se trata como *variante informativa*, no como sustituto de la regla principal.
+
+**VAL00 (feb–jul 2020, el único dato virgen restante; los futuros de Binance empiezan en 2020-01):** solo 11 listados, 9 operaciones: +141 $, 67 % de aciertos, PF 3,9, positivo con costes ×3. Es el **quinto periodo con el mismo signo**, pero 9 operaciones no tienen peso estadístico. La variante refinada deja 1 sola operación.
+
+**Expectativa honesta con tu configuración** (20 $ de margen, 10x, ≤ 5 posiciones; ritmo del periodo reciente ≈ 15 listados/mes): regla principal ≈ +2 $/operación ≈ **+30 $/mes de media**, con 28 % de aciertos y rachas de hasta ~28 pérdidas en p95; variante refinada ≈ +3,9 $/operación en ~9 operaciones/mes ≈ +35 $/mes. **Son medias de un patrón que se está erosionando, no un ingreso garantizado.**
+
+**Nuevo: `cazador/paper_listados.py`** — registrador de paper trading (detecta listados nuevos, calcula entrada/stop/objetivo con la regla exacta, resuelve con velas de 1 m y compara con los umbrales de parada). 6 pruebas con datos sintéticos; **no probado contra la API real** (aquí `fapi` da 451). Ejecútalo en tu máquina: `python -m cazador.paper_listados registrar|resolver|informe`.
+
 ## 6. Cementerio — qué estrategias famosas NO funcionan aquí con costes reales
 
 Mediana de expectativa neta por operación y % de variantes netas positivas (Ronda 1, pruebas con n ≥ mínimo, 50 monedas, periodo reciente):

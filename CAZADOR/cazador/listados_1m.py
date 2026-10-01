@@ -52,6 +52,21 @@ def descargar(eventos, workers=16):
                 partes.setdefault(s, []).append(df)
             if (i + 1) % 2000 == 0:
                 print(f"  {i + 1}/{len(tareas)} ({(i + 1) / (time.time() - t0):.0f}/s)", flush=True)
+    # respaldo: monedas sin ningún fichero diario -> ficheros MENSUALES recortados a la ventana del evento
+    for s, g in eventos:
+        if s in partes or (CACHE_L / f"{s}.parquet").exists():
+            continue
+        d0 = g.index[0]
+        lo, hi = int((d0 - pd.Timedelta(days=DIAS_ANTES)).timestamp() * 1000), int((d0 + pd.Timedelta(days=DIAS_DESPUES + 1)).timestamp() * 1000)
+        ms = sorted({(d0 + pd.Timedelta(days=k)).strftime("%Y-%m") for k in range(-DIAS_ANTES, DIAS_DESPUES + 1)})
+        fs = []
+        for m in ms:
+            r = D.http_get(f"{D.BASE}/monthly/klines/{s}/1m/{s}-1m-{m}.zip")
+            if r is not None:
+                df = D.leer_klines_zip(r.content)
+                fs.append(df[(df.t >= lo) & (df.t < hi)])
+        if fs:
+            partes[s] = fs
     for s, p in partes.items():
         pd.concat(p, ignore_index=True).sort_values("t").drop_duplicates("t").astype(
             {"qv": "float64", "v": "float64", "tb_v": "float64", "tb_qv": "float64", "n": "int64"}).to_parquet(CACHE_L / f"{s}.parquet")

@@ -9,7 +9,8 @@ Lee primero **[INFORME_FINAL.md](INFORME_FINAL.md)**. No es asesoramiento financ
 | `PREREGISTRO.md`, `CELDAS_CONGELADAS.json`, `CANDIDATAS_HOLDOUT.json`, `HOLDOUT_HASH.json`, `HOLDOUT_LOG.json` | Congelación y pre-registro (verificables en el historial de git) |
 | `resultados_final/` | Operaciones de la PROMETEDORA (CSV), top 20 de la Ronda 1, tabla de 24 celdas en 3 periodos |
 | `trials_log.csv` | Pruebas registradas (Ronda 1, ML, carry) |
-| `cazador/` | Código (motor, datos, estrategias, validación) · `tests/` 66 pruebas |
+| `cazador/paper_listados.py` | Registrador de paper trading del corto de listados (no operar real sin él) |
+| `cazador/` | Código (motor, datos, estrategias, validación) · `tests/` 72 pruebas |
 | `CHECKPOINT.md` | Estado y siguiente ronda |
 
 Datos: `data.binance.vision` (la API `fapi` da 451 por región). Modo reducido de 50 monedas por periodo. `datos_cache*/` no se versiona.
