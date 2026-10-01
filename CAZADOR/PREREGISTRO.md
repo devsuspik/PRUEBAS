@@ -30,3 +30,13 @@ Resultado de VAL2 y de la comparación entre periodos (ver `consistencia.py`): c
 11 (dia_semana 1h invertida). La celda 11 no alcanza PF >= 1,25 en ningún periodo y a costes x1,5 queda en ~0 en VAL2.
 Se registra además el factor transversal mom14 (semanal, k=10) como candidata informativa. Lista exacta en `CANDIDATAS_HOLDOUT.json`.
 El holdout se abre UNA vez para esas candidatas y el resultado se informa sin ajustar nada.
+
+## Adenda 2 (escrita ANTES de descargar VAL0 = 2020-09-15..2021-05-31): hipótesis "corto de listados nuevos"
+Origen: estudio de eventos del periodo RECIENTE (mediana -10,6 % a 7 días) y exploración con barras diarias en reciente, VAL1 y VAL2
+(`cazador/listados.py`): cortos +1,05/+1,18/+0,66 % netos por operación (media de las 81 combinaciones) frente a largos -2,1/-2,1/-1,6 %.
+Los tres periodos quedan por tanto CONTAMINADOS para esta hipótesis; VAL0 es el primer dato nuevo.
+Regla principal congelada (factible con 10x: stop 8 % < liquidación 9,5 %): CORTO al cierre del día 1 tras el primer día de cotización,
+stop +8 %, objetivo -40 %, salida por tiempo a los 7 días; coste ida y vuelta 0,14 %. Variantes informativas (misma familia, k=1, stop 8 %):
+objetivo {20 %, 40 %} x mantener {3, 7, 14} días (6 combinaciones, TODAS se informan).
+Criterio en VAL0: neto medio por operación > 0 y PF > 1 para la regla principal, y >= 4 de las 6 variantes netas > 0. t-stat y n se informan;
+con ~50-60 eventos la significación será baja y no bastará por sí sola: la regla pasaría después a simulación a 1 m con costes/slippage reales.

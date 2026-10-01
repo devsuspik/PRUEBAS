@@ -29,6 +29,12 @@ PERIODOS = {
         "previo_universo_ini": "2022-12-01",
         "calentamiento_ini": "2022-06-01",
     },
+    "val0": {
+        "busqueda_ini": "2020-09-15", "busqueda_fin": "2021-05-31",
+        "holdout_ini": "2021-06-01", "holdout_fin": "2021-06-30",       # ficticio
+        "previo_universo_ini": "2020-09-01",
+        "calentamiento_ini": "2020-06-01",
+    },
     # Apertura ÚNICA del holdout: 6 meses de entrenamiento (feb-jul 2026) + los 2 meses del holdout como meses de prueba del walk-forward.
     # Usa la MISMA caché y el MISMO universo que 'reciente'. Solo se ejecuta vía cazador.holdout (registra la apertura).
     "ho": {

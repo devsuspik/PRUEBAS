@@ -47,7 +47,7 @@ def factores(P: dict) -> dict:
     return f
 
 
-def evaluar(P: dict, f: dict, R: int, k: int = 10) -> pd.DataFrame:
+def evaluar(P: dict, f: dict, R: int, k: int = 10, min_reb: int = 10) -> pd.DataFrame:
     C, M = P["C"], P["M"]
     fecha0 = pd.Timestamp(PERIODO["holdout_ini"] if NOMBRE == "ho" else PERIODO["busqueda_ini"])   # en 'ho' solo se puntúa el holdout
     fut = C.shift(-R) / C - 1                                   # retorno de mantener R días desde el cierre de t
@@ -65,7 +65,7 @@ def evaluar(P: dict, f: dict, R: int, k: int = 10) -> pd.DataFrame:
             spreads.append((y[alto].mean() - y[bajo].mean()) / 2.0)     # largo alto - corto bajo, por 1 $ de nocional por pata promedio
             nl.append(len(orden))
         s = np.array(spreads)
-        if len(s) < 10:
+        if len(s) < min_reb:
             continue
         bruto = s.mean()
         for direccion, signo in (("alto", 1), ("bajo", -1)):
@@ -84,7 +84,14 @@ def main() -> None:
             raise PermissionError("El holdout está bloqueado: usa cazador.holdout")
     P = panel()
     f = factores(P)
-    out = pd.concat([evaluar(P, f, R, k) for R in (1, 3, 7) for k in (5, 10)], ignore_index=True)
+    if NOMBRE == "ho":
+        # SOLO la candidata registrada en CANDIDATAS_HOLDOUT.json (no se puntúan otros factores sobre el holdout)
+        from .periodo import RAIZ
+        c = json.loads((RAIZ / "CANDIDATAS_HOLDOUT.json").read_text())["factor_transversal"]
+        out = evaluar(P, {c["factor"]: f[c["factor"]]}, c["R_dias"], c["k_por_lado"], min_reb=5)
+        out = out[out["largo"] == c["largo"]]
+    else:
+        out = pd.concat([evaluar(P, f, R, k) for R in (1, 3, 7) for k in (5, 10)], ignore_index=True)
     RES.mkdir(exist_ok=True)
     out.to_csv(RES / "factores_1d.csv", index=False)
     print(f"{NOMBRE}: panel {P['C'].shape[1]} monedas x {P['C'].shape[0]} días | universo medio por día {int(P['M'].sum(axis=1).mean())}")
